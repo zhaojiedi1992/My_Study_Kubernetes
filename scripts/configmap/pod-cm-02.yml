@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-cm-02
+  namespace: default 
+  labels: 
+    app: pod-cm-02
+    tier: frontend
+  annotations:
+    linuxpanda.tech/created-by: "zhaojiedi"
+spec: 
+  containers: 
+  - name: pod-cm-02
+    image: ikubernetes/myapp:v1
+    ports: 
+    - name: http
+      containerPort: 80
+    volumeMounts: 
+    - name: nginxconf
+      mountPath: /etc/nginx/conf.d/
+      readOnly: true
+  volumes: 
+  - name: nginxconf
+    configMap: 
+      name: cm-nginx
