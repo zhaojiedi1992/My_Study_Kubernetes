@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Kubernetes组件 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Kubernetes API" href="03-KubernetesAPI.html" />
+    <link rel="prev" title="1. 什么是k8s" href="01-什么是k8s.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> My_Study_Kubernates
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">概念</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-什么是k8s.html">1. 什么是k8s</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Kubernetes组件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.1. 主要组件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2. 节点组件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.3. 插件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-对象.html">4. 对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-使用kubectl.html">5. 使用kubectl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-证书.html">6. 证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-集群网络.html">7. 集群网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-日志架构.html">8. 日志架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-配置kubelet垃圾收集.html">9. 配置kubelet垃圾收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-联邦.html">10. 联邦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-节点.html">11. 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-主节点通信.html">12. 主节点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-镜像.html">13. 镜像</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Kubernates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Concepts</a> &raquo;</li>
+        
+      <li>2. Kubernetes组件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/Concepts/02-Kubernetes组件.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kubernetes">
+<h1>2. Kubernetes组件<a class="headerlink" href="#kubernetes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.1. 主要组件<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>kube-apiserver</dt>
+<dd>提供集群管理的api入口</dd>
+<dt>etcd</dt>
+<dd>一致且高度可用的kv存储，为k8s集群数据提供后端存储</dd>
+<dt>kube-scheduler</dt>
+<dd>集群的调度管理</dd>
+<dt>kube-controller-manager</dt>
+<dd>控制器管理器管理多个控制器， 每个控制器管理对应的资源</dd>
+<dt>cloud-controller-manager</dt>
+<dd>云厂商提供的控制器管理器， 有多个控制器， 管理k8s和对应云资源的管理分配</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h2>2.2. 节点组件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>kubelet</dt>
+<dd>每个集群节点都要运行的服务，确保容器在pod中运行</dd>
+<dt>kube-proxy</dt>
+<dd>维护主机网络规划和转发来实现服务的抽象</dd>
+<dt>Container Runtime</dt>
+<dd>负责容器运行的容器软件，如docker,rtk等</dd>
+</dl>
+</div>
+<div class="section" id="id3">
+<h2>2.3. 插件<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>DNS</dt>
+<dd>集群dns服务</dd>
+<dt>Web UI</dt>
+<dd>web管理的面板</dd>
+<dt>Container Resource Monitoring</dt>
+<dd>容器资源的监控</dd>
+<dt>Cluster-level Logging</dt>
+<dd>提供一个统一的方式查看和分析日志</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="03-KubernetesAPI.html" class="btn btn-neutral float-right" title="3. Kubernetes API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-什么是k8s.html" class="btn btn-neutral" title="1. 什么是k8s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

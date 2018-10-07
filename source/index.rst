@@ -8,8 +8,7 @@ Kubernates学习笔记
 
 .. toctree::
    :maxdepth: 2
-   :caption: Linux基础服务
+   :caption: 概念
    :numbered:
 
-   Service/index
- 
+   Concepts/index
