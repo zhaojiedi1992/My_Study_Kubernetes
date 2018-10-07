@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pod-cm-01
+  namespace: default 
+  labels: 
+    app: pod-cm-01
+    tier: frontend
+  annotations:
+    linuxpanda.tech/created-by: "zhaojiedi"
+spec: 
+  containers: 
+  - name: pod-cm-01
+    image: ikubernetes/myapp:v1
+    ports: 
+    - name: http
+      containerPort: 80
+    env: 
+    - name: NGINX_SERVER_PORT 
+      valueFrom: 
+        configMapKeyRef: 
+          name: cm-nginx
+          key: NGINX_PORT
+    - name: NGINX_SERVER_NAME
+      valueFrom: 
+        configMapKeyRef: 
+          name: cm-nginx
+          key: SERVER_NAME
