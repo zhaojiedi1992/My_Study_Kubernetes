@@ -2,6 +2,9 @@ Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
-    :maxdepth: 2
-    :glob:
-    *
+   :maxdepth: 1
+   :caption: 服务
+   :numbered:
+   :glob:
+
+   *    
