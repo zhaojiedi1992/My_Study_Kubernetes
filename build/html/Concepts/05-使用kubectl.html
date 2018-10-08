@@ -202,10 +202,16 @@ kubectl create deployment nginx --image<span class="o">=</span>nginx
 <ol class="arabic simple">
 <li>将活动对象导出到本地对象配置文件</li>
 </ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get &lt;kind&gt;/&lt;name&gt; -o yaml --export &gt; &lt;kind&gt;_&lt;name&gt;.yaml
+</pre></div>
+</div>
 <ol class="arabic simple" start="2">
 <li>从对象配置文件中手动删除状态字段。</li>
 <li>对于后续对象管理，请replace专门使用。</li>
 </ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl replace -f &lt;kind&gt;_&lt;name&gt;.yaml
+</pre></div>
+</div>
 </div>
 <div class="section" id="id5">
 <h2>5.5. 从命令式对象配置迁移到声明性对象配置<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>

@@ -31,12 +31,14 @@
 1. 将活动对象导出到本地对象配置文件
 
 .. code-block:: bash 
+
     kubectl get <kind>/<name> -o yaml --export > <kind>_<name>.yaml
 
 2. 从对象配置文件中手动删除状态字段。
 3. 对于后续对象管理，请replace专门使用。
 
 .. code-block:: bash 
+
     kubectl replace -f <kind>_<name>.yaml
 
 从命令式对象配置迁移到声明性对象配置
