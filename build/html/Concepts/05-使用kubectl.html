@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. 使用kubectl &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.5. 使用kubectl &mdash; My_Study_Kubernates v1.0 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. 证书" href="06-证书.html" />
-    <link rel="prev" title="4. 对象" href="04-对象.html" /> 
+    <link rel="next" title="1.6. 证书" href="06-证书.html" />
+    <link rel="prev" title="1.4. 对象" href="04-对象.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,27 +84,33 @@
             
               <p class="caption"><span class="caption-text">概念</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01-什么是k8s.html">1. 什么是k8s</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes组件.html">2. Kubernetes组件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-对象.html">4. 对象</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 使用kubectl</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">5.1. 势在必行的命令</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.2. 使用对象配置文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">5.3. 使用配置目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">5.4. 从命令式命令迁移到命令式对象配置</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">5.5. 从命令式对象配置迁移到声明性对象配置</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-什么是k8s.html">1.1. 什么是k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes组件.html">1.2. Kubernetes组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">1.3. Kubernetes API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-对象.html">1.4. 对象</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. 使用kubectl</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.5.1. 势在必行的命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.5.2. 使用对象配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.5.3. 使用配置目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.5.4. 从命令式命令迁移到命令式对象配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.5.5. 从命令式对象配置迁移到声明性对象配置</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="06-证书.html">6. 证书</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07-集群网络.html">7. 集群网络</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08-日志架构.html">8. 日志架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09-配置kubelet垃圾收集.html">9. 配置kubelet垃圾收集</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10-联邦.html">10. 联邦</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11-节点.html">11. 节点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="12-主节点通信.html">12. 主节点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13-镜像.html">13. 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-证书.html">1.6. 证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-集群网络.html">1.7. 集群网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-日志架构.html">1.8. 日志架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-配置kubelet垃圾收集.html">1.9. 配置kubelet垃圾收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-联邦.html">1.10. 联邦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-节点.html">1.11. 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-主节点通信.html">1.12. 主节点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-镜像.html">1.13. 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-容器环境变量.html">1.14. 容器环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-运行时类.html">1.15. 运行时类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16-容器钩子.html">1.16. 容器钩子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-pod概述.html">1.17. pod概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-ReplicaSet.html">1.18. ReplicaSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-deployment.html">1.19. deployment</a></li>
 </ul>
 </li>
 </ul>
@@ -152,9 +158,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Concepts</a> &raquo;</li>
+          <li><a href="index.html">1. Concepts</a> &raquo;</li>
         
-      <li>5. 使用kubectl</li>
+      <li>1.5. 使用kubectl</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -176,9 +182,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="kubectl">
-<h1>5. 使用kubectl<a class="headerlink" href="#kubectl" title="Permalink to this headline">¶</a></h1>
+<h1>1.5. 使用kubectl<a class="headerlink" href="#kubectl" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>5.1. 势在必行的命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>1.5.1. 势在必行的命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl run nginx --image<span class="o">=</span>nginx
 
 kubectl create deployment nginx --image<span class="o">=</span>nginx
@@ -186,19 +192,19 @@ kubectl create deployment nginx --image<span class="o">=</span>nginx
 </div>
 </div>
 <div class="section" id="id2">
-<h2>5.2. 使用对象配置文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>1.5.2. 使用对象配置文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl create -f nginx.yaml
 </pre></div>
 </div>
 </div>
 <div class="section" id="id3">
-<h2>5.3. 使用配置目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>1.5.3. 使用配置目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl apply -R -f configs/
 </pre></div>
 </div>
 </div>
 <div class="section" id="id4">
-<h2>5.4. 从命令式命令迁移到命令式对象配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>1.5.4. 从命令式命令迁移到命令式对象配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>将活动对象导出到本地对象配置文件</li>
 </ol>
@@ -214,7 +220,7 @@ kubectl create deployment nginx --image<span class="o">=</span>nginx
 </div>
 </div>
 <div class="section" id="id5">
-<h2>5.5. 从命令式对象配置迁移到声明性对象配置<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>1.5.5. 从命令式对象配置迁移到声明性对象配置<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>kubectl.kubernetes.io/last-applied-configuration在对象上设置注释：</li>
 </ol>
@@ -235,10 +241,10 @@ kubectl create deployment nginx --image<span class="o">=</span>nginx
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="06-证书.html" class="btn btn-neutral float-right" title="6. 证书" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="06-证书.html" class="btn btn-neutral float-right" title="1.6. 证书" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="04-对象.html" class="btn btn-neutral" title="4. 对象" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="04-对象.html" class="btn btn-neutral" title="1.4. 对象" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
