@@ -40,7 +40,7 @@ pod分配给节点
     name: with-node-affinity
     spec:
     affinity:
-        nodeAffinity:
+      nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
@@ -60,3 +60,13 @@ pod分配给节点
     containers:
     - name: with-node-affinity
         image: k8s.gcr.io/pause:2.0
+
+上面的表示此pod只能运行在e2e-az1和2上， 但是满足第二个条件的是优先的。 
+
+.. note:: 亲和度只在调度的时候生效。 
+
+pod亲和： podAffinity
+pod反亲和： podAntiAffinity
+
+
+

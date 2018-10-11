@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="27-污点和容忍.html" />
+    <link rel="next" title="1.27. 污点和容忍" href="27-污点和容忍.html" />
     <link rel="prev" title="1.25. 管理容器资源类型" href="25-管理容器资源类型.html" /> 
 
   
@@ -115,6 +115,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">1.26.2. 节点亲和力和反亲和力</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="27-污点和容忍.html">1.27. 污点和容忍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-secret.html">1.28. secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-使用kubeconfig文件组织集群访问.html">1.29. 使用kubeconfig文件组织集群访问</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-pod优先级.html">1.30. pod优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-服务.html">1.31. 服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-ingress.html">1.32. ingress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-网络策略.html">1.33. 网络策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-卷.html">1.34. 卷</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-pv.html">1.35. pv和pvc</a></li>
 </ul>
 </li>
 </ul>
@@ -219,7 +228,7 @@
 <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">with-node-affinity</span>
 <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
 <span class="l l-Scalar l-Scalar-Plain">affinity</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">nodeAffinity</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">nodeAffinity</span><span class="p p-Indicator">:</span>
     <span class="l l-Scalar l-Scalar-Plain">requiredDuringSchedulingIgnoredDuringExecution</span><span class="p p-Indicator">:</span>
         <span class="l l-Scalar l-Scalar-Plain">nodeSelectorTerms</span><span class="p p-Indicator">:</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">matchExpressions</span><span class="p p-Indicator">:</span>
@@ -241,6 +250,13 @@
     <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">k8s.gcr.io/pause:2.0</span>
 </pre></div>
 </div>
+<p>上面的表示此pod只能运行在e2e-az1和2上， 但是满足第二个条件的是优先的。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">亲和度只在调度的时候生效。</p>
+</div>
+<p>pod亲和： podAffinity
+pod反亲和： podAntiAffinity</p>
 </div>
 </div>
 
@@ -252,7 +268,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="27-污点和容忍.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="27-污点和容忍.html" class="btn btn-neutral float-right" title="1.27. 污点和容忍" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="25-管理容器资源类型.html" class="btn btn-neutral" title="1.25. 管理容器资源类型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

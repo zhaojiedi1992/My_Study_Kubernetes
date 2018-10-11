@@ -84,7 +84,7 @@ secret可以作为env，也可以作为volume在pod中使用
             path: my-group/my-username
 
 如果secret下的所有key需要挂到特定目录， 只需要设置mountPath就可以了。 
-如果secret下的多个key分别需要挂到多个目录， 在item.path里面设置多个路径就可以了。 
+如果secret下的多个key分别需要挂到多个目录， 在item.path里面设置多个路径就可以了。但是secret更新后，以子路径装入的pod不会受到更新。 
 可以使用defaultMode: 256来指定权限， 这个权限不能写0777这样的权限， 0777权限对应的值为0*8*8*8+7*8*8+7*8+7=511
 
 
@@ -96,3 +96,9 @@ secret可以作为env，也可以作为volume在pod中使用
 1. 创建secret
 2. env[].valueFrom.secretKeyRef 设置环境变量从secret来。 
 3. 修改镜像或者entrypoint，让其可以获取到注入的环境变量。
+
+
+
+限制
+-------------------------------------------
+secret的大小限制为1m,
