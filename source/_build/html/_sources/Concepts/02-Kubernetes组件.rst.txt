@@ -1,0 +1,40 @@
+Kubernetes组件
+==========================
+
+主要组件
+--------------------------
+
+
+kube-apiserver
+    提供集群管理的api入口
+etcd
+    一致且高度可用的kv存储，为k8s集群数据提供后端存储
+
+kube-scheduler
+    集群的调度管理
+
+kube-controller-manager
+    控制器管理器管理多个控制器， 每个控制器管理对应的资源
+cloud-controller-manager
+    云厂商提供的控制器管理器， 有多个控制器， 管理k8s和对应云资源的管理分配
+
+
+节点组件
+------------------------------
+
+kubelet
+
+kube-proxy
+
+Container Runtime
+
+插件
+--------------------------------
+
+DNS
+
+Web UI 
+
+Container Resource Monitoring
+
+Cluster-level Logging
