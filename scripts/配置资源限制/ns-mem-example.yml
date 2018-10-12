@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: mem-example
+  selfLink: /api/v1/namespaces/mem-example
+spec:
+  finalizers:
+  - kubernetes

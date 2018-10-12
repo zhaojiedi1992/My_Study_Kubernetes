@@ -1,0 +1,22 @@
+--- 
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: dev 
+--- 
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: prod 
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: 
+  name: deny-all-ingress 
+  namespace: dev 
+spec: 
+  podSelector: {} 
+  policyTypes: 
+  - Ingress 
+  ingress: 
+  - {} 
