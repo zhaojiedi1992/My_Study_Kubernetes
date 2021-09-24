@@ -1,0 +1,16 @@
+管理容器资源类型
+===========================
+
+cpu和内存都是资源类型， cpu以内核为单位，内存以字节为单位制定。 
+
+资源限制参数
+---------------------------
+
+- spec.containers[].resources.limits.cpu
+- spec.containers[].resources.limits.memory
+- spec.containers[].resources.requests.cpu
+- spec.containers[].resources.requests.memoroy 
+
+cpu： 0.5表示为一般的cpu,也就是500m,cpu使用的量是绝对的。 
+memory: 内存使用e,p,t,G,M,K这种单位是10，还有Ei,Pi,Ti,Gi,Mi,Ki,这种单位。其中1Mi=1024Ki, 1M=1000Ki。
+

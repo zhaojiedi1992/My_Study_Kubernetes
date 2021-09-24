@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. 配置kubelet垃圾收集 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. 联邦" href="10-%E8%81%94%E9%82%A6.html" />
+    <link rel="prev" title="8. 日志架构" href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> My_Study_Kubernates
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">概念</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1. 什么是k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes%E7%BB%84%E4%BB%B6.html">2. Kubernetes组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-%E5%AF%B9%E8%B1%A1.html">4. 对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-%E4%BD%BF%E7%94%A8kubectl.html">5. 使用kubectl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-%E8%AF%81%E4%B9%A6.html">6. 证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C.html">7. 集群网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html">8. 日志架构</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. 配置kubelet垃圾收集</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">9.1. 镜像集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">9.2. 容器集合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="10-%E8%81%94%E9%82%A6.html">10. 联邦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-%E8%8A%82%E7%82%B9.html">11. 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">12. 主节点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-%E9%95%9C%E5%83%8F.html">13. 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">14. 容器环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB.html">15. 运行时类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html">16. 容器钩子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-pod%E6%A6%82%E8%BF%B0.html">17. pod概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-ReplicaSet.html">18. ReplicaSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-deployment.html">19. deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-StatefulSets.html">20. StatefulSets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21-DaemonSet.html">21. DaemonSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">22. 垃圾回收</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-%E5%AE%8C%E6%88%90%E8%B5%84%E6%BA%90%E7%9A%84ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">23. 完成资源的ttl控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24-cronjob.html">24. crontab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-%E7%AE%A1%E7%90%86%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B.html">25. 管理容器资源类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-pod%E5%88%86%E9%85%8D%E7%BB%99%E8%8A%82%E7%82%B9.html">26. pod分配给节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D.html">27. 污点和容忍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-secret.html">28. secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-%E4%BD%BF%E7%94%A8kubeconfig%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%E9%9B%86%E7%BE%A4%E8%AE%BF%E9%97%AE.html">29. 使用kubeconfig文件组织集群访问</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-pod%E4%BC%98%E5%85%88%E7%BA%A7.html">30. pod优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-%E6%9C%8D%E5%8A%A1.html">31. 服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-ingress.html">32. ingress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5.html">33. 网络策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-%E5%8D%B7.html">34. 卷</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-pv.html">35. pv和pvc</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Kubernates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Concepts</a> &raquo;</li>
+        
+      <li><span class="section-number">9. </span>配置kubelet垃圾收集</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/09-配置kubelet垃圾收集.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kubelet">
+<h1><span class="section-number">9. </span>配置kubelet垃圾收集<a class="headerlink" href="#kubelet" title="Permalink to this headline">¶</a></h1>
+<p>垃圾收集是一个有用的kubelet功能，它将清理未使用的图像和未使用的容器。Kubelet将每隔五分钟对容器执行垃圾收集，每五分钟对图像进行垃圾收集。</p>
+<p>建议不要使用外部垃圾收集工具，因为这些工具可能会通过删除预期存在的容器来破坏kubelet的行为。</p>
+<div class="section" id="id1">
+<h2><span class="section-number">9.1. </span>镜像集<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>k8s通过imageManager管理所有图像的生命周期，磁盘使用率高于高阈值（HighThresholdPercent）将触发垃圾回收，
+垃圾收集将删除最近最少使用的图像，直到满足低阈值（LowThresholdPercent）。</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">9.2. </span>容器集合<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>MinAge是容器可以被垃圾收集的最小年龄。</p></li>
+<li><p>MaxPerPodContainer是允许每个pod（UID，容器名称）对的最大死容器数。</p></li>
+<li><p>MaxContainers是最大总死的容器个数。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>不受kubelet管理的容器不受容器垃圾回收的限制。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="10-%E8%81%94%E9%82%A6.html" class="btn btn-neutral float-right" title="10. 联邦" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html" class="btn btn-neutral float-left" title="8. 日志架构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

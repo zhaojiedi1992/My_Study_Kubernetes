@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>17. pod概述 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="18. ReplicaSet" href="18-ReplicaSet.html" />
+    <link rel="prev" title="16. 容器钩子" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> My_Study_Kubernates
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">概念</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1. 什么是k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes%E7%BB%84%E4%BB%B6.html">2. Kubernetes组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-%E5%AF%B9%E8%B1%A1.html">4. 对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-%E4%BD%BF%E7%94%A8kubectl.html">5. 使用kubectl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-%E8%AF%81%E4%B9%A6.html">6. 证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C.html">7. 集群网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html">8. 日志架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-%E9%85%8D%E7%BD%AEkubelet%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86.html">9. 配置kubelet垃圾收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-%E8%81%94%E9%82%A6.html">10. 联邦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-%E8%8A%82%E7%82%B9.html">11. 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">12. 主节点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-%E9%95%9C%E5%83%8F.html">13. 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">14. 容器环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB.html">15. 运行时类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html">16. 容器钩子</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">17. pod概述</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">17.1. pod删除流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">17.2. pod的状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">17.3. pod探针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">17.4. 什么时候使用存活性探测和就绪性探测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">17.5. pod重启策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">17.6. pod生命周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">17.7. 初始容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">17.8. pod预设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="18-ReplicaSet.html">18. ReplicaSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-deployment.html">19. deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-StatefulSets.html">20. StatefulSets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21-DaemonSet.html">21. DaemonSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">22. 垃圾回收</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-%E5%AE%8C%E6%88%90%E8%B5%84%E6%BA%90%E7%9A%84ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">23. 完成资源的ttl控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24-cronjob.html">24. crontab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-%E7%AE%A1%E7%90%86%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B.html">25. 管理容器资源类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-pod%E5%88%86%E9%85%8D%E7%BB%99%E8%8A%82%E7%82%B9.html">26. pod分配给节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D.html">27. 污点和容忍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-secret.html">28. secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-%E4%BD%BF%E7%94%A8kubeconfig%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%E9%9B%86%E7%BE%A4%E8%AE%BF%E9%97%AE.html">29. 使用kubeconfig文件组织集群访问</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-pod%E4%BC%98%E5%85%88%E7%BA%A7.html">30. pod优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-%E6%9C%8D%E5%8A%A1.html">31. 服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-ingress.html">32. ingress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5.html">33. 网络策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-%E5%8D%B7.html">34. 卷</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-pv.html">35. pv和pvc</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">My_Study_Kubernates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Concepts</a> &raquo;</li>
+        
+      <li><span class="section-number">17. </span>pod概述</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/17-pod概述.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pod">
+<h1><span class="section-number">17. </span>pod概述<a class="headerlink" href="#pod" title="Permalink to this headline">¶</a></h1>
+<p>pod是可以创建和管理Kubernetes计算的最小可部署单元。pod表示为集群上正在运行的进程。</p>
+<p>pod内部封装一个应用程序容器，存储资源，一个唯一的网络ip以及控制容器应该如何运行的选项。</p>
+<p>pod都有一个唯一的ip地址，内部的容器采用localhost通信。</p>
+<p>pod可以共享一组存储卷，可以使用应用容器展示卷数据，另外一个容器作为应用容器的sidecar来从远端拉取数据来填充卷，完成应用容器的数据更新工作。</p>
+<p>低于1.1的版本的k8s无法运行特权pod</p>
+<div class="section" id="id1">
+<h2><span class="section-number">17.1. </span>pod删除流程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>用户发送删除pod的命令，默认宽限期为30s。</p></li>
+<li><p>apiserver标记pod为中断，并设置宽限期。</p></li>
+<li><p>客户端命令列出的时候显示为已终止，
+kubelet发现pod标记为种植，根据宽限期开始pod的关闭工作，如果定义了preStop钩子，则在pod中调用他，pod进程发送term信号。
+pod从端点列表中删除已进行维护，从服务中移除pod的流量。</p></li>
+<li><p>宽限期到期后，pod中运行的进程会被kill信号杀死。</p></li>
+<li><p>kubelet通过设置宽限期为0(立即删除)完成删除apiserver中的pod。 pod彻底删除。</p></li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">17.2. </span>pod的状态<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Pending: pod被k8s接受，需要等待中。</p></li>
+<li><p>Running： pod已经绑定到节点，并且创建完毕所有的容器，至少一个容器是运行的，或者正在启动或者重新启动。</p></li>
+<li><p>Succeeded: pod中的所有容器都已经成功种植，并且不会重新启动了。</p></li>
+<li><p>Failed:    pod所有容器都已经终止，并且至少有一个容器终止失败，可能容器非0状态退出，要么被系统终止。</p></li>
+<li><p>Unknown:  无法获取pod的状态信息， 通常是由于与pod的主机通信出错了。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">17.3. </span>pod探针<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>容器探针有2种， 处理程序有三种。</p>
+<p>处理程序</p>
+<ul class="simple">
+<li><p>ExecAction: 在容器中执行特定的命令，如果退出码为0则表示成功。</p></li>
+<li><p>TCPSocketAction: 对特定容器的ip地址执行tcp检查，如果端口打开则成功。</p></li>
+<li><p>HTTPGetAction: 对特定端口和路径的容器ip地址执行http get 请求，如果响应码介于200-400认为成功。</p></li>
+</ul>
+<p>探针</p>
+<ul class="simple">
+<li><p>livenessProbe: 存活性探测， 如果探测失败，kubelet会杀死容器，如果未提供活动探测，默认为success。</p></li>
+<li><p>readinessProbe: 就绪性探测， 容器启动后，特定的服务不会马上就就绪， 这个探测成功表示容器特定服务就绪了。如果未提供活动探测，默认为success。</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">17.4. </span>什么时候使用存活性探测和就绪性探测<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>存活性探测： 防止容器遇到问题自行崩溃了时候使用， 需要配合restartPolicy=Always或者restartPolicy=OnFailure。</p></li>
+<li><dl class="simple">
+<dt>就绪性探测： 在配合server工作的时候，只有特定的服务就绪的时候才接入流量进入pod。</dt><dd><p>容器启动期间需要处理大型数据，配置文件，或者迁移。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">17.5. </span>pod重启策略<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>pod的重启策略有3个</p>
+<ul class="simple">
+<li><p>Always</p></li>
+<li><p>OnFailure</p></li>
+<li><p>Never</p></li>
+</ul>
+<p>kubelet重新启动的已退出容器将以指数退避延迟（10秒，20秒，40秒……）重新启动，上限为五分钟，并在成功执行十分钟后重置。
+一旦绑定到节点，Pod将永远不会被反弹到另一个节点。</p>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">17.6. </span>pod生命周期<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>一般来说pod不会自动消失， 知道有人主动摧毁它（例外： terminated-pod-gc-threshold 这个参数来控制pod运行时长，超过的pod会过期并自动销毁)。</p>
+<p>有三种控制器可以选择。</p>
+<ul class="simple">
+<li><p>Job类的，用于批量计算的， 作业仅适用于 restartPolicy等于OnFailure或Never的Pod。</p></li>
+<li><p>replicationController,ReplicaSet或者Deployment，用与不希望终止的pod的。 ReplicationControllers仅适用于具有restartPolicyAlways的Pod。</p></li>
+<li><p>DaemonSet,希望每个节点启动的服务。</p></li>
+</ul>
+<p>pod对节点故障没有弹性，但是控制器对节点有弹性的。</p>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">17.7. </span>初始容器<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>它是应用程序容器之前运行的专用容器,可以在容器启动之前执行， 可以有多个初始化容器， 按照顺序执行。</p>
+<p>初始化容器和常规容器的差异：</p>
+<ul class="simple">
+<li><p>初始化容器支持应用容器的所有字段和功能， 包括资源限制，卷和安全设置， 但是初始化容器的资源请求和限制的处理方式有点不同。</p></li>
+<li><p>初始化容器不支持就绪探针。</p></li>
+<li><p>多个初始化容器是顺序执行的， 第一个初始化容器成功了才开始初始化下一个容器。 而应用容器是并行运行的。</p></li>
+</ul>
+<p>在1.6之前， 初始化容器需要使用metadata.annotations.pod.beta.kubernetes.io/init-containers指定，之后的版本可以直接在spec指定，也就是和containers并列级别的。</p>
+<p>更改初始化镜像的镜像字段，相当于重新启动了pod。</p>
+</div>
+<div class="section" id="id8">
+<h2><span class="section-number">17.8. </span>pod预设置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>PodPresets是在创建pod的时候将特定信息注入pod的对象，信息可以报考secret,pv,pvc,env等。</p>
+<p>禁用pod预设： 注解添加： podpreset.admission.kubernetes.io/exclude: “true”</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="18-ReplicaSet.html" class="btn btn-neutral float-right" title="18. ReplicaSet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" class="btn btn-neutral float-left" title="16. 容器钩子" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

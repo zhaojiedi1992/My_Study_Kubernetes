@@ -1,0 +1,7 @@
+{
+    "restructuredtext.builtDocumentationPath": "${workspaceFolder}/source",
+    "python.pythonPath": "/Users/dxm/Envs/sphinx/bin/python3",
+    "restructuredtext.linter.executablePath": "",
+    "restructuredtext.sphinxBuildPath": "",
+    "restructuredtext.confPath": ""
+}
