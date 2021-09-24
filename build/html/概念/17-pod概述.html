@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>17. pod概述 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.17. pod概述 &mdash; My_Study_Kubernates v1.0 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="18. ReplicaSet" href="18-ReplicaSet.html" />
-    <link rel="prev" title="16. 容器钩子" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" /> 
+    <link rel="next" title="1.18. ReplicaSet" href="18-ReplicaSet.html" />
+    <link rel="prev" title="1.16. 容器钩子" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,56 +85,57 @@
               
             
             
-              <p class="caption"><span class="caption-text">概念</span></p>
+              <p class="caption"><span class="caption-text">k8s</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Concepts</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1. 什么是k8s</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes%E7%BB%84%E4%BB%B6.html">2. Kubernetes组件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-%E5%AF%B9%E8%B1%A1.html">4. 对象</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05-%E4%BD%BF%E7%94%A8kubectl.html">5. 使用kubectl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06-%E8%AF%81%E4%B9%A6.html">6. 证书</a></li>
-<li class="toctree-l2"><a class="reference internal" href="07-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C.html">7. 集群网络</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html">8. 日志架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09-%E9%85%8D%E7%BD%AEkubelet%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86.html">9. 配置kubelet垃圾收集</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10-%E8%81%94%E9%82%A6.html">10. 联邦</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11-%E8%8A%82%E7%82%B9.html">11. 节点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="12-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">12. 主节点通信</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13-%E9%95%9C%E5%83%8F.html">13. 镜像</a></li>
-<li class="toctree-l2"><a class="reference internal" href="14-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">14. 容器环境变量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="15-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB.html">15. 运行时类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html">16. 容器钩子</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">17. pod概述</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">17.1. pod删除流程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">17.2. pod的状态</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">17.3. pod探针</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">17.4. 什么时候使用存活性探测和就绪性探测</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">17.5. pod重启策略</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">17.6. pod生命周期</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">17.7. 初始容器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">17.8. pod预设置</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Concepts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1.1. 什么是k8s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-Kubernetes%E7%BB%84%E4%BB%B6.html">1.2. Kubernetes组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-KubernetesAPI.html">1.3. Kubernetes API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-%E5%AF%B9%E8%B1%A1.html">1.4. 对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-%E4%BD%BF%E7%94%A8kubectl.html">1.5. 使用kubectl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-%E8%AF%81%E4%B9%A6.html">1.6. 证书</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C.html">1.7. 集群网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-%E6%97%A5%E5%BF%97%E6%9E%B6%E6%9E%84.html">1.8. 日志架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-%E9%85%8D%E7%BD%AEkubelet%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86.html">1.9. 配置kubelet垃圾收集</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-%E8%81%94%E9%82%A6.html">1.10. 联邦</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-%E8%8A%82%E7%82%B9.html">1.11. 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">1.12. 主节点通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-%E9%95%9C%E5%83%8F.html">1.13. 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.html">1.14. 容器环境变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB.html">1.15. 运行时类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html">1.16. 容器钩子</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.17. pod概述</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.17.1. pod删除流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.17.2. pod的状态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.17.3. pod探针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.17.4. 什么时候使用存活性探测和就绪性探测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.17.5. pod重启策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.17.6. pod生命周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">1.17.7. 初始容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">1.17.8. pod预设置</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="18-ReplicaSet.html">18. ReplicaSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19-deployment.html">19. deployment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20-StatefulSets.html">20. StatefulSets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="21-DaemonSet.html">21. DaemonSet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">22. 垃圾回收</a></li>
-<li class="toctree-l2"><a class="reference internal" href="23-%E5%AE%8C%E6%88%90%E8%B5%84%E6%BA%90%E7%9A%84ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">23. 完成资源的ttl控制器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="24-cronjob.html">24. crontab</a></li>
-<li class="toctree-l2"><a class="reference internal" href="25-%E7%AE%A1%E7%90%86%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B.html">25. 管理容器资源类型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="26-pod%E5%88%86%E9%85%8D%E7%BB%99%E8%8A%82%E7%82%B9.html">26. pod分配给节点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="27-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D.html">27. 污点和容忍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="28-secret.html">28. secret</a></li>
-<li class="toctree-l2"><a class="reference internal" href="29-%E4%BD%BF%E7%94%A8kubeconfig%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%E9%9B%86%E7%BE%A4%E8%AE%BF%E9%97%AE.html">29. 使用kubeconfig文件组织集群访问</a></li>
-<li class="toctree-l2"><a class="reference internal" href="30-pod%E4%BC%98%E5%85%88%E7%BA%A7.html">30. pod优先级</a></li>
-<li class="toctree-l2"><a class="reference internal" href="31-%E6%9C%8D%E5%8A%A1.html">31. 服务</a></li>
-<li class="toctree-l2"><a class="reference internal" href="32-ingress.html">32. ingress</a></li>
-<li class="toctree-l2"><a class="reference internal" href="33-%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5.html">33. 网络策略</a></li>
-<li class="toctree-l2"><a class="reference internal" href="34-%E5%8D%B7.html">34. 卷</a></li>
-<li class="toctree-l2"><a class="reference internal" href="35-pv.html">35. pv和pvc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-ReplicaSet.html">1.18. ReplicaSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-deployment.html">1.19. deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-StatefulSets.html">1.20. StatefulSets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21-DaemonSet.html">1.21. DaemonSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.22. 垃圾回收</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-%E5%AE%8C%E6%88%90%E8%B5%84%E6%BA%90%E7%9A%84ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.23. 完成资源的ttl控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24-cronjob.html">1.24. crontab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-%E7%AE%A1%E7%90%86%E5%AE%B9%E5%99%A8%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B.html">1.25. 管理容器资源类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-pod%E5%88%86%E9%85%8D%E7%BB%99%E8%8A%82%E7%82%B9.html">1.26. pod分配给节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D.html">1.27. 污点和容忍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-secret.html">1.28. secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-%E4%BD%BF%E7%94%A8kubeconfig%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87%E9%9B%86%E7%BE%A4%E8%AE%BF%E9%97%AE.html">1.29. 使用kubeconfig文件组织集群访问</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-pod%E4%BC%98%E5%85%88%E7%BA%A7.html">1.30. pod优先级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-%E6%9C%8D%E5%8A%A1.html">1.31. 服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-ingress.html">1.32. ingress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5.html">1.33. 网络策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-%E5%8D%B7.html">1.34. 卷</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-pv.html">1.35. pv和pvc</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../%E4%BB%BB%E5%8A%A1/index.html">2. Service</a></li>
 </ul>
 
             
@@ -181,9 +182,9 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index.html">Concepts</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1. </span>Concepts</a> &raquo;</li>
         
-      <li><span class="section-number">17. </span>pod概述</li>
+      <li><span class="section-number">1.17. </span>pod概述</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -205,14 +206,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="pod">
-<h1><span class="section-number">17. </span>pod概述<a class="headerlink" href="#pod" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1.17. </span>pod概述<a class="headerlink" href="#pod" title="Permalink to this headline">¶</a></h1>
 <p>pod是可以创建和管理Kubernetes计算的最小可部署单元。pod表示为集群上正在运行的进程。</p>
 <p>pod内部封装一个应用程序容器，存储资源，一个唯一的网络ip以及控制容器应该如何运行的选项。</p>
 <p>pod都有一个唯一的ip地址，内部的容器采用localhost通信。</p>
 <p>pod可以共享一组存储卷，可以使用应用容器展示卷数据，另外一个容器作为应用容器的sidecar来从远端拉取数据来填充卷，完成应用容器的数据更新工作。</p>
 <p>低于1.1的版本的k8s无法运行特权pod</p>
 <div class="section" id="id1">
-<h2><span class="section-number">17.1. </span>pod删除流程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.1. </span>pod删除流程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>用户发送删除pod的命令，默认宽限期为30s。</p></li>
 <li><p>apiserver标记pod为中断，并设置宽限期。</p></li>
@@ -224,7 +225,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 </ol>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">17.2. </span>pod的状态<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.2. </span>pod的状态<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Pending: pod被k8s接受，需要等待中。</p></li>
 <li><p>Running： pod已经绑定到节点，并且创建完毕所有的容器，至少一个容器是运行的，或者正在启动或者重新启动。</p></li>
@@ -234,7 +235,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><span class="section-number">17.3. </span>pod探针<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.3. </span>pod探针<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>容器探针有2种， 处理程序有三种。</p>
 <p>处理程序</p>
 <ul class="simple">
@@ -249,7 +250,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><span class="section-number">17.4. </span>什么时候使用存活性探测和就绪性探测<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.4. </span>什么时候使用存活性探测和就绪性探测<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>存活性探测： 防止容器遇到问题自行崩溃了时候使用， 需要配合restartPolicy=Always或者restartPolicy=OnFailure。</p></li>
 <li><dl class="simple">
@@ -260,7 +261,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 </ul>
 </div>
 <div class="section" id="id5">
-<h2><span class="section-number">17.5. </span>pod重启策略<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.5. </span>pod重启策略<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>pod的重启策略有3个</p>
 <ul class="simple">
 <li><p>Always</p></li>
@@ -271,7 +272,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 一旦绑定到节点，Pod将永远不会被反弹到另一个节点。</p>
 </div>
 <div class="section" id="id6">
-<h2><span class="section-number">17.6. </span>pod生命周期<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.6. </span>pod生命周期<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>一般来说pod不会自动消失， 知道有人主动摧毁它（例外： terminated-pod-gc-threshold 这个参数来控制pod运行时长，超过的pod会过期并自动销毁)。</p>
 <p>有三种控制器可以选择。</p>
 <ul class="simple">
@@ -282,7 +283,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 <p>pod对节点故障没有弹性，但是控制器对节点有弹性的。</p>
 </div>
 <div class="section" id="id7">
-<h2><span class="section-number">17.7. </span>初始容器<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.7. </span>初始容器<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>它是应用程序容器之前运行的专用容器,可以在容器启动之前执行， 可以有多个初始化容器， 按照顺序执行。</p>
 <p>初始化容器和常规容器的差异：</p>
 <ul class="simple">
@@ -294,7 +295,7 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
 <p>更改初始化镜像的镜像字段，相当于重新启动了pod。</p>
 </div>
 <div class="section" id="id8">
-<h2><span class="section-number">17.8. </span>pod预设置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.17.8. </span>pod预设置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>PodPresets是在创建pod的时候将特定信息注入pod的对象，信息可以报考secret,pv,pvc,env等。</p>
 <p>禁用pod预设： 注解添加： podpreset.admission.kubernetes.io/exclude: “true”</p>
 </div>
@@ -308,10 +309,10 @@ pod从端点列表中删除已进行维护，从服务中移除pod的流量。</
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="18-ReplicaSet.html" class="btn btn-neutral float-right" title="18. ReplicaSet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="18-ReplicaSet.html" class="btn btn-neutral float-right" title="1.18. ReplicaSet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" class="btn btn-neutral float-left" title="16. 容器钩子" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="16-%E5%AE%B9%E5%99%A8%E9%92%A9%E5%AD%90.html" class="btn btn-neutral float-left" title="1.16. 容器钩子" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
