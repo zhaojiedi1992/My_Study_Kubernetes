@@ -1,5 +1,9 @@
 镜像
 =============================
+容器镜像是风中了应用程序和运行环境，容器镜像是可执行的软件包，可以单独运行。
+
+镜像需要通过镜像仓库管理，然后在pod里面进行引用这个镜像地址即可。
+
 
 更新镜像
 -------------------
@@ -8,6 +12,7 @@
 
 - 修改imagePullPolicy: Always
 - 修改image的tag为latest
+- 省略imagePullPolicy和要使用的镜像标签
 - 启用AlwaysPullImages准入控制器
 
 .. note:: 应该避免使用latest这种tag作为镜像的tag，应该使用具体的tag版本号。 
@@ -23,4 +28,5 @@
 - 在pod上面指定imagePullSecrets
 - 在pod上面设置serverAccountName，在具体的serverAccountName上面设置具体的secret信息。 
 
-
+具体的使用如下：
+todo

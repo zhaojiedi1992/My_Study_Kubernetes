@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.2.2. 主节点通信 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.3.1. 镜像 &mdash; My_Study_Kubernates v1.0 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.2.3. 控制器" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" />
-    <link rel="prev" title="1.2.1. 节点" href="01-%E8%8A%82%E7%82%B9.html" /> 
+    <link rel="next" title="1.3.2. 容器环境" href="02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html" />
+    <link rel="prev" title="1.3. 容器" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,20 +89,18 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.2. 架构</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-%E8%8A%82%E7%82%B9.html">1.2.1. 节点</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">1.2.2. 主节点通信</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#master">1.2.2.1. 集群到master节点</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#apiserverkubelet">1.2.2.2. apiserver到kubelet</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#apiserverpod-service-node">1.2.2.3. apiserver到pod,service,node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.3. 容器</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.3.1. 镜像</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.3.1.1. 更新镜像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.3.1.2. 使用私有仓库</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.2.3. 控制器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04-%E4%BA%91%E6%8E%A7%E5%88%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%99%A8.html">1.2.4. 控制器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.2.5. 控制器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html">1.3.2. 容器环境</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6.html">1.3.3. 容器运行时类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83.html">1.3.4. 容器运行时类</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. Service</a></li>
@@ -154,16 +152,16 @@
         
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
         
-          <li><a href="index.html"><span class="section-number">1.2. </span>架构</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.3. </span>容器</a> &raquo;</li>
         
-      <li><span class="section-number">1.2.2. </span>主节点通信</li>
+      <li><span class="section-number">1.3.1. </span>镜像</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/架构/02-主节点通信.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/容器/01-镜像.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -178,25 +176,36 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1><span class="section-number">1.2.2. </span>主节点通信<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="master">
-<h2><span class="section-number">1.2.2.1. </span>集群到master节点<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
-<p>所有组件都是需要和apiserver交互。</p>
-<p>pod启动的时候， 会注入证书和服务账户令牌到pod中，</p>
-</div>
-<div class="section" id="apiserverkubelet">
-<h2><span class="section-number">1.2.2.2. </span>apiserver到kubelet<a class="headerlink" href="#apiserverkubelet" title="Permalink to this headline">¶</a></h2>
-<p>从apiserver到kubelet的连接用于：</p>
+<h1><span class="section-number">1.3.1. </span>镜像<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>容器镜像是风中了应用程序和运行环境，容器镜像是可执行的软件包，可以单独运行。</p>
+<p>镜像需要通过镜像仓库管理，然后在pod里面进行引用这个镜像地址即可。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">1.3.1.1. </span>更新镜像<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>默认的镜像拉取策略为IfNotPresent，如果镜像存在，会跳过镜像的拉取， 如果需要强制拉取，可以采取下面几种方式。</p>
 <ul class="simple">
-<li><p>获取pod的日志。</p></li>
-<li><p>附加（通过kubectl）到运行的pod。</p></li>
-<li><p>提供kubelet的端口转发功能。</p></li>
+<li><p>修改imagePullPolicy: Always</p></li>
+<li><p>修改image的tag为latest</p></li>
+<li><p>省略imagePullPolicy和要使用的镜像标签</p></li>
+<li><p>启用AlwaysPullImages准入控制器</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>应该避免使用latest这种tag作为镜像的tag，应该使用具体的tag版本号。</p>
 </div>
-<div class="section" id="apiserverpod-service-node">
-<h2><span class="section-number">1.2.2.3. </span>apiserver到pod,service,node<a class="headerlink" href="#apiserverpod-service-node" title="Permalink to this headline">¶</a></h2>
-<p>从apiserver到节点，pod或服务的连接默认为纯HTTP连接，因此既未经过身份验证也未加密。它们可以通过前缀https:到
-API URL中的节点。</p>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.3.1.2. </span>使用私有仓库<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>使用google容器仓库</p></li>
+<li><p>使用aws容器仓库</p></li>
+<li><p>使用azure容器仓库</p></li>
+<li><p>配置节点验证私有仓库（所有pod可以读取已配置的仓库）</p></li>
+<li><p>预先拉取镜像</p></li>
+<li><p>在pod上面指定imagePullSecrets</p></li>
+<li><p>在pod上面设置serverAccountName，在具体的serverAccountName上面设置具体的secret信息。</p></li>
+</ul>
+<p>具体的使用如下：
+todo</p>
 </div>
 </div>
 
@@ -208,10 +217,10 @@ API URL中的节点。</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" class="btn btn-neutral float-right" title="1.2.3. 控制器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html" class="btn btn-neutral float-right" title="1.3.2. 容器环境" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="01-%E8%8A%82%E7%82%B9.html" class="btn btn-neutral float-left" title="1.2.1. 节点" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="1.3. 容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
