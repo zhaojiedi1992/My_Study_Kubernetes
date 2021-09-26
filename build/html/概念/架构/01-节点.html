@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. 节点 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.2.1. 节点 &mdash; My_Study_Kubernates v1.0 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.2.2. 主节点通信" href="02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html" />
+    <link rel="prev" title="1.2. 架构" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,9 +86,25 @@
             
             
               <p class="caption"><span class="caption-text">k8s</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">概念</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. Service</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.2. 架构</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.2.1. 节点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.2.1.1. 地址</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.2.1.2. 状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.2.1.3. 节点控制器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.2.1.4. 节点管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.2.1.5. 节点可靠性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">1.2.1.6. 节点容量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">1.2.2. 主节点通信</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. Service</a></li>
 </ul>
 
             
@@ -133,7 +151,11 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">1. </span>节点</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">1.2. </span>架构</a> &raquo;</li>
+        
+      <li><span class="section-number">1.2.1. </span>节点</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,11 +177,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1><span class="section-number">1. </span>节点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1.2.1. </span>节点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>节点是Kubernetes中的工作机器。接受控制面的管理。
 节点上面有kubelet 容器运行时（docker或者rtk）以及kube-proxy。</p>
 <div class="section" id="id2">
-<h2><span class="section-number">1.1. </span>地址<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.1. </span>地址<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Hostname: 主机名字</p></li>
 <li><p>ExternalIP: 外部ip</p></li>
@@ -167,7 +189,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2><span class="section-number">1.2. </span>状态<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.2. </span>状态<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>OutOfDisk</p></li>
 <li><p>Ready 就绪</p></li>
@@ -179,7 +201,7 @@
 </ul>
 </div>
 <div class="section" id="id4">
-<h2><span class="section-number">1.3. </span>节点控制器<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.3. </span>节点控制器<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>节点控制器为节点分配cidr块</p></li>
 <li><p>使节点控制器的内部节点列表与云提供商的可用计算机列表保持同步</p></li>
@@ -191,7 +213,7 @@
 <p>kubelet默认美5分钟更新node status， 默认10s更新一次租期信息。如果失败的话会指数级回退。</p>
 </div>
 <div class="section" id="id5">
-<h2><span class="section-number">1.4. </span>节点管理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.4. </span>节点管理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>标记一个节点不可调度</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl cordon &lt;nodename&gt;
 </pre></div>
@@ -307,14 +329,14 @@ Events:
 </div>
 </div>
 <div class="section" id="id6">
-<h2><span class="section-number">1.5. </span>节点可靠性<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.5. </span>节点可靠性<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>节点控制器把逐出速率限制在每秒 –node-eviction-rate 个（默认为 0.1）。 这表示它每 10 秒钟内至多从一个节点驱逐 Pod。
 一个可用区的节点变为不健康时，节点的驱逐行为将发生改变，检查不健康的node百分比，若果超过–unhealthy-zone-threshold （默认为 0.55），驱逐的速率将会降低，降低为每秒 –secondary-node-eviction-rate 个（默认为 0.01）。
 如果集群规模比较小，如果集群较小（意即小于等于 –large-cluster-size-threshold 个节点 - 默认为 50），驱逐操作会停止。</p>
 <p>节点控制器还会驱逐哪些运行在noexecute污点节点上面的pod。</p>
 </div>
 <div class="section" id="id7">
-<h2><span class="section-number">1.6. </span>节点容量<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.1.6. </span>节点容量<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>node对象会跟踪节点的资源容量的，通过自注册方式生成注册期间的报告自身容量数据，默认k8s是使用机器全部的资源的， 可以设置一些预留资源给非k8s服务或者容器使用的。</p>
 <img alt="概念/架构/../imgs/node-capacity.svg" src="概念/架构/../imgs/node-capacity.svg" /><p>k8s将资源分为几个部分</p>
 <ul class="simple">
@@ -330,6 +352,15 @@ Events:
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html" class="btn btn-neutral float-right" title="1.2.2. 主节点通信" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="1.2. 架构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

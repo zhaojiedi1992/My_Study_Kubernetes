@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. 主节点通信 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.2.2. 主节点通信 &mdash; My_Study_Kubernates v1.0 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Service" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
+    <link rel="prev" title="1.2.1. 节点" href="01-%E8%8A%82%E7%82%B9.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,9 +86,22 @@
             
             
               <p class="caption"><span class="caption-text">k8s</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">概念</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. Service</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.2. 架构</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E8%8A%82%E7%82%B9.html">1.2.1. 节点</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.2.2. 主节点通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#master">1.2.2.1. 集群到master节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apiserverkubelet">1.2.2.2. apiserver到kubelet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apiserverpod-service-node">1.2.2.3. apiserver到pod,service,node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. Service</a></li>
 </ul>
 
             
@@ -133,7 +148,11 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">2. </span>主节点通信</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">1.2. </span>架构</a> &raquo;</li>
+        
+      <li><span class="section-number">1.2.2. </span>主节点通信</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,14 +174,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1><span class="section-number">2. </span>主节点通信<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1.2.2. </span>主节点通信<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="master">
-<h2><span class="section-number">2.1. </span>集群到master节点<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.2.1. </span>集群到master节点<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
 <p>所有组件都是需要和apiserver交互。</p>
 <p>pod启动的时候， 会注入证书和服务账户令牌到pod中，</p>
 </div>
 <div class="section" id="apiserverkubelet">
-<h2><span class="section-number">2.2. </span>apiserver到kubelet<a class="headerlink" href="#apiserverkubelet" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.2.2. </span>apiserver到kubelet<a class="headerlink" href="#apiserverkubelet" title="Permalink to this headline">¶</a></h2>
 <p>从apiserver到kubelet的连接用于：</p>
 <ul class="simple">
 <li><p>获取pod的日志。</p></li>
@@ -171,7 +190,7 @@
 </ul>
 </div>
 <div class="section" id="apiserverpod-service-node">
-<h2><span class="section-number">2.3. </span>apiserver到pod,service,node<a class="headerlink" href="#apiserverpod-service-node" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2.2.3. </span>apiserver到pod,service,node<a class="headerlink" href="#apiserverpod-service-node" title="Permalink to this headline">¶</a></h2>
 <p>从apiserver到节点，pod或服务的连接默认为纯HTTP连接，因此既未经过身份验证也未加密。它们可以通过前缀https:到
 API URL中的节点。</p>
 </div>
@@ -182,6 +201,15 @@ API URL中的节点。</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="2. Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01-%E8%8A%82%E7%82%B9.html" class="btn btn-neutral float-left" title="1.2.1. 节点" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

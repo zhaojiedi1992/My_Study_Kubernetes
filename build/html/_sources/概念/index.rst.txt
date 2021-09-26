@@ -7,4 +7,5 @@
    :numbered:
    :glob:
 
-   概述/index    
+   概述/index
+   架构/index    
