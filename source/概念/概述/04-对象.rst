@@ -1,0 +1,231 @@
+对象
+=========================
+
+
+理解对象
+-------------------------
+k8s中的对象是持久化的实体，ks8使用这些实体来表示整个集群的状态，对象是目标性记录，记录的期望状态。我们对对象实体的操作（kubectl dashboard sdk等方式）都是和api server进行操作的。
+
+对象规约（Spec）与状态（Status）
+--------------------------------------------------
+几乎每个对象都有这2个字段spec和status的。spec这个字段配置的是对象的期望状态，status是描述的当前状态。在任何时刻k8s的控制平面都会积极维护对象的实际状态，使之与期望状态一致。
+
+描述 Kubernetes 对象
+-------------------------
+创建k8s对象，必须提供一个对象的规约用来描述对象的期望状态，还需要一些基本信息，比如名称。使用kubectl创建对象的时候，我们一般使用yaml格式，在kubectl发送请求到api server的时候会将yaml格式转换为json的格式的。
+下面是一个简单的deployment实例:
+
+.. code-block:: yaml
+
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: nginx-deployment
+  spec:
+    selector:
+      matchLabels:
+        app: nginx
+  yment to run 2 pods matching the template
+    template:
+      metadata:
+        labels:
+          app: nginx
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+          - containerPort: 80
+
+
+接下来就可以通过kubectl apply -f nginx-deployment.yaml 方式进行创建
+
+关键字段说明
+-------------------------
+apiVersion:
+    这个是描述对象使用的api 版本信息的，具体是apps/v1 还是哪个beta版本的
+kind:
+    对象类型，具体是pod类型，还是deployment类型
+metadata: 
+    帮助唯一表示对象的一些数据，属于对象的元数据信息，一般要有一个name uid和可选择的namespace的。
+
+对象管理
+-------------------------
+对象管理的方式比较多， 这里主要说下kubectl方式，有如下几种方式。
+
+.. csv-table:: Frozen Delights!
+   :header: "管理技术", "作用与", "建议环境", "学习难度"
+   :widths: 15, 10, 30,30
+
+   "指令式命令", "活跃对象",	"开发项目",	"最低"
+   "指令式对象配置", "单个文件",	"生产项目",	"中等"
+   "声明式对象配置", "文件目录",	"生产项目",	"最高"
+
+指令式
+`````````
+.. code-block:: bash
+
+  kubectl create deployment nginx --image nginx 
+
+优点：
+  - 简单
+缺点：
+  - 没法审计跟踪
+  - 没法模板化
+
+指令式对象配置
+`````````
+.. code-block:: bash
+
+  kubectl create -f nginx.yaml
+  kubectl delte -f nginx.yaml -f redis.yaml
+  kubectl replace -f nginx.yaml
+
+优点：
+  - 配置文件可以存储到版本控制系统中
+  - 对象配置可以与流程集成
+  - 对象配置提供了创建新对象的模板
+缺点：
+  - 对活动对象的更新必须反映在配置文件中，不然下次替换会丢失
+
+
+声明式对象配置
+`````````
+.. code-block:: bash
+
+  kubectl diff -R-f configs/
+  kubectl apply -R -f configs/ 
+
+优点：
+  - 对活动对象的更改及时未合并到配置文件中，也会被保留下来。
+  - 可以自动检测每个文件的操作类型（这个文件是更新的，另外一个是创建的）
+缺点：
+  - 难调试
+  
+
+
+名称
+-------------------------
+
+k8s资源的具体名字 ，需要在metadata.name中指定。
+名字来标识在同类资源中的唯一性
+
+uid
+-------------------------
+系统生成的随机字符串，用于表示唯一的资源对象。
+udi标识在整个集群的唯一性。
+
+
+命名空间
+-------------------------------
+命名空间用于划分资源的一个逻辑分组， 可以用户环境隔离（生产和开发环境隔离）
+配合网络插件完成网络隔离。
+
+命名空间提供一个范围，资源的名称需要在命名空间下是唯一的，命名空间不能相互嵌套，命名空间是并列的，
+每个资源只能在一个命名空间下。
+查看所有命名空间
+
+.. code-block:: bash 
+    kubectl get namespace
+    NAME              STATUS   AGE
+    default           Active   18m
+    kube-node-lease   Active   18m
+    kube-public       Active   18m
+    kube-system       Active   18m
+
+这4个ns是默认就会创建的
+
+- default: 没有指定命名空间的对象使用这个命名空间
+- kube-system: 系统创建对象使用的命名空间
+- kube-public: 所有用户都可以读取
+- kube-node-lease: 这个名字空间用于与各个节点租期（lease)对象，这个对象的设计是的集群规模比较大的时候节点的心跳检查得到提升。
+
+
+不是所有的资源都要归属一个命名空间， node,pv都是不属于任何一个命名空间的。 
+更详细的可以通过命令获取
+
+.. code-block:: bash 
+
+    kubectl api-resource --namespaced=false
+    kubectl api-resource --namespaced=true
+
+标签 
+----------------------
+标签是一个对象， 包含多个kv对象。
+
+常用标签
+
+- "release" : "stable", "release" : "canary"
+- "environment" : "dev", "environment" : "qa", "environment" : "production"
+- "tier" : "frontend", "tier" : "backend", "tier" : "cache"
+- "partition" : "customerA", "partition" : "customerB"
+- "track" : "daily", "track" : "weekly"
+
+标签选择器
+------------------------
+用于根据标签选择特定k8s资源对象，有基于等值和集合的2中选择方式。
+yaml资源定义清单文件中使用matchLabels或者matchExpressions2种方式来选择资源。
+
+注解
+------------------------------
+注解和标签一样都是kv数据， 只是不能用于选择，可以指定下如下信息。
+负责人信息，出处，git提交信息或者版本号。
+
+字段选择器
+-----------------------------
+用于筛选特定字段匹配特定值的资源
+
+.. code-block:: bash 
+
+    kubectl get statefulsets,services --field-selector metadata.namespace!=default
+    kubectl get pods -l 'environment in (production, qa)'
+
+
+集合选择器
+-----------------------------
+上面是通过kubectl方式具体怎么在yaml使用选择呢。
+这个地方给个样例。
+
+.. code-block:: yaml
+
+  selector:
+    matchLabels:
+      component: redis
+    matchExpressions:
+      - {key: tier, operator: In, values: [cache]}
+      - {key: environment, operator: NotIn, values: [dev]}
+
+推荐使用的标签
+-----------------------------
+
+.. csv-table:: 推荐的标签
+   :header: 键,	描述,	示例,	类型
+   :widths: 15, 10, 30,30
+
+  app.kubernetes.io/name,	应用程序的名称,	mysql,	字符串
+  app.kubernetes.io/instance,	用于唯一确定应用实例的名称,	mysql-abcxzy,	字符串
+  app.kubernetes.io/version,	应用程序的当前版本（例如，语义版本，修订版哈希等）,	5.7.21,	字符串
+  app.kubernetes.io/component,	架构中的组件,	database,	字符串
+  app.kubernetes.io/part-of,	此级别的更高级别应用程序的名称,	wordpress,	字符串
+  app.kubernetes.io/managed-by,	用于管理应用程序的工具,	helm,	字符串
+  app.kubernetes.io/created-by,	创建该资源的控制器或者用户,	controller-manager,	字符串
+
+
+
+注解
+-----------------------------
+
+注解也是描述元数据的一种方式，当时注解和标签不同的是，这个不能被选择和标识对象。
+注解里面的数据可以是结构化的数据，也可以是非结构化的数据。
+
+
+
+哪些信息建议使用注解呢
+-----------------------------
+
+- 构建信息，发布时间，git分支，pr数量，仓库地址等。
+- 日志记录，监控地址，审计地址等。
+- 团队网址等
+
+
+

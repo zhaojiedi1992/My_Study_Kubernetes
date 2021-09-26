@@ -1,0 +1,184 @@
+节点
+===========================
+节点是Kubernetes中的工作机器。接受控制面的管理。
+节点上面有kubelet 容器运行时（docker或者rtk）以及kube-proxy。
+
+
+
+地址
+----------------------------
+
+- Hostname: 主机名字
+- ExternalIP: 外部ip
+- InternalIP: 内部ip
+
+状态
+-------------------------
+
+- OutOfDisk	    
+- Ready	就绪
+- MemoryPressure 内存压力	
+- PIDPressure	进程过多
+- DiskPressure	磁盘空闲不足
+- NetworkUnavailable	网络不可达
+- ConfigOK  
+
+节点控制器
+------------------------------
+
+- 节点控制器为节点分配cidr块 
+- 使节点控制器的内部节点列表与云提供商的可用计算机列表保持同步
+- 监控节点的健康状况。节点控制器负责在节点变得无法访问时将NodeStatus的NodeReady条件更新为ConditionUnknown
+- 负责驱逐在有污点的节点上运行的pod（1.6以后）
+- 可以负责创建表示节点条件的污点（1.8以后）
+
+kubelet 负责创建和更新 NodeStatus 和 Lease 对象。
+
+kubelet默认美5分钟更新node status， 默认10s更新一次租期信息。如果失败的话会指数级回退。
+
+
+节点管理
+------------------------------
+
+标记一个节点不可调度
+
+.. code-block:: bash 
+
+    kubectl cordon <nodename>
+
+.. note::  DaemonSet 通常提供节点本地的服务，即使节点上的负载应用已经被腾空，这些服务也仍需 运行在节点之上。
+
+
+一个监控节点的描述信息说明
+
+节点的描述信息包含如下几个部分内容
+
+- 名字、角色、标签、注解、污点、创建时间、是否可以调度、租期信息
+- 地址信息
+- 事件
+- 先决条件
+- 容量数据（cpu, memory,pod)
+- 分配情况
+- 系统信息
+- pod cidr 
+
+.. code-block:: text 
+
+    [root@zhaojiedi-elk-2 ~]# kubectl describe  node zkdemo-1.epc.duxiaoman.com
+    # 基本信息展示， 名字，角色，标签和主机信息
+    Name:               zkdemo-1.epc.duxiaoman.com
+    Roles:              <none>
+    Labels:             beta.kubernetes.io/arch=amd64
+                        beta.kubernetes.io/os=linux
+                        kubernetes.io/arch=amd64
+                        kubernetes.io/hostname=zkdemo-1.epc.duxiaoman.com
+                        kubernetes.io/os=linux
+    Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"b6:5b:04:70:59:c0"}
+                        flannel.alpha.coreos.com/backend-type: vxlan
+                        flannel.alpha.coreos.com/kube-subnet-manager: true
+                        flannel.alpha.coreos.com/public-ip: 10.157.31.40
+                        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                        node.alpha.kubernetes.io/ttl: 0
+                        volumes.kubernetes.io/controller-managed-attach-detach: true
+    CreationTimestamp:  Fri, 24 Sep 2021 19:08:39 +0800
+    # 污点信息，是否不可调度，租期信息，身份信息
+    Taints:             <none>
+    Unschedulable:      false
+    Lease:
+    HolderIdentity:  zkdemo-1.epc.duxiaoman.com
+    AcquireTime:     <unset>
+    RenewTime:       Fri, 24 Sep 2021 20:11:07 +0800
+    # 状况进展，开始是网络不可达的，然后作为几个探测后，就ready了。
+    Conditions:
+    Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+    ----                 ------  -----------------                 ------------------                ------                       -------
+    NetworkUnavailable   False   Fri, 24 Sep 2021 19:21:34 +0800   Fri, 24 Sep 2021 19:21:34 +0800   FlannelIsUp                  Flannel is running on this node
+    MemoryPressure       False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+    DiskPressure         False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+    PIDPressure          False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+    Ready                True    Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:19:52 +0800   KubeletReady                 kubelet is posting ready status
+    Addresses:
+    InternalIP:  10.157.31.40
+    Hostname:    zkdemo-1.epc.duxiaoman.com
+    # 容量信息，表示机器有多少资源的
+    Capacity:
+        cpu:                2
+        ephemeral-storage:  20510288Ki
+        hugepages-1Gi:      0
+        hugepages-2Mi:      0
+        memory:             8173780Ki
+        pods:               110
+    # 分配的资源情况
+    Allocatable:
+        cpu:                2
+        ephemeral-storage:  18902281390
+        hugepages-1Gi:      0
+        hugepages-2Mi:      0
+        memory:             8071380Ki
+        pods:               110
+    # 系统信息，
+    System Info:
+        Machine ID:                 f58b2b87d0c14042984f07b3654572ca
+        System UUID:                30950B98-CED8-4BFB-B006-9A572CC41A86
+        Boot ID:                    574a0c40-db74-4600-b676-9dfa50caf862
+        Kernel Version:             3.10.0-1160.42.2.el7.x86_64
+        OS Image:                   CentOS Linux 7 (Core)
+        Operating System:           linux
+        Architecture:               amd64
+        Container Runtime Version:  docker://20.10.8
+        Kubelet Version:            v1.22.2
+        Kube-Proxy Version:         v1.22.2
+    PodCIDR:                      10.244.2.0/24
+    PodCIDRs:                     10.244.2.0/24
+    Non-terminated Pods:          (2 in total)
+    Namespace                   Name                     CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+    ---------                   ----                     ------------  ----------  ---------------  -------------  ---
+    kube-system                 kube-flannel-ds-v74v6    100m (5%)     100m (5%)   50Mi (0%)        50Mi (0%)      62m
+    kube-system                 kube-proxy-prl4c         0 (0%)        0 (0%)      0 (0%)           0 (0%)         62m
+    # 分配的资源情况
+    Allocated resources:
+        (Total limits may be over 100 percent, i.e., overcommitted.)
+        Resource           Requests   Limits
+        --------           --------   ------
+        cpu                100m (5%)  100m (5%)
+        memory             50Mi (0%)  50Mi (0%)
+        ephemeral-storage  0 (0%)     0 (0%)
+        hugepages-1Gi      0 (0%)     0 (0%)
+        hugepages-2Mi      0 (0%)     0 (0%)
+    # 事件信息
+    Events:
+        Type    Reason                   Age                From     Message
+        ----    ------                   ----               ----     -------
+        Normal  Starting                 62m                kubelet  Starting kubelet.
+        Normal  NodeHasSufficientMemory  62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasSufficientMemory
+        Normal  NodeHasNoDiskPressure    62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasNoDiskPressure
+        Normal  NodeHasSufficientPID     62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasSufficientPID
+        Normal  NodeAllocatableEnforced  62m                kubelet  Updated Node Allocatable limit across pods
+        Normal  NodeReady                51m                kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeRead
+
+
+
+节点可靠性
+------------------------------
+
+节点控制器把逐出速率限制在每秒 --node-eviction-rate 个（默认为 0.1）。 这表示它每 10 秒钟内至多从一个节点驱逐 Pod。
+一个可用区的节点变为不健康时，节点的驱逐行为将发生改变，检查不健康的node百分比，若果超过--unhealthy-zone-threshold （默认为 0.55），驱逐的速率将会降低，降低为每秒 --secondary-node-eviction-rate 个（默认为 0.01）。
+如果集群规模比较小，如果集群较小（意即小于等于 --large-cluster-size-threshold 个节点 - 默认为 50），驱逐操作会停止。
+
+节点控制器还会驱逐哪些运行在noexecute污点节点上面的pod。
+
+节点容量
+------------------------------
+
+node对象会跟踪节点的资源容量的，通过自注册方式生成注册期间的报告自身容量数据，默认k8s是使用机器全部的资源的， 可以设置一些预留资源给非k8s服务或者容器使用的。
+
+.. image:: ../imgs/node-capacity.svg
+
+k8s将资源分为几个部分
+
+- kube-reserved: 用来给kubelet 容器运行时 节点问题监控器等k8s系统守护进程资源预留的
+- system-reserved: 这个部分是系统预留，主要给类似sshd udev等系统守护进程预留的资源
+- eviction-hard: 节点的内存压力降导致系统内存不足，影响整个节点上面的pod服务Pod，将不能使用超过 capacity-eviction-hard 所 指定的资源量。因此，为驱逐而预留的资源对 Pod 是不可用的。
+
+
+

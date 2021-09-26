@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 节点 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> My_Study_Kubernates
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">k8s</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. Service</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>节点</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/架构/01-节点.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">1. </span>节点<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>节点是Kubernetes中的工作机器。接受控制面的管理。
+节点上面有kubelet 容器运行时（docker或者rtk）以及kube-proxy。</p>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1. </span>地址<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Hostname: 主机名字</p></li>
+<li><p>ExternalIP: 外部ip</p></li>
+<li><p>InternalIP: 内部ip</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.2. </span>状态<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>OutOfDisk</p></li>
+<li><p>Ready 就绪</p></li>
+<li><p>MemoryPressure 内存压力</p></li>
+<li><p>PIDPressure   进程过多</p></li>
+<li><p>DiskPressure  磁盘空闲不足</p></li>
+<li><p>NetworkUnavailable    网络不可达</p></li>
+<li><p>ConfigOK</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">1.3. </span>节点控制器<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>节点控制器为节点分配cidr块</p></li>
+<li><p>使节点控制器的内部节点列表与云提供商的可用计算机列表保持同步</p></li>
+<li><p>监控节点的健康状况。节点控制器负责在节点变得无法访问时将NodeStatus的NodeReady条件更新为ConditionUnknown</p></li>
+<li><p>负责驱逐在有污点的节点上运行的pod（1.6以后）</p></li>
+<li><p>可以负责创建表示节点条件的污点（1.8以后）</p></li>
+</ul>
+<p>kubelet 负责创建和更新 NodeStatus 和 Lease 对象。</p>
+<p>kubelet默认美5分钟更新node status， 默认10s更新一次租期信息。如果失败的话会指数级回退。</p>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">1.4. </span>节点管理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>标记一个节点不可调度</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl cordon &lt;nodename&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DaemonSet 通常提供节点本地的服务，即使节点上的负载应用已经被腾空，这些服务也仍需 运行在节点之上。</p>
+</div>
+<p>一个监控节点的描述信息说明</p>
+<p>节点的描述信息包含如下几个部分内容</p>
+<ul class="simple">
+<li><p>名字、角色、标签、注解、污点、创建时间、是否可以调度、租期信息</p></li>
+<li><p>地址信息</p></li>
+<li><p>事件</p></li>
+<li><p>先决条件</p></li>
+<li><p>容量数据（cpu, memory,pod)</p></li>
+<li><p>分配情况</p></li>
+<li><p>系统信息</p></li>
+<li><p>pod cidr</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[root@zhaojiedi-elk-2 ~]# kubectl describe  node zkdemo-1.epc.duxiaoman.com
+# 基本信息展示， 名字，角色，标签和主机信息
+Name:               zkdemo-1.epc.duxiaoman.com
+Roles:              &lt;none&gt;
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=zkdemo-1.epc.duxiaoman.com
+                    kubernetes.io/os=linux
+Annotations:        flannel.alpha.coreos.com/backend-data: {&quot;VNI&quot;:1,&quot;VtepMAC&quot;:&quot;b6:5b:04:70:59:c0&quot;}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 10.157.31.40
+                    kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Fri, 24 Sep 2021 19:08:39 +0800
+# 污点信息，是否不可调度，租期信息，身份信息
+Taints:             &lt;none&gt;
+Unschedulable:      false
+Lease:
+HolderIdentity:  zkdemo-1.epc.duxiaoman.com
+AcquireTime:     &lt;unset&gt;
+RenewTime:       Fri, 24 Sep 2021 20:11:07 +0800
+# 状况进展，开始是网络不可达的，然后作为几个探测后，就ready了。
+Conditions:
+Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+----                 ------  -----------------                 ------------------                ------                       -------
+NetworkUnavailable   False   Fri, 24 Sep 2021 19:21:34 +0800   Fri, 24 Sep 2021 19:21:34 +0800   FlannelIsUp                  Flannel is running on this node
+MemoryPressure       False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+DiskPressure         False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+PIDPressure          False   Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:08:39 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+Ready                True    Fri, 24 Sep 2021 20:10:29 +0800   Fri, 24 Sep 2021 19:19:52 +0800   KubeletReady                 kubelet is posting ready status
+Addresses:
+InternalIP:  10.157.31.40
+Hostname:    zkdemo-1.epc.duxiaoman.com
+# 容量信息，表示机器有多少资源的
+Capacity:
+    cpu:                2
+    ephemeral-storage:  20510288Ki
+    hugepages-1Gi:      0
+    hugepages-2Mi:      0
+    memory:             8173780Ki
+    pods:               110
+# 分配的资源情况
+Allocatable:
+    cpu:                2
+    ephemeral-storage:  18902281390
+    hugepages-1Gi:      0
+    hugepages-2Mi:      0
+    memory:             8071380Ki
+    pods:               110
+# 系统信息，
+System Info:
+    Machine ID:                 f58b2b87d0c14042984f07b3654572ca
+    System UUID:                30950B98-CED8-4BFB-B006-9A572CC41A86
+    Boot ID:                    574a0c40-db74-4600-b676-9dfa50caf862
+    Kernel Version:             3.10.0-1160.42.2.el7.x86_64
+    OS Image:                   CentOS Linux 7 (Core)
+    Operating System:           linux
+    Architecture:               amd64
+    Container Runtime Version:  docker://20.10.8
+    Kubelet Version:            v1.22.2
+    Kube-Proxy Version:         v1.22.2
+PodCIDR:                      10.244.2.0/24
+PodCIDRs:                     10.244.2.0/24
+Non-terminated Pods:          (2 in total)
+Namespace                   Name                     CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+---------                   ----                     ------------  ----------  ---------------  -------------  ---
+kube-system                 kube-flannel-ds-v74v6    100m (5%)     100m (5%)   50Mi (0%)        50Mi (0%)      62m
+kube-system                 kube-proxy-prl4c         0 (0%)        0 (0%)      0 (0%)           0 (0%)         62m
+# 分配的资源情况
+Allocated resources:
+    (Total limits may be over 100 percent, i.e., overcommitted.)
+    Resource           Requests   Limits
+    --------           --------   ------
+    cpu                100m (5%)  100m (5%)
+    memory             50Mi (0%)  50Mi (0%)
+    ephemeral-storage  0 (0%)     0 (0%)
+    hugepages-1Gi      0 (0%)     0 (0%)
+    hugepages-2Mi      0 (0%)     0 (0%)
+# 事件信息
+Events:
+    Type    Reason                   Age                From     Message
+    ----    ------                   ----               ----     -------
+    Normal  Starting                 62m                kubelet  Starting kubelet.
+    Normal  NodeHasSufficientMemory  62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasSufficientMemory
+    Normal  NodeHasNoDiskPressure    62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasNoDiskPressure
+    Normal  NodeHasSufficientPID     62m (x2 over 62m)  kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeHasSufficientPID
+    Normal  NodeAllocatableEnforced  62m                kubelet  Updated Node Allocatable limit across pods
+    Normal  NodeReady                51m                kubelet  Node zkdemo-1.epc.duxiaoman.com status is now: NodeRead
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><span class="section-number">1.5. </span>节点可靠性<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>节点控制器把逐出速率限制在每秒 –node-eviction-rate 个（默认为 0.1）。 这表示它每 10 秒钟内至多从一个节点驱逐 Pod。
+一个可用区的节点变为不健康时，节点的驱逐行为将发生改变，检查不健康的node百分比，若果超过–unhealthy-zone-threshold （默认为 0.55），驱逐的速率将会降低，降低为每秒 –secondary-node-eviction-rate 个（默认为 0.01）。
+如果集群规模比较小，如果集群较小（意即小于等于 –large-cluster-size-threshold 个节点 - 默认为 50），驱逐操作会停止。</p>
+<p>节点控制器还会驱逐哪些运行在noexecute污点节点上面的pod。</p>
+</div>
+<div class="section" id="id7">
+<h2><span class="section-number">1.6. </span>节点容量<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>node对象会跟踪节点的资源容量的，通过自注册方式生成注册期间的报告自身容量数据，默认k8s是使用机器全部的资源的， 可以设置一些预留资源给非k8s服务或者容器使用的。</p>
+<img alt="概念/架构/../imgs/node-capacity.svg" src="概念/架构/../imgs/node-capacity.svg" /><p>k8s将资源分为几个部分</p>
+<ul class="simple">
+<li><p>kube-reserved: 用来给kubelet 容器运行时 节点问题监控器等k8s系统守护进程资源预留的</p></li>
+<li><p>system-reserved: 这个部分是系统预留，主要给类似sshd udev等系统守护进程预留的资源</p></li>
+<li><p>eviction-hard: 节点的内存压力降导致系统内存不足，影响整个节点上面的pod服务Pod，将不能使用超过 capacity-eviction-hard 所 指定的资源量。因此，为驱逐而预留的资源对 Pod 是不可用的。</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2018, zhaojiedi1992@outlook.com
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
