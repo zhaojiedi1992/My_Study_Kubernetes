@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. pod拓扑分布约束 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5. 干扰" href="05-%E5%B9%B2%E6%89%B0.html" />
+    <link rel="prev" title="3. init容器" href="03-init%E5%AE%B9%E5%99%A8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.1. 容器</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3. 工作负载</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-pods.html">1. pods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">2. pods生命周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">3. init容器</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4. pod拓扑分布约束</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.1. 先决条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.2. pod分布约束</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.3. 设置集群级别的默认约束</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">5. 干扰</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">6. 临时容器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.2. 工作负载资源</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">3. </span>工作负载</a> &raquo;</li>
+      <li><span class="section-number">4. </span>pod拓扑分布约束</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载/04-pod拓扑分布约束.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pod">
+<h1><span class="section-number">4. </span>pod拓扑分布约束<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h1>
+<p>拓扑分布约束来控制pod在集群内故障域之间的分布。例如区域（region),可用区（zone)这样有利于实现高可用并提升资源使用率。</p>
+<section id="id1">
+<h2><span class="section-number">4.1. </span>先决条件<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>可以给节点所在的区域进行拓扑标记。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 给其中一个节点进行标记，标记为region区域， zone 可用区</span>
+kubectl label  node zkdemo-1.epc.duxiaoman.com <span class="nv">region</span><span class="o">=</span>beijing <span class="nv">zone</span><span class="o">=</span>a
+<span class="c1"># 确认下</span>
+kubectl get node --show-labels<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>这里我没有那么多机器，应该根据实际部署的位置进行标记， 这里我们假定我有2个区域，每个区域都有2个可用区。 一共4个work节点。</p>
+<p>拓扑标记建议使用如下标签名字： topology.kubernetes.io/region和 topology.kubernetes.io/zone.
+这个如果有cloud-coller-manager的时候应该会自动设置的。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">4.2. </span>pod分布约束<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="linenos"> 2</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mypod</span>
+<span class="linenos"> 5</span>  <span class="nt">labels</span><span class="p">:</span>
+<span class="linenos"> 6</span>    <span class="nt">foo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span>
+<span class="linenos"> 7</span><span class="nt">spec</span><span class="p">:</span>
+<span class="linenos"> 8</span>  <span class="nt">topologySpreadConstraints</span><span class="p">:</span>
+<span class="linenos"> 9</span>  <span class="p p-Indicator">-</span> <span class="nt">maxSkew</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="linenos">10</span>    <span class="nt">topologyKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zone</span>
+<span class="linenos">11</span>    <span class="nt">whenUnsatisfiable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DoNotSchedule</span>
+<span class="linenos">12</span>    <span class="nt">labelSelector</span><span class="p">:</span>
+<span class="linenos">13</span>      <span class="nt">matchLabels</span><span class="p">:</span>
+<span class="linenos">14</span>        <span class="nt">foo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span>
+<span class="linenos">15</span>  <span class="nt">containers</span><span class="p">:</span>
+<span class="linenos">16</span>  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pause</span>
+<span class="linenos">17</span>    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">k8s.gcr.io/pause:3.1</span>
+</pre></div>
+</div>
+<p>先说明下几个字段</p>
+<ul class="simple">
+<li><p>topologySpreadConstraints: 指定拓扑约束的， 可以有多个约束规则的。</p></li>
+<li><p>maxSkew: 描述分布不均匀程度，是2个拓扑域差值</p></li>
+<li><p>topologyKey: 拓扑标签的key,这里我们使用了zone</p></li>
+<li><p>whenUnsatisfiable: 如果pod不满足分布约束的时候如何处理， donotschedule是不要调度，scheduleanyway是继续调度，进行偏差最小化。</p></li>
+<li><p>labelSelector: 用于查找匹配的po,根据这个来统计各个拓扑域的pod数量。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.3. </span>设置集群级别的默认约束<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubescheduler.config.k8s.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">KubeSchedulerConfiguration</span>
+
+<span class="nt">profiles</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">pluginConfig</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PodTopologySpread</span>
+        <span class="l l-Scalar l-Scalar-Plain">args</span><span class="p p-Indicator">:</span>
+        <span class="nt">defaultConstraints</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="nt">maxSkew</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+            <span class="nt">topologyKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">topology.kubernetes.io/zone</span>
+            <span class="nt">whenUnsatisfiable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ScheduleAnyway</span>
+        <span class="nt">defaultingType</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">List</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03-init%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-left" title="3. init容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-%E5%B9%B2%E6%89%B0.html" class="btn btn-neutral float-right" title="5. 干扰" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

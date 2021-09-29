@@ -1,0 +1,6 @@
+卷
+===================================
+
+卷用于确保数据脱离了pod的生命周期， 还有可以确保pod内的容器可以共享卷文件。  
+
+要使用volume，需要给pod指定.spec.volumes字段， 并且安装卷到目录 .spec.containers.volumeMounts字段。 

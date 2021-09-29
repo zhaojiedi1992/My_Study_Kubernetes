@@ -172,7 +172,7 @@ kubelet默认美5分钟更新node status， 默认10s更新一次租期信息。
 
 node对象会跟踪节点的资源容量的，通过自注册方式生成注册期间的报告自身容量数据，默认k8s是使用机器全部的资源的， 可以设置一些预留资源给非k8s服务或者容器使用的。
 
-.. image:: ../imgs/node-capacity.svg
+.. image:: ../../../imgs/node-capacity.svg
 
 k8s将资源分为几个部分
 
@@ -180,5 +180,7 @@ k8s将资源分为几个部分
 - system-reserved: 这个部分是系统预留，主要给类似sshd udev等系统守护进程预留的资源
 - eviction-hard: 节点的内存压力降导致系统内存不足，影响整个节点上面的pod服务Pod，将不能使用超过 capacity-eviction-hard 所 指定的资源量。因此，为驱逐而预留的资源对 Pod 是不可用的。
 
+节点拓扑
+------------------------------
 
-
+待补充。

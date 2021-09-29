@@ -1,69 +1,35 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pv和pvc &mdash; My_Study_Kubernates v1.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> My_Study_Kubernates
-          
-
-          
+            <a href="../index.html" class="icon icon-home"> My_Study_Kubernates
           </a>
-
-          
-            
-            
               <div class="version">
                 v1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -71,110 +37,58 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">k8s</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">概念</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../%E4%BB%BB%E5%8A%A1/index.html">1. Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">My_Study_Kubernates</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>pv和pvc</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/35-pv.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="pvpvc">
-<h1>pv和pvc<a class="headerlink" href="#pvpvc" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="pvpvc">
+<h1>pv和pvc<a class="headerlink" href="#pvpvc" title="Permalink to this headline"></a></h1>
 <p>pv是集群种已经由管理员配置的一块存储，他是集群资源。</p>
 <p>pvc是用户定义的资源请求，请求中定义了需要的大小和访问模式。</p>
-<div class="section" id="id1">
-<h2>pv和pvc的关系<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h2>pv和pvc的关系<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>pv是集群种的一种资源（存储资源） ， pvc是用户需要的存储的申请。</p></li>
 <li><p>一个pvc只能绑定到一个pv资源上， pvc和pv是一一对应的。</p></li>
 </ul>
-</div>
-<div class="section" id="pv">
-<h2>pv访问模式<a class="headerlink" href="#pv" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pv">
+<h2>pv访问模式<a class="headerlink" href="#pv" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>ReadWriteOnce: 卷可以有单个节点读写方式挂载,缩写RWO</p></li>
 <li><p>ReadOnlyMany: 卷可以被许多节点制度挂载,缩写ROX.</p></li>
 <li><p>ReadWriteMany： 卷可以由许多节点读写方式挂载，缩写RWX.</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>回收政策<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>回收政策<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>回收政策是：</p>
 <ul class="simple">
 <li><p>保留： 手工回收</p></li>
@@ -185,63 +99,44 @@
 <p class="admonition-title">Note</p>
 <p>只有nfs和HostPath支持回收， aws ebs,等支持删除。</p>
 </div>
-</div>
-<div class="section" id="id3">
-<h2>卷的状态<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>卷的状态<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Available： 可用的(无绑定设置）</p></li>
 <li><p>Bound: 绑定的</p></li>
 <li><p>Released: 已删除声明，单集群尚未回收资源。</p></li>
 <li><p>Failed: 卷自动回收失败</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2018, zhaojiedi1992@outlook.com
-
-    </p>
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

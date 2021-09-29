@@ -1,71 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>1.5.1. deployments &mdash; My_Study_Kubernates v1.0 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1. deployments &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Service" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
-    <link rel="prev" title="1.5. 架构" href="index.html" /> 
+    <link rel="next" title="服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
+    <link rel="prev" title="4. 工作负载资源" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> My_Study_Kubernates
-          
-
-          
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
           </a>
-
-          
-            
-            
               <div class="version">
                 v1.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,114 +39,60 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">k8s</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 架构</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.5. 架构</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">1.5.1. deployments</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#depolyments">1.5.1.1. 创建depolyments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">1.5.1.2. 更新</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">1.5.1.3. 查看变更</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">1.5.1.4. 获取上线进度</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">1.5.1.5. 升级失败的可能原因</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">3. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4. 工作负载资源</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.1. deployments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#depolyments">4.1.1. 创建depolyments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.1.2. 更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.1.3. 查看变更</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.1.4. 获取上线进度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.1.5. 升级失败的可能原因</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">My_Study_Kubernates</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-        
-          <li><a href="index.html"><span class="section-number">1.5. </span>架构</a> &raquo;</li>
-        
-      <li><span class="section-number">1.5.1. </span>deployments</li>
-    
-    
+          <li><a href="../index.html">概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">4. </span>工作负载资源</a> &raquo;</li>
+      <li><span class="section-number">4.1. </span>deployments</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
-            
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/01-deployments.rst" class="fa fa-github"> Edit on GitHub</a>
-            
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="deployments">
-<h1><span class="section-number">1.5.1. </span>deployments<a class="headerlink" href="#deployments" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="depolyments">
-<h2><span class="section-number">1.5.1.1. </span>创建depolyments<a class="headerlink" href="#depolyments" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="deployments">
+<h1><span class="section-number">4.1. </span>deployments<a class="headerlink" href="#deployments" title="Permalink to this headline"></a></h1>
+<section id="depolyments">
+<h2><span class="section-number">4.1.1. </span>创建depolyments<a class="headerlink" href="#depolyments" title="Permalink to this headline"></a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kubectl apply -f deploy-nginx.yml
 
 kubectl get pod
@@ -201,9 +113,9 @@ nginx-deployment   3/3     3            3           7m2s
 <li><p>AVAILABLE: 当前可供应用使用的副本数量</p></li>
 <li><p>AGE: 应用程序运行的时间</p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h2><span class="section-number">1.5.1.2. </span>更新<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2><span class="section-number">4.1.2. </span>更新<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>修改文件的镜像版本，然后再次apply一次。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get deploy -w
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
@@ -218,9 +130,9 @@ nginx-deployment   <span class="m">4</span>/3     <span class="m">3</span>      
 nginx-deployment   <span class="m">3</span>/3     <span class="m">3</span>            <span class="m">3</span>           20m
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h2><span class="section-number">1.5.1.3. </span>查看变更<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2><span class="section-number">4.1.3. </span>查看变更<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl rollout <span class="nb">history</span> deploy nginx-deployment                                <span class="m">1</span> ↵  <span class="m">2470</span>  <span class="m">21</span>:04:51
 deployment.apps/nginx-deployment
 REVISION  CHANGE-CAUSE
@@ -229,9 +141,9 @@ REVISION  CHANGE-CAUSE
 <span class="m">3</span>         &lt;none&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="id3">
-<h2><span class="section-number">1.5.1.4. </span>获取上线进度<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.1.4. </span>获取上线进度<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim deploy_nginx.yml
 kubectl apply -f deploy_nginx.yml
 deployment.apps/nginx-deployment configured
@@ -247,9 +159,9 @@ Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deplo
 deployment <span class="s2">&quot;nginx-deployment&quot;</span> successfully rolled out
 </pre></div>
 </div>
-</div>
-<div class="section" id="id4">
-<h2><span class="section-number">1.5.1.5. </span>升级失败的可能原因<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.1.5. </span>升级失败的可能原因<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>镜像拉取问题</p></li>
 <li><p>权限不足</p></li>
@@ -258,63 +170,38 @@ deployment <span class="s2">&quot;nginx-deployment&quot;</span> successfully rol
 <li><p>限制范围问题</p></li>
 <li><p>运行时候配置错误</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="2. Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="1.5. 架构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4. 工作负载资源" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2018, zhaojiedi1992@outlook.com
-
-    </p>
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

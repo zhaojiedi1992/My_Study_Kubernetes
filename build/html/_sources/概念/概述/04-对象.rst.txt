@@ -74,7 +74,8 @@ metadata:
   - 没法模板化
 
 指令式对象配置
-`````````
+```````````````````````````
+  
 .. code-block:: bash
 
   kubectl create -f nginx.yaml
@@ -90,7 +91,7 @@ metadata:
 
 
 声明式对象配置
-`````````
+`````````````````````````````````````````````
 .. code-block:: bash
 
   kubectl diff -R-f configs/
@@ -125,7 +126,9 @@ udi标识在整个集群的唯一性。
 每个资源只能在一个命名空间下。
 查看所有命名空间
 
-.. code-block:: bash 
+
+.. code-block:: bash
+
     kubectl get namespace
     NAME              STATUS   AGE
     default           Active   18m

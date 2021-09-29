@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. 对象 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.2. 架构" href="../%E6%9E%B6%E6%9E%84/index.html" />
+    <link rel="prev" title="3. Kubernetes API" href="03-KubernetesAPI.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1. 概念</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1. 什么是k8s</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-Kubernetes%E7%BB%84%E4%BB%B6.html">2. Kubernetes组件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-KubernetesAPI.html">3. Kubernetes API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4. 对象</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.1. 理解对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spec-status">4.2. 对象规约（Spec）与状态（Status）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kubernetes">4.3. 描述 Kubernetes 对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.4. 关键字段说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.5. 对象管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.6. 名称</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uid">4.7. uid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">4.8. 命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.9. 标签</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.10. 标签选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.11. 注解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">4.12. 字段选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">4.13. 集合选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">4.14. 推荐使用的标签</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">4.15. 注解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">4.16. 哪些信息建议使用注解呢</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.1. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">3. 工作负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.2. 工作负载资源</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+      <li><span class="section-number">4. </span>对象</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/概述/04-对象.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">4. </span>对象<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="id2">
+<h2><span class="section-number">4.1. </span>理解对象<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>k8s中的对象是持久化的实体，ks8使用这些实体来表示整个集群的状态，对象是目标性记录，记录的期望状态。我们对对象实体的操作（kubectl dashboard sdk等方式）都是和api server进行操作的。</p>
+</section>
+<section id="spec-status">
+<h2><span class="section-number">4.2. </span>对象规约（Spec）与状态（Status）<a class="headerlink" href="#spec-status" title="Permalink to this headline"></a></h2>
+<p>几乎每个对象都有这2个字段spec和status的。spec这个字段配置的是对象的期望状态，status是描述的当前状态。在任何时刻k8s的控制平面都会积极维护对象的实际状态，使之与期望状态一致。</p>
+</section>
+<section id="kubernetes">
+<h2><span class="section-number">4.3. </span>描述 Kubernetes 对象<a class="headerlink" href="#kubernetes" title="Permalink to this headline"></a></h2>
+<p>创建k8s对象，必须提供一个对象的规约用来描述对象的期望状态，还需要一些基本信息，比如名称。使用kubectl创建对象的时候，我们一般使用yaml格式，在kubectl发送请求到api server的时候会将yaml格式转换为json的格式的。
+下面是一个简单的deployment实例:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">selector</span><span class="p">:</span>
+    <span class="nt">matchLabels</span><span class="p">:</span>
+      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="l l-Scalar l-Scalar-Plain">yment to run 2 pods matching the template</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+    <span class="nt">metadata</span><span class="p">:</span>
+      <span class="nt">labels</span><span class="p">:</span>
+        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="nt">spec</span><span class="p">:</span>
+      <span class="nt">containers</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.14.2</span>
+        <span class="nt">ports</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+</pre></div>
+</div>
+<p>接下来就可以通过kubectl apply -f nginx-deployment.yaml 方式进行创建</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.4. </span>关键字段说明<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>apiVersion:</dt><dd><p>这个是描述对象使用的api 版本信息的，具体是apps/v1 还是哪个beta版本的</p>
+</dd>
+<dt>kind:</dt><dd><p>对象类型，具体是pod类型，还是deployment类型</p>
+</dd>
+<dt>metadata:</dt><dd><p>帮助唯一表示对象的一些数据，属于对象的元数据信息，一般要有一个name uid和可选择的namespace的。</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.5. </span>对象管理<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>对象管理的方式比较多， 这里主要说下kubectl方式，有如下几种方式。</p>
+<table class="colwidths-given docutils align-default" id="id18">
+<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id18" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 12%" />
+<col style="width: 35%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>管理技术</p></th>
+<th class="head"><p>作用与</p></th>
+<th class="head"><p>建议环境</p></th>
+<th class="head"><p>学习难度</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>指令式命令</p></td>
+<td><p>活跃对象</p></td>
+<td><p>开发项目</p></td>
+<td><p>最低</p></td>
+</tr>
+<tr class="row-odd"><td><p>指令式对象配置</p></td>
+<td><p>单个文件</p></td>
+<td><p>生产项目</p></td>
+<td><p>中等</p></td>
+</tr>
+<tr class="row-even"><td><p>声明式对象配置</p></td>
+<td><p>文件目录</p></td>
+<td><p>生产项目</p></td>
+<td><p>最高</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id5">
+<h3><span class="section-number">4.5.1. </span>指令式<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl create deployment nginx --image nginx
+</pre></div>
+</div>
+<dl class="simple">
+<dt>优点：</dt><dd><ul class="simple">
+<li><p>简单</p></li>
+</ul>
+</dd>
+<dt>缺点：</dt><dd><ul class="simple">
+<li><p>没法审计跟踪</p></li>
+<li><p>没法模板化</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3><span class="section-number">4.5.2. </span>指令式对象配置<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl create -f nginx.yaml
+kubectl delte -f nginx.yaml -f redis.yaml
+kubectl replace -f nginx.yaml
+</pre></div>
+</div>
+<dl class="simple">
+<dt>优点：</dt><dd><ul class="simple">
+<li><p>配置文件可以存储到版本控制系统中</p></li>
+<li><p>对象配置可以与流程集成</p></li>
+<li><p>对象配置提供了创建新对象的模板</p></li>
+</ul>
+</dd>
+<dt>缺点：</dt><dd><ul class="simple">
+<li><p>对活动对象的更新必须反映在配置文件中，不然下次替换会丢失</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3><span class="section-number">4.5.3. </span>声明式对象配置<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl diff -R-f configs/
+kubectl apply -R -f configs/
+</pre></div>
+</div>
+<dl class="simple">
+<dt>优点：</dt><dd><ul class="simple">
+<li><p>对活动对象的更改及时未合并到配置文件中，也会被保留下来。</p></li>
+<li><p>可以自动检测每个文件的操作类型（这个文件是更新的，另外一个是创建的）</p></li>
+</ul>
+</dd>
+<dt>缺点：</dt><dd><ul class="simple">
+<li><p>难调试</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id8">
+<h2><span class="section-number">4.6. </span>名称<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<p>k8s资源的具体名字 ，需要在metadata.name中指定。
+名字来标识在同类资源中的唯一性</p>
+</section>
+<section id="uid">
+<h2><span class="section-number">4.7. </span>uid<a class="headerlink" href="#uid" title="Permalink to this headline"></a></h2>
+<p>系统生成的随机字符串，用于表示唯一的资源对象。
+udi标识在整个集群的唯一性。</p>
+</section>
+<section id="id9">
+<h2><span class="section-number">4.8. </span>命名空间<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<p>命名空间用于划分资源的一个逻辑分组， 可以用户环境隔离（生产和开发环境隔离）
+配合网络插件完成网络隔离。</p>
+<p>命名空间提供一个范围，资源的名称需要在命名空间下是唯一的，命名空间不能相互嵌套，命名空间是并列的，
+每个资源只能在一个命名空间下。
+查看所有命名空间</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get namespace
+NAME              STATUS   AGE
+default           Active   18m
+kube-node-lease   Active   18m
+kube-public       Active   18m
+kube-system       Active   18m
+</pre></div>
+</div>
+<p>这4个ns是默认就会创建的</p>
+<ul class="simple">
+<li><p>default: 没有指定命名空间的对象使用这个命名空间</p></li>
+<li><p>kube-system: 系统创建对象使用的命名空间</p></li>
+<li><p>kube-public: 所有用户都可以读取</p></li>
+<li><p>kube-node-lease: 这个名字空间用于与各个节点租期（lease)对象，这个对象的设计是的集群规模比较大的时候节点的心跳检查得到提升。</p></li>
+</ul>
+<p>不是所有的资源都要归属一个命名空间， node,pv都是不属于任何一个命名空间的。
+更详细的可以通过命令获取</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl api-resource --namespaced<span class="o">=</span><span class="nb">false</span>
+kubectl api-resource --namespaced<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h2><span class="section-number">4.9. </span>标签<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
+<p>标签是一个对象， 包含多个kv对象。</p>
+<p>常用标签</p>
+<ul class="simple">
+<li><p>“release” : “stable”, “release” : “canary”</p></li>
+<li><p>“environment” : “dev”, “environment” : “qa”, “environment” : “production”</p></li>
+<li><p>“tier” : “frontend”, “tier” : “backend”, “tier” : “cache”</p></li>
+<li><p>“partition” : “customerA”, “partition” : “customerB”</p></li>
+<li><p>“track” : “daily”, “track” : “weekly”</p></li>
+</ul>
+</section>
+<section id="id11">
+<h2><span class="section-number">4.10. </span>标签选择器<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h2>
+<p>用于根据标签选择特定k8s资源对象，有基于等值和集合的2中选择方式。
+yaml资源定义清单文件中使用matchLabels或者matchExpressions2种方式来选择资源。</p>
+</section>
+<section id="id12">
+<h2><span class="section-number">4.11. </span>注解<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h2>
+<p>注解和标签一样都是kv数据， 只是不能用于选择，可以指定下如下信息。
+负责人信息，出处，git提交信息或者版本号。</p>
+</section>
+<section id="id13">
+<h2><span class="section-number">4.12. </span>字段选择器<a class="headerlink" href="#id13" title="Permalink to this headline"></a></h2>
+<p>用于筛选特定字段匹配特定值的资源</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get statefulsets,services --field-selector metadata.namespace!<span class="o">=</span>default
+kubectl get pods -l <span class="s1">&#39;environment in (production, qa)&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h2><span class="section-number">4.13. </span>集合选择器<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h2>
+<p>上面是通过kubectl方式具体怎么在yaml使用选择呢。
+这个地方给个样例。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">selector</span><span class="p">:</span>
+  <span class="nt">matchLabels</span><span class="p">:</span>
+    <span class="nt">component</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redis</span>
+  <span class="nt">matchExpressions</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">key</span><span class="p">:</span> <span class="nv">tier</span><span class="p p-Indicator">,</span><span class="nt"> operator</span><span class="p">:</span> <span class="nv">In</span><span class="p p-Indicator">,</span><span class="nt"> values</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">cache</span><span class="p p-Indicator">]}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">key</span><span class="p">:</span> <span class="nv">environment</span><span class="p p-Indicator">,</span><span class="nt"> operator</span><span class="p">:</span> <span class="nv">NotIn</span><span class="p p-Indicator">,</span><span class="nt"> values</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">dev</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h2><span class="section-number">4.14. </span>推荐使用的标签<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default" id="id19">
+<caption><span class="caption-text">推荐的标签
+ :header: 键,  描述,     示例,     类型
+ :widths: 15, 10, 30,30</span><a class="headerlink" href="#id19" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>app.kubernetes.io/name</p></td>
+<td><p>应用程序的名称</p></td>
+<td><p>mysql</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-even"><td><p>app.kubernetes.io/instance</p></td>
+<td><p>用于唯一确定应用实例的名称</p></td>
+<td><p>mysql-abcxzy</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.kubernetes.io/version</p></td>
+<td><p>应用程序的当前版本（例如，语义版本，修订版哈希等）</p></td>
+<td><p>5.7.21</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-even"><td><p>app.kubernetes.io/component</p></td>
+<td><p>架构中的组件</p></td>
+<td><p>database</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.kubernetes.io/part-of</p></td>
+<td><p>此级别的更高级别应用程序的名称</p></td>
+<td><p>wordpress</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-even"><td><p>app.kubernetes.io/managed-by</p></td>
+<td><p>用于管理应用程序的工具</p></td>
+<td><p>helm</p></td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.kubernetes.io/created-by</p></td>
+<td><p>创建该资源的控制器或者用户</p></td>
+<td><p>controller-manager</p></td>
+<td><p>字符串</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id16">
+<h2><span class="section-number">4.15. </span>注解<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>
+<p>注解也是描述元数据的一种方式，当时注解和标签不同的是，这个不能被选择和标识对象。
+注解里面的数据可以是结构化的数据，也可以是非结构化的数据。</p>
+</section>
+<section id="id17">
+<h2><span class="section-number">4.16. </span>哪些信息建议使用注解呢<a class="headerlink" href="#id17" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>构建信息，发布时间，git分支，pr数量，仓库地址等。</p></li>
+<li><p>日志记录，监控地址，审计地址等。</p></li>
+<li><p>团队网址等</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03-KubernetesAPI.html" class="btn btn-neutral float-left" title="3. Kubernetes API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../%E6%9E%B6%E6%9E%84/index.html" class="btn btn-neutral float-right" title="1.2. 架构" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
