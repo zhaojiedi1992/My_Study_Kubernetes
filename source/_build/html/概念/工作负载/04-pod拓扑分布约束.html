@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. pod拓扑分布约束 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>3.4. pod拓扑分布约束 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5. 干扰" href="05-%E5%B9%B2%E6%89%B0.html" />
-    <link rel="prev" title="3. init容器" href="03-init%E5%AE%B9%E5%99%A8.html" /> 
+    <link rel="next" title="3.5. 干扰" href="05-%E5%B9%B2%E6%89%B0.html" />
+    <link rel="prev" title="3.3. init容器" href="03-init%E5%AE%B9%E5%99%A8.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,27 +43,27 @@
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.1. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">2. 容器</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">3. 工作负载</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-pods.html">1. pods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">2. pods生命周期</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">3. init容器</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4. pod拓扑分布约束</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">4.1. 先决条件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">4.2. pod分布约束</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">4.3. 设置集群级别的默认约束</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-pods.html">3.1. pods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">3.2. pods生命周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">3.3. init容器</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.4. pod拓扑分布约束</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.4.1. 先决条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.4.2. pod分布约束</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.4.3. 设置集群级别的默认约束</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">5. 干扰</a></li>
-<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">6. 临时容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">3.5. 干扰</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">3.6. 临时容器</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.2. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">4. 工作负载资源</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a></li>
 </ul>
 
         </div>
@@ -82,7 +82,7 @@
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
           <li><a href="index.html"><span class="section-number">3. </span>工作负载</a> &raquo;</li>
-      <li><span class="section-number">4. </span>pod拓扑分布约束</li>
+      <li><span class="section-number">3.4. </span>pod拓扑分布约束</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载/04-pod拓扑分布约束.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -93,10 +93,10 @@
            <div itemprop="articleBody">
              
   <section id="pod">
-<h1><span class="section-number">4. </span>pod拓扑分布约束<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">3.4. </span>pod拓扑分布约束<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h1>
 <p>拓扑分布约束来控制pod在集群内故障域之间的分布。例如区域（region),可用区（zone)这样有利于实现高可用并提升资源使用率。</p>
 <section id="id1">
-<h2><span class="section-number">4.1. </span>先决条件<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.4.1. </span>先决条件<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>可以给节点所在的区域进行拓扑标记。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 给其中一个节点进行标记，标记为region区域， zone 可用区</span>
 kubectl label  node zkdemo-1.epc.duxiaoman.com <span class="nv">region</span><span class="o">=</span>beijing <span class="nv">zone</span><span class="o">=</span>a
@@ -109,7 +109,7 @@ kubectl get node --show-labels<span class="o">=</span><span class="nb">true</spa
 这个如果有cloud-coller-manager的时候应该会自动设置的。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.2. </span>pod分布约束<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.4.2. </span>pod分布约束<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
 <span class="linenos"> 2</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
@@ -139,7 +139,7 @@ kubectl get node --show-labels<span class="o">=</span><span class="nb">true</spa
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.3. </span>设置集群级别的默认约束<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">3.4.3. </span>设置集群级别的默认约束<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubescheduler.config.k8s.io/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">KubeSchedulerConfiguration</span>
 
@@ -161,8 +161,8 @@ kubectl get node --show-labels<span class="o">=</span><span class="nb">true</spa
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03-init%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-left" title="3. init容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="05-%E5%B9%B2%E6%89%B0.html" class="btn btn-neutral float-right" title="5. 干扰" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03-init%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-left" title="3.3. init容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-%E5%B9%B2%E6%89%B0.html" class="btn btn-neutral float-right" title="3.5. 干扰" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,14 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: low
+provisioner: kubernetes.io/glusterfs
+parameters:
+  resturl: "http://10.157.89.215:8077"
+  clusterid: "b8bc571569b52c572f56b19a5f6b6d9a"
+  restauthenabled: "true"
+  restuser: "admin"
+  restuserkey: "admin"
+  gidMin: "40000"
+  gidMax: "50000"
+  volumetype: "replicate:2"

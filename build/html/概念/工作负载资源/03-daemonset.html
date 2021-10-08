@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.3. daemonset &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.4. jobs" href="04-jobs.html" />
+    <link rel="prev" title="5.2. statefulset" href="02-statefulset.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">4. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5. 工作负载资源</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">5.1. deployments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">5.2. statefulset</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3. daemonset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.3.1. 使用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.3.2. 创建daemonset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#daemon-pod">5.3.3. daemon pod通信</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="04-jobs.html">5.4. jobs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">5. </span>工作负载资源</a> &raquo;</li>
+      <li><span class="section-number">5.3. </span>daemonset</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/03-daemonset.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="daemonset">
+<h1><span class="section-number">5.3. </span>daemonset<a class="headerlink" href="#daemonset" title="Permalink to this headline"></a></h1>
+<p>daemonset是确保全部或者部分节点上运行一个pod的副本，当有节点接入的时候，能自动添加一个pod上去，移除的时候，pod也会被回收。</p>
+<section id="id1">
+<h2><span class="section-number">5.3.1. </span>使用场景<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>每个节点运行集群的守护进程</p></li>
+<li><p>日志收集守护进程</p></li>
+<li><p>运行监控守护进程</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.3.2. </span>创建daemonset<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DaemonSet</span>
+<span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd-elasticsearch</span>
+<span class="linenos"> 5</span>  <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+<span class="linenos"> 6</span>  <span class="nt">labels</span><span class="p">:</span>
+<span class="linenos"> 7</span>    <span class="nt">k8s-app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd-logging</span>
+<span class="linenos"> 8</span><span class="nt">spec</span><span class="p">:</span>
+<span class="linenos"> 9</span>  <span class="nt">selector</span><span class="p">:</span>
+<span class="linenos">10</span>    <span class="nt">matchLabels</span><span class="p">:</span>
+<span class="linenos">11</span>      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd-elasticsearch</span>
+<span class="linenos">12</span>  <span class="nt">template</span><span class="p">:</span>
+<span class="linenos">13</span>    <span class="nt">metadata</span><span class="p">:</span>
+<span class="linenos">14</span>      <span class="nt">labels</span><span class="p">:</span>
+<span class="linenos">15</span>        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd-elasticsearch</span>
+<span class="linenos">16</span>    <span class="nt">spec</span><span class="p">:</span>
+<span class="linenos">17</span>      <span class="nt">tolerations</span><span class="p">:</span>
+<span class="linenos">18</span>      <span class="c1"># this toleration is to have the daemonset runnable on master nodes</span>
+<span class="linenos">19</span>      <span class="c1"># remove it if your masters can&#39;t run pods</span>
+<span class="linenos">20</span>      <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/master</span>
+<span class="linenos">21</span>        <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Exists</span>
+<span class="linenos">22</span>        <span class="nt">effect</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+<span class="linenos">23</span>      <span class="nt">containers</span><span class="p">:</span>
+<span class="linenos">24</span>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd-elasticsearch</span>
+<span class="linenos">25</span>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">quay.io/fluentd_elasticsearch/fluentd:v2.5.2</span>
+<span class="linenos">26</span>        <span class="nt">resources</span><span class="p">:</span>
+<span class="linenos">27</span>          <span class="nt">limits</span><span class="p">:</span>
+<span class="linenos">28</span>            <span class="nt">memory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200Mi</span>
+<span class="linenos">29</span>          <span class="nt">requests</span><span class="p">:</span>
+<span class="linenos">30</span>            <span class="nt">cpu</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100m</span>
+<span class="linenos">31</span>            <span class="nt">memory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200Mi</span>
+<span class="linenos">32</span>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="linenos">33</span>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">varlog</span>
+<span class="linenos">34</span>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/log</span>
+<span class="linenos">35</span>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">varlibdockercontainers</span>
+<span class="linenos">36</span>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/lib/docker/containers</span>
+<span class="linenos">37</span>          <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="linenos">38</span>      <span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="linenos">39</span>      <span class="nt">volumes</span><span class="p">:</span>
+<span class="linenos">40</span>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">varlog</span>
+<span class="linenos">41</span>        <span class="nt">hostPath</span><span class="p">:</span>
+<span class="linenos">42</span>          <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/log</span>
+<span class="linenos">43</span>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">varlibdockercontainers</span>
+<span class="linenos">44</span>        <span class="nt">hostPath</span><span class="p">:</span>
+<span class="linenos">45</span>          <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/lib/docker/containers</span>
+</pre></div>
+</div>
+<p>应用一下，通过如下命令查看</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get pod -n kube-system <span class="p">|</span>grep flu                                                                                          ✔  <span class="m">2701</span>  <span class="m">17</span>:07:17
+fluentd-elasticsearch-724f7                                 <span class="m">0</span>/1     ContainerCreating   <span class="m">0</span>               19s
+fluentd-elasticsearch-r8jth                                 <span class="m">0</span>/1     ContainerCreating   <span class="m">0</span>               19s
+</pre></div>
+</div>
+<p>发现，我们3个节点的， 一个master,2个node的， 可以看到这个没有调度到pod上面的。 问题出在哪里了。看下</p>
+<p>master节点是有污点的，不可调度的，也就是，需要修改配置文件，添加我们的ds容忍这个污点即可。</p>
+<p>具体添加片段如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">tolerations</span><span class="p">:</span>
+  <span class="c1"># this toleration is to have the daemonset runnable on master nodes</span>
+  <span class="c1"># remove it if your masters can&#39;t run pods</span>
+  <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/master</span>
+    <span class="nt">operator</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Exists</span>
+    <span class="nt">effect</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+</pre></div>
+</div>
+<p>通过describe可以看到</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Tolerations:
+                          node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                          node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                          node.kubernetes.io/not-ready:NoExecute op=Exists
+                          node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                          node.kubernetes.io/unreachable:NoExecute op=Exists
+                          node.kubernetes.io/unschedulable:NoSchedule op=Exists
+</pre></div>
+</div>
+<p>部分容忍我们都没有配置的，发现ds控制器自动帮忙给添加了。</p>
+</section>
+<section id="daemon-pod">
+<h2><span class="section-number">5.3.3. </span>daemon pod通信<a class="headerlink" href="#daemon-pod" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>推送，在ds pod里面直接把数据推送到一个数据库里面。</p></li>
+<li><p>node ip port: pod可以使用host port 每个节点监听特定端口即可被访问。</p></li>
+<li><p>dns: 创建一个无头服务，可以通过endpoint或者域名解析获取</p></li>
+<li><p>service: 这个没办法获取所有节点的， 每次请求被调度到一个节点，不确定是哪个节点的。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-statefulset.html" class="btn btn-neutral float-left" title="5.2. statefulset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04-jobs.html" class="btn btn-neutral float-right" title="5.4. jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

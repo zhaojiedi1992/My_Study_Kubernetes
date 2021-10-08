@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. 云控制器管理器 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.4. 云控制器管理器 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5. 垃圾回收" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" />
-    <link rel="prev" title="3. 控制器" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" /> 
+    <link rel="next" title="1.5. 垃圾回收" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" />
+    <link rel="prev" title="1.3. 控制器" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,17 +43,17 @@
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.2. 架构</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-%E8%8A%82%E7%82%B9.html">1. 节点</a></li>
-<li class="toctree-l3"><a class="reference internal" href="02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">2. 主节点通信</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html">3. 控制器</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4. 云控制器管理器</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">4.1. 功能</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">4.2. 鉴权</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1. 架构</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E8%8A%82%E7%82%B9.html">1.1. 节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">1.2. 主节点通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.3. 控制器</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.4. 云控制器管理器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.4.1. 功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.4.2. 鉴权</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">5. 垃圾回收</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5. 垃圾回收</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">2. 容器</a></li>
@@ -61,7 +61,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">4. 工作负载资源</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a></li>
 </ul>
 
         </div>
@@ -79,8 +79,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">1.2. </span>架构</a> &raquo;</li>
-      <li><span class="section-number">4. </span>云控制器管理器</li>
+          <li><a href="index.html"><span class="section-number">1. </span>架构</a> &raquo;</li>
+      <li><span class="section-number">1.4. </span>云控制器管理器</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/架构/04-云控制器管理器.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -91,18 +91,18 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">4. </span>云控制器管理器<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.4. </span>云控制器管理器<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <p>使用云基础设施技术，你可以在公有云、私有云或者混合云环境中运行 Kubernetes。 Kubernetes 的信条是基于自动化的、API 驱动的基础设施，同时避免组件间紧密耦合。</p>
 <p>组件 cloud-controller-manager 是指云控制器管理器， 云控制器管理器是指嵌入特定云的控制逻辑的 控制平面组件。 云控制器管理器使得你可以将你的集群连接到云提供商的 API 之上，
 并将与该云平台交互的组件同与你的集群交互的组件分离开来。</p>
 <section id="id2">
-<h2><span class="section-number">4.1. </span>功能<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.1. </span>功能<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>节点控制器: 节点控制器负责在云基础设施中创建新的服务器，并创建节点对象，节点控制器从云提供商获取当前租户的主机信息。
 路由控制器: 配置云平台的路由，方便及其不同节点上的容器之间是可以相互通信的。
 服务控制器: 集成基础设施负载均衡设备</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2. </span>鉴权<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2. </span>鉴权<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 </section>
 </section>
 
@@ -110,8 +110,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" class="btn btn-neutral float-left" title="3. 控制器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" class="btn btn-neutral float-right" title="5. 垃圾回收" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03-%E6%8E%A7%E5%88%B6%E5%99%A8.html" class="btn btn-neutral float-left" title="1.3. 控制器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" class="btn btn-neutral float-right" title="1.5. 垃圾回收" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
