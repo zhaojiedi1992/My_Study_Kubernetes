@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5.4. jobs &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.5.4. jobs &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
-    <link rel="prev" title="5.3. daemonset" href="03-daemonset.html" /> 
+    <link rel="next" title="1.5.5. 垃圾回收" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" />
+    <link rel="prev" title="1.5.3. daemonset" href="03-daemonset.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,25 +42,26 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">2. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">3. 容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">4. 工作负载</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">5. 工作负载资源</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">5.1. deployments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">5.2. statefulset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">5.3. daemonset</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">5.4. jobs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#job">5.4.1. job样例</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">5.4.2. job的并行执行</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.5. 工作负载资源</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">1.5.1. deployments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">1.5.2. statefulset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">1.5.3. daemonset</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.5.4. jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#job">1.5.4.1. job样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.5.4.2. job的并行执行</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -77,9 +78,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">5. </span>工作负载资源</a> &raquo;</li>
-      <li><span class="section-number">5.4. </span>jobs</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.5. </span>工作负载资源</a> &raquo;</li>
+      <li><span class="section-number">1.5.4. </span>jobs</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/04-jobs.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -90,11 +91,11 @@
            <div itemprop="articleBody">
              
   <section id="jobs">
-<h1><span class="section-number">5.4. </span>jobs<a class="headerlink" href="#jobs" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.5.4. </span>jobs<a class="headerlink" href="#jobs" title="Permalink to this headline"></a></h1>
 <p>jobs是创建一个或者多个pods的，当数量达到成功的个数阈值时候，任务就结束了，
 job是可以配置并行的。</p>
 <section id="job">
-<h2><span class="section-number">5.4.1. </span>job样例<a class="headerlink" href="#job" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.5.4.1. </span>job样例<a class="headerlink" href="#job" title="Permalink to this headline"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">batch/v1</span>
 <span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Job</span>
 <span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
@@ -122,7 +123,7 @@ Name:             pi
 Namespace:        default
 Selector:         controller-uid<span class="o">=</span>d4d9a0cc-92c2-4d62-b632-9f209f765d16
 Labels:           controller-uid<span class="o">=</span>d4d9a0cc-92c2-4d62-b632-9f209f765d16
-                job-name<span class="o">=</span>pi
+                        job-name<span class="o">=</span>pi
 Annotations:      &lt;none&gt;
 Parallelism:      <span class="m">2</span>
 Completions:      &lt;unset&gt;
@@ -157,7 +158,7 @@ Normal  Completed         27s   job-controller  Job completed
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">5.4.2. </span>job的并行执行<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.5.4.2. </span>job的并行执行<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>非并行: 通常启用一个pod,当pod终止后，视为pod完成状态。</p></li>
 <li><p>具有确定完成计数的job: .spec.completions设为一个非0的，当成功的pod个数达到spec.completions后就认为pod完成。spec.completionmod=indexed时候，每个pod会有一个不同的索引。</p></li>
@@ -170,8 +171,8 @@ Normal  Completed         27s   job-controller  Job completed
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="03-daemonset.html" class="btn btn-neutral float-left" title="5.3. daemonset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03-daemonset.html" class="btn btn-neutral float-left" title="1.5.3. daemonset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" class="btn btn-neutral float-right" title="1.5.5. 垃圾回收" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

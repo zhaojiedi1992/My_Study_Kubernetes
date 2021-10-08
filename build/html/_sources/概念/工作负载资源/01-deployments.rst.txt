@@ -6,7 +6,7 @@ deployments
 创建depolyments 
 ----------------------------
 
-.. literalinclude:: ../../../scripts/deployment/deploy-nginx.yml
+.. literalinclude:: ../../../scripts/deployment/deploy_nginx.yml
    :encoding: utf-8
    :language: yaml
    :linenos:

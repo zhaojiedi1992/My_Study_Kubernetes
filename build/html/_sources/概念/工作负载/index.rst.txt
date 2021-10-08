@@ -4,7 +4,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: 工作负载
-   :numbered:
    :glob:
 
-   *    
+   *

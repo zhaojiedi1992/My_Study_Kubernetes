@@ -4,7 +4,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: 架构
-   :numbered:
    :glob:
 
-   *    
+   *

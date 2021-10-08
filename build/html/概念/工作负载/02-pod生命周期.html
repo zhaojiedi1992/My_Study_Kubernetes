@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.2. pods生命周期 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.4.2. pods生命周期 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4.3. init容器" href="03-init%E5%AE%B9%E5%99%A8.html" />
-    <link rel="prev" title="4.1. pods" href="01-pods.html" /> 
+    <link rel="next" title="1.4.3. init容器" href="03-init%E5%AE%B9%E5%99%A8.html" />
+    <link rel="prev" title="1.4.1. pods" href="01-pods.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,33 +42,33 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">2. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">3. 容器</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4. 工作负载</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-pods.html">4.1. pods</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2. pods生命周期</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pod">4.2.1. pod生命周期</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">4.2.2. Pod 阶段</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">4.2.3. 容器状态</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">4.2.4. 容器重启策略</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">4.2.5. Pod 状况</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">4.2.6. 容器探针</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">4.2.7. pod终止</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">4.2.8. 强制删除pod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.4. 工作负载</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-pods.html">1.4.1. pods</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.4.2. pods生命周期</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pod">1.4.2.1. pod生命周期</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.4.2.2. Pod 阶段</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.4.2.3. 容器状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.4.2.4. 容器重启策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.4.2.5. Pod 状况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.4.2.6. 容器探针</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.4.2.7. pod终止</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">1.4.2.8. 强制删除pod</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">4.3. init容器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html">4.4. pod拓扑分布约束</a></li>
-<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">4.5. 干扰</a></li>
-<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">4.6. 临时容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">1.4.3. init容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html">1.4.4. pod拓扑分布约束</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">1.4.5. 干扰</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">1.4.6. 临时容器</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">5. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -85,9 +85,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">4. </span>工作负载</a> &raquo;</li>
-      <li><span class="section-number">4.2. </span>pods生命周期</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.4. </span>工作负载</a> &raquo;</li>
+      <li><span class="section-number">1.4.2. </span>pods生命周期</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载/02-pod生命周期.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -98,16 +98,16 @@
            <div itemprop="articleBody">
              
   <section id="pods">
-<h1><span class="section-number">4.2. </span>pods生命周期<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.4.2. </span>pods生命周期<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h1>
 <section id="pod">
-<h2><span class="section-number">4.2.1. </span>pod生命周期<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.1. </span>pod生命周期<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h2>
 <p>pod的生命周期开始pending阶段，正常启动后进入Running状态，后续失败或者成功进入Succeeded或者Failed状态。</p>
 <p>pod在其生命周期，指挥被调度一次，知道这个pod停止或者终止。</p>
 <p>Pod 自身不具有自愈能力。如果 Pod 被调度到某节点 而该节点之后失效，Pod 会被删除；类似地，Pod 无法在因节点资源
 耗尽或者节点维护而被驱逐期间继续存活。Kubernetes 使用一种高级抽象 来管理这些相对而言可随时丢弃的 Pod 实例，称作 控制器。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">4.2.2. </span>Pod 阶段<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.2. </span>Pod 阶段<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Pending: 已经被k8s接受，还没有创建或者运行。比如容器还在拉取镜像中就是pending中的。</p></li>
 <li><p>Running: pod已经绑定到某个节点，pod里面的容器已经创建完毕，至少有一个容器在运行中。</p></li>
@@ -117,14 +117,14 @@
 </ul>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.2.3. </span>容器状态<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.3. </span>容器状态<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <p>一旦调度器将 Pod 分派给某个节点，kubelet 就通过 容器运行时 开始为 Pod 创建容器。 容器的状态有三种
 - Waiting（等待）
 - Running（运行中）
 - Terminated（已终止）</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2.4. </span>容器重启策略<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.4. </span>容器重启策略<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <p>重启策略有如下几个</p>
 <ul class="simple">
 <li><p>Always</p></li>
@@ -134,7 +134,7 @@
 <p>restartPolicy仅仅针对同一个节点上kubelet的容器重启动作</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.2.5. </span>Pod 状况<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.5. </span>Pod 状况<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <p>pod的状态有如下几个。</p>
 <ul class="simple">
 <li><p>PodScheduled: 表示pod已经被调度到某个节点。</p></li>
@@ -144,7 +144,7 @@
 </ul>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.2.6. </span>容器探针<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.6. </span>容器探针<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
 <p>probe是kubelet对pod执行定期的诊断，kubelet调用容器实现的handler处理程序，有三类。</p>
 <ul class="simple">
 <li><p>ExecAction： 在容器内执行指定命令。如果命令退出时返回码为 0 则认为诊断成功。</p></li>
@@ -165,11 +165,11 @@
 </ul>
 </section>
 <section id="id6">
-<h2><span class="section-number">4.2.7. </span>pod终止<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.7. </span>pod终止<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p>pod的终止是优雅的， 容器运行时会发送一个TERM信号到每个容器的主进程，如果超过一个时间还没有关闭，就会发送KILl信号，之后pod就会从api服务器上面移除。</p>
 </section>
 <section id="id7">
-<h2><span class="section-number">4.2.8. </span>强制删除pod<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.2.8. </span>强制删除pod<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
 <p>默认清理是有30s的宽限期限的。快速立刻的办法是。
 设置 –grace-period=0 的同时额外设置 –force 参数才能发起强制删除请求。</p>
 </section>
@@ -179,8 +179,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01-pods.html" class="btn btn-neutral float-left" title="4.1. pods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03-init%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-right" title="4.3. init容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01-pods.html" class="btn btn-neutral float-left" title="1.4.1. pods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03-init%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-right" title="1.4.3. init容器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

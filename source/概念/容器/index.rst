@@ -4,7 +4,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: 容器
-   :numbered:
    :glob:
 
-   *    
+   *

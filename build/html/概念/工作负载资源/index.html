@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. 工作负载资源 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.5. 工作负载资源 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5.1. deployments" href="01-deployments.html" />
-    <link rel="prev" title="4.6. 临时容器" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html" /> 
+    <link rel="next" title="1.5.1. deployments" href="01-deployments.html" />
+    <link rel="prev" title="1.4.6. 临时容器" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,21 +42,22 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">概念</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">2. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">3. 容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">4. 工作负载</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 工作负载资源</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">5.1. deployments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">5.2. statefulset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">5.3. daemonset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04-jobs.html">5.4. jobs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.5. 工作负载资源</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">1.5.1. deployments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">1.5.2. statefulset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">1.5.3. daemonset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-jobs.html">1.5.4. jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -73,8 +74,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">概念</a> &raquo;</li>
-      <li><span class="section-number">5. </span>工作负载资源</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+      <li><span class="section-number">1.5. </span>工作负载资源</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -85,34 +86,40 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">5. </span>工作负载资源<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.5. </span>工作负载资源<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">工作负载资源</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01-deployments.html">5.1. deployments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#depolyments">5.1.1. 创建depolyments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id1">5.1.2. 更新</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id2">5.1.3. 查看变更</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id3">5.1.4. 获取上线进度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id4">5.1.5. 升级失败的可能原因</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-deployments.html">1.5.1. deployments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#depolyments">1.5.1.1. 创建depolyments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id1">1.5.1.2. 更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id2">1.5.1.3. 查看变更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id3">1.5.1.4. 获取上线进度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-deployments.html#id4">1.5.1.5. 升级失败的可能原因</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="02-statefulset.html">5.2. statefulset</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id1">5.2.1. 使用场景</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id2">5.2.2. 创建statefulset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id3">5.2.3. 部署和缩容保障</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id4">5.2.4. 主要属性说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-statefulset.html">1.5.2. statefulset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id1">1.5.2.1. 使用场景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id2">1.5.2.2. 创建statefulset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id3">1.5.2.3. 部署和缩容保障</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-statefulset.html#id4">1.5.2.4. 主要属性说明</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03-daemonset.html">5.3. daemonset</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#id1">5.3.1. 使用场景</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#id2">5.3.2. 创建daemonset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#daemon-pod">5.3.3. daemon pod通信</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-daemonset.html">1.5.3. daemonset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#id1">1.5.3.1. 使用场景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#id2">1.5.3.2. 创建daemonset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-daemonset.html#daemon-pod">1.5.3.3. daemon pod通信</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="04-jobs.html">5.4. jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04-jobs.html#job">5.4.1. job样例</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04-jobs.html#id1">5.4.2. job的并行执行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-jobs.html">1.5.4. jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-jobs.html#job">1.5.4.1. job样例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-jobs.html#id1">1.5.4.2. job的并行执行</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id2">1.5.5.1. 属主和附属</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id3">1.5.5.2. 控制垃圾收集器删除附属</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id4">1.5.5.3. 前台级联删除</a></li>
 </ul>
 </li>
 </ul>
@@ -123,8 +130,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-left" title="4.6. 临时容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="01-deployments.html" class="btn btn-neutral float-right" title="5.1. deployments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html" class="btn btn-neutral float-left" title="1.4.6. 临时容器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01-deployments.html" class="btn btn-neutral float-right" title="1.5.1. deployments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

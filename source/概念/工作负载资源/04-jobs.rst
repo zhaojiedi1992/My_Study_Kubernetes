@@ -25,7 +25,7 @@ job样例
         Namespace:        default
         Selector:         controller-uid=d4d9a0cc-92c2-4d62-b632-9f209f765d16
         Labels:           controller-uid=d4d9a0cc-92c2-4d62-b632-9f209f765d16
-                        job-name=pi
+                                job-name=pi
         Annotations:      <none>
         Parallelism:      2
         Completions:      <unset>

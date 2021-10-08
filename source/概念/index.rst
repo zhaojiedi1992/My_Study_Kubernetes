@@ -4,7 +4,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: 概念
-   :numbered:
    :glob:
 
    概述/index
