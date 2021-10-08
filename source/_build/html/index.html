@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kubernates学习笔记 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>k8s学习笔记 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
               <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/index.html">1. 概念</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -59,7 +59,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Kubernates学习笔记</li>
+      <li>k8s学习笔记</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -69,21 +69,208 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="kubernates">
-<h1>Kubernates学习笔记<a class="headerlink" href="#kubernates" title="Permalink to this headline"></a></h1>
+  <section id="k8s">
+<h1>k8s学习笔记<a class="headerlink" href="#k8s" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/index.html">1. 概念</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/index.html">1. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/index.html">2. 容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">3. 工作负载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">4. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html">1.1.1. 什么是k8s</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html#id1">1.1.1.1. 概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html#id2">1.1.1.2. 优点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/01-%E4%BB%80%E4%B9%88%E6%98%AFk8s.html#id3">1.1.1.3. k8s能做什么</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/02-Service%E7%AE%80%E4%BB%8B.html">1.1. Service 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/02-Kubernetes%E7%BB%84%E4%BB%B6.html">1.1.2. Kubernetes组件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/02-Kubernetes%E7%BB%84%E4%BB%B6.html#id1">1.1.2.1. 主要组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/02-Kubernetes%E7%BB%84%E4%BB%B6.html#id2">1.1.2.2. 节点组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/02-Kubernetes%E7%BB%84%E4%BB%B6.html#id3">1.1.2.3. 插件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/03-KubernetesAPI.html">1.1.3. Kubernetes API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/03-KubernetesAPI.html#api">1.1.3.1. API版本控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/03-KubernetesAPI.html#id1">1.1.3.2. API扩展</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html">1.1.4. 对象</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id2">1.1.4.1. 理解对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#spec-status">1.1.4.2. 对象规约（Spec）与状态（Status）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#kubernetes">1.1.4.3. 描述 Kubernetes 对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id3">1.1.4.4. 关键字段说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id4">1.1.4.5. 对象管理</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id5">1.1.4.5.1. 指令式</a></li>
+<li class="toctree-l5"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id6">1.1.4.5.2. 指令式对象配置</a></li>
+<li class="toctree-l5"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id7">1.1.4.5.3. 声明式对象配置</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id8">1.1.4.6. 名称</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#uid">1.1.4.7. uid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id9">1.1.4.8. 命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id10">1.1.4.9. 标签</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id11">1.1.4.10. 标签选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id12">1.1.4.11. 注解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id13">1.1.4.12. 字段选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id14">1.1.4.13. 集合选择器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id15">1.1.4.14. 推荐使用的标签</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id16">1.1.4.15. 注解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%A6%82%E8%BF%B0/04-%E5%AF%B9%E8%B1%A1.html#id17">1.1.4.16. 哪些信息建议使用注解呢</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html">1.2.1. 节点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id2">1.2.1.1. 地址</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id3">1.2.1.2. 状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id4">1.2.1.3. 节点控制器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id5">1.2.1.4. 节点管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id6">1.2.1.5. 节点可靠性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id7">1.2.1.6. 节点容量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/01-%E8%8A%82%E7%82%B9.html#id8">1.2.1.7. 节点拓扑</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html">1.2.2. 主节点通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html#master">1.2.2.1. 集群到master节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html#apiserverkubelet">1.2.2.2. apiserver到kubelet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/02-%E4%B8%BB%E8%8A%82%E7%82%B9%E9%80%9A%E4%BF%A1.html#apiserverpod-service-node">1.2.2.3. apiserver到pod,service,node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/03-%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.2.3. 控制器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/03-%E6%8E%A7%E5%88%B6%E5%99%A8.html#id2">1.2.3.1. 控制器模式</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/03-%E6%8E%A7%E5%88%B6%E5%99%A8.html#api">1.2.3.1.1. 通过api服务器来控制</a></li>
+<li class="toctree-l5"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/03-%E6%8E%A7%E5%88%B6%E5%99%A8.html#id3">1.2.3.1.2. 直接控制</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/03-%E6%8E%A7%E5%88%B6%E5%99%A8.html#id4">1.2.3.2. 设计</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/04-%E4%BA%91%E6%8E%A7%E5%88%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%99%A8.html">1.2.4. 云控制器管理器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/04-%E4%BA%91%E6%8E%A7%E5%88%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%99%A8.html#id2">1.2.4.1. 功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/04-%E4%BA%91%E6%8E%A7%E5%88%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%99%A8.html#id3">1.2.4.2. 鉴权</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.2.5. 垃圾回收</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9E%B6%E6%9E%84/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id2">1.2.5.1. 哪些资源需要清理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/01-%E9%95%9C%E5%83%8F.html">1.3.1. 镜像</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/01-%E9%95%9C%E5%83%8F.html#id2">1.3.1.1. 更新镜像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/01-%E9%95%9C%E5%83%8F.html#id3">1.3.1.2. 使用私有仓库</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html">1.3.2. 容器环境</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html#id2">1.3.2.1. 容器环境内容</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html#id3">1.3.2.2. 容器信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/02-%E5%AE%B9%E5%99%A8%E7%8E%AF%E5%A2%83.html#id4">1.3.2.3. 集群信息</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/03-%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6.html">1.3.3. 容器运行时类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/03-%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6.html#id2">1.3.3.1. 设置方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/04-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83.html">1.3.4. 生命周期回调</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/04-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83.html#id2">1.3.4.1. 回调方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%AE%B9%E5%99%A8/04-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83.html#id3">1.3.4.2. 具体处理程序实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/01-pods.html">1.4.1. pods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/01-pods.html#pod">1.4.1.1. 什么是pod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/01-pods.html#id1">1.4.1.2. 静态pod</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">1.4.2. pods生命周期</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#pod">1.4.2.1. pod生命周期</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id1">1.4.2.2. Pod 阶段</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id2">1.4.2.3. 容器状态</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id3">1.4.2.4. 容器重启策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id4">1.4.2.5. Pod 状况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id5">1.4.2.6. 容器探针</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id6">1.4.2.7. pod终止</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html#id7">1.4.2.8. 强制删除pod</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/03-init%E5%AE%B9%E5%99%A8.html">1.4.3. init容器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/03-init%E5%AE%B9%E5%99%A8.html#id1">1.4.3.1. 和普通容器区别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/03-init%E5%AE%B9%E5%99%A8.html#id2">1.4.3.2. init容器使用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/03-init%E5%AE%B9%E5%99%A8.html#id3">1.4.3.3. 注意点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html">1.4.4. pod拓扑分布约束</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html#id1">1.4.4.1. 先决条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html#id2">1.4.4.2. pod分布约束</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html#id3">1.4.4.3. 设置集群级别的默认约束</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/05-%E5%B9%B2%E6%89%B0.html">1.4.5. 干扰</a></li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">1.4.6. 临时容器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html#id2">1.4.6.1. 临时容器和普通容器区别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html#id3">1.4.6.2. 用途</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html">1.5.1. deployments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html#depolyments">1.5.1.1. 创建depolyments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html#id1">1.5.1.2. 更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html#id2">1.5.1.3. 查看变更</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html#id3">1.5.1.4. 获取上线进度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/01-deployments.html#id4">1.5.1.5. 升级失败的可能原因</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/02-statefulset.html">1.5.2. statefulset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/02-statefulset.html#id1">1.5.2.1. 使用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/02-statefulset.html#id2">1.5.2.2. 创建statefulset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/02-statefulset.html#id3">1.5.2.3. 部署和缩容保障</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/02-statefulset.html#id4">1.5.2.4. 主要属性说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/03-daemonset.html">1.5.3. daemonset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/03-daemonset.html#id1">1.5.3.1. 使用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/03-daemonset.html#id2">1.5.3.2. 创建daemonset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/03-daemonset.html#daemon-pod">1.5.3.3. daemon pod通信</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/04-jobs.html">1.5.4. jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/04-jobs.html#job">1.5.4.1. job样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/04-jobs.html#id1">1.5.4.2. job的并行执行</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id2">1.5.5.1. 属主和附属</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id3">1.5.5.2. 控制垃圾收集器删除附属</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id4">1.5.5.3. 前台级联删除</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id5">1.5.5.4. 后台级联删除</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html#id6">1.5.5.5. 删除样例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.5.6. ttl控制器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html#id1">1.5.6.1. TTL 控制器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html#id2">1.5.6.2. 使用ttl注意点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/07-crontab.html">1.5.7. crontab</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/07-crontab.html#id1">1.5.7.1. crontab简述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/07-crontab.html#cronjob">1.5.7.2. cronjob样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/07-crontab.html#id2">1.5.7.3. CronJob 限制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%A6%82%E5%BF%B5/%E6%9C%8D%E5%8A%A1%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E8%81%94%E7%BD%91/index.html">1.6. 服务、负载均衡和联网</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="%E4%BB%BB%E5%8A%A1/02-Service%E7%AE%80%E4%BB%8B.html">2.1. Service 简介</a></li>
 </ul>
 </li>
 </ul>

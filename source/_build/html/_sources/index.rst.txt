@@ -3,11 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Kubernates学习笔记
+k8s学习笔记
 ===============================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 6
    :caption: k8s
    :numbered:
 

@@ -18,7 +18,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. 服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
+    <link rel="next" title="1.5.6. ttl控制器" href="06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html" />
     <link rel="prev" title="1.5.4. jobs" href="04-jobs.html" /> 
 </head>
 
@@ -56,10 +56,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#id2">1.5.5.1. 属主和附属</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3">1.5.5.2. 控制垃圾收集器删除附属</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">1.5.5.3. 前台级联删除</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.5.5.4. 后台级联删除</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.5.5.5. 删除样例</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.5.6. ttl控制器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-crontab.html">1.5.7. crontab</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9C%8D%E5%8A%A1%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E8%81%94%E7%BD%91/index.html">1.6. 服务、负载均衡和联网</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
@@ -105,6 +110,40 @@
 </section>
 <section id="id4">
 <h2><span class="section-number">1.5.5.3. </span>前台级联删除<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>对象仍然可以通过rest api 可见</p></li>
+<li><p>对象的deletionTimestamp字段被设置。</p></li>
+<li><p>对象的metadata.finalizers字段包含foregroundDeletion。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">1.5.5.4. </span>后台级联删除<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>在 后台级联删除 模式下，Kubernetes 会立即删除属主对象，之后垃圾收集器 会在后台删除其附属对象。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">1.5.5.5. </span>删除样例<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 启动一个代理</span>
+kubectl proxy --port<span class="o">=</span><span class="m">8080</span>
+
+<span class="c1"># 后台删除</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span class="se">\</span>
+-d <span class="s1">&#39;{&quot;kind&quot;:&quot;DeleteOptions&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;propagationPolicy&quot;:&quot;Background&quot;}&#39;</span> <span class="se">\</span>
+-H <span class="s2">&quot;Content-Type: application/json&quot;</span>
+
+<span class="c1"># 前台删除</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span class="se">\</span>
+-d <span class="s1">&#39;{&quot;kind&quot;:&quot;DeleteOptions&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;propagationPolicy&quot;:&quot;Foreground&quot;}&#39;</span> <span class="se">\</span>
+-H <span class="s2">&quot;Content-Type: application/json&quot;</span>
+
+<span class="c1"># 让辅助成为孤立对象</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span class="se">\</span>
+-d <span class="s1">&#39;{&quot;kind&quot;:&quot;DeleteOptions&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;propagationPolicy&quot;:&quot;Orphan&quot;}&#39;</span> <span class="se">\</span>
+-H <span class="s2">&quot;Content-Type: application/json&quot;</span>
+
+<span class="c1"># kubeclt方式</span>
+kubectl delete replicaset my-repset --cascade<span class="o">=</span>orphan
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -113,7 +152,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="04-jobs.html" class="btn btn-neutral float-left" title="1.5.4. jobs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="2. 服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html" class="btn btn-neutral float-right" title="1.5.6. ttl控制器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

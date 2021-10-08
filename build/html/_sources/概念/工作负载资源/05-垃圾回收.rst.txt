@@ -16,3 +16,39 @@ k8s的垃圾回收的作用是删除某些曾经拥有属主但是 现在没有�
 
 前台级联删除
 ----------------------------
+
+- 对象仍然可以通过rest api 可见 
+- 对象的deletionTimestamp字段被设置。
+- 对象的metadata.finalizers字段包含foregroundDeletion。
+
+后台级联删除
+----------------------------
+在 后台级联删除 模式下，Kubernetes 会立即删除属主对象，之后垃圾收集器 会在后台删除其附属对象。
+
+
+删除样例
+----------------------------
+
+
+.. code-block:: bash 
+
+    # 启动一个代理
+    kubectl proxy --port=8080
+
+    # 后台删除
+    curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset \
+    -d '{"kind":"DeleteOptions","apiVersion":"v1","propagationPolicy":"Background"}' \
+    -H "Content-Type: application/json"
+
+    # 前台删除
+    curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset \
+    -d '{"kind":"DeleteOptions","apiVersion":"v1","propagationPolicy":"Foreground"}' \
+    -H "Content-Type: application/json" 
+
+    # 让辅助成为孤立对象
+    curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset \
+    -d '{"kind":"DeleteOptions","apiVersion":"v1","propagationPolicy":"Orphan"}' \
+    -H "Content-Type: application/json"
+
+    # kubeclt方式
+    kubectl delete replicaset my-repset --cascade=orphan

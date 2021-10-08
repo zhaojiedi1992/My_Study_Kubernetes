@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.2. statefulset &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.5.2. statefulset &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. 服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
-    <link rel="prev" title="4.1. deployments" href="01-deployments.html" /> 
+    <link rel="next" title="1.5.3. daemonset" href="03-daemonset.html" />
+    <link rel="prev" title="1.5.1. deployments" href="01-deployments.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,25 +44,28 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">2. 容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">3. 工作负载</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4. 工作负载资源</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">4.1. deployments</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2. statefulset</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">4.2.1. 使用场景</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">4.2.2. 创建statefulset</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">4.2.3. 更新</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">4.2.4. 查看变更</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">4.2.5. 获取上线进度</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">4.2.6. 升级失败的可能原因</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.5. 工作负载资源</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">1.5.1. deployments</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.5.2. statefulset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.5.2.1. 使用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.5.2.2. 创建statefulset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.5.2.3. 部署和缩容保障</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.5.2.4. 主要属性说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">1.5.3. daemonset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-jobs.html">1.5.4. jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-ttl%E6%8E%A7%E5%88%B6%E5%99%A8.html">1.5.6. 垃圾回收</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-crontab.html">1.5.7. jobs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -80,8 +83,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">4. </span>工作负载资源</a> &raquo;</li>
-      <li><span class="section-number">4.2. </span>statefulset</li>
+          <li><a href="index.html"><span class="section-number">1.5. </span>工作负载资源</a> &raquo;</li>
+      <li><span class="section-number">1.5.2. </span>statefulset</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/02-statefulset.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -92,11 +95,11 @@
            <div itemprop="articleBody">
              
   <section id="statefulset">
-<h1><span class="section-number">4.2. </span>statefulset<a class="headerlink" href="#statefulset" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.5.2. </span>statefulset<a class="headerlink" href="#statefulset" title="Permalink to this headline"></a></h1>
 <p>statefulset是用来管理有状态应用的工作负载api对象
 和deployment不同的是，这些pod都有每个独立的粘性id,永久不变的id.</p>
 <section id="id1">
-<h2><span class="section-number">4.2.1. </span>使用场景<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.5.2.1. </span>使用场景<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>稳定的唯一标识的</p></li>
 <li><p>稳定的、持久的存储</p></li>
@@ -105,134 +108,103 @@
 </ul>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.2.2. </span>创建statefulset<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.5.2.2. </span>创建statefulset<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>需要一个svc</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span> 
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginxsvc</span> 
+<span class="linenos"> 5</span>  <span class="nt">labels</span><span class="p">:</span> 
+<span class="linenos"> 6</span>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
+<span class="linenos"> 7</span><span class="nt">spec</span><span class="p">:</span> 
+<span class="linenos"> 8</span>  <span class="nt">ports</span><span class="p">:</span> 
+<span class="linenos"> 9</span>  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">web</span> 
+<span class="linenos">10</span>    <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span> 
+<span class="linenos">11</span>  <span class="nt">selector</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="linenos">13</span>  <span class="nt">clusterIP</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">None</span> 
+<span class="linenos">14</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>  
+</pre></div>
+</div>
+<p>需要存储类</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">storage.k8s.io/v1</span>
+<span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">StorageClass</span>
 <span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
-<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="linenos"> 5</span>  <span class="nt">labels</span><span class="p">:</span>
-<span class="linenos"> 6</span>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="linenos"> 5</span><span class="nt">provisioner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/glusterfs</span>
+<span class="linenos"> 6</span><span class="nt">parameters</span><span class="p">:</span>
+<span class="linenos"> 7</span>  <span class="nt">resturl</span><span class="p">:</span> <span class="s">&quot;http://10.157.89.215:8077&quot;</span>
+<span class="linenos"> 8</span>  <span class="nt">clusterid</span><span class="p">:</span> <span class="s">&quot;b8bc571569b52c572f56b19a5f6b6d9a&quot;</span>
+<span class="linenos"> 9</span>  <span class="nt">restauthenabled</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
+<span class="linenos">10</span>  <span class="nt">restuser</span><span class="p">:</span> <span class="s">&quot;admin&quot;</span>
+<span class="linenos">11</span>  <span class="nt">restuserkey</span><span class="p">:</span> <span class="s">&quot;admin&quot;</span>
+<span class="linenos">12</span>  <span class="nt">gidMin</span><span class="p">:</span> <span class="s">&quot;40000&quot;</span>
+<span class="linenos">13</span>  <span class="nt">gidMax</span><span class="p">:</span> <span class="s">&quot;50000&quot;</span>
+<span class="linenos">14</span>  <span class="nt">volumetype</span><span class="p">:</span> <span class="s">&quot;replicate:2&quot;</span>
+</pre></div>
+</div>
+<p>创建sts</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
+<span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span> 
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
+<span class="linenos"> 5</span>  <span class="nt">labels</span><span class="p">:</span> 
+<span class="linenos"> 6</span>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
 <span class="linenos"> 7</span><span class="nt">spec</span><span class="p">:</span>
-<span class="linenos"> 8</span>  <span class="nt">ports</span><span class="p">:</span>
-<span class="linenos"> 9</span>  <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="linenos">10</span>    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">web</span>
-<span class="linenos">11</span>  <span class="nt">clusterIP</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">None</span>
-<span class="linenos">12</span>  <span class="nt">selector</span><span class="p">:</span>
-<span class="linenos">13</span>    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="linenos">14</span><span class="nn">---</span>
-<span class="linenos">15</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="linenos">16</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">StatefulSet</span>
-<span class="linenos">17</span><span class="nt">metadata</span><span class="p">:</span>
-<span class="linenos">18</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">web</span>
-<span class="linenos">19</span><span class="nt">spec</span><span class="p">:</span>
-<span class="linenos">20</span>  <span class="nt">selector</span><span class="p">:</span>
-<span class="linenos">21</span>    <span class="nt">matchLabels</span><span class="p">:</span>
-<span class="linenos">22</span>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> <span class="c1"># has to match .spec.template.metadata.labels</span>
-<span class="linenos">23</span>  <span class="nt">serviceName</span><span class="p">:</span> <span class="s">&quot;nginx&quot;</span>
-<span class="linenos">24</span>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span> <span class="c1"># by default is 1</span>
-<span class="linenos">25</span>  <span class="nt">template</span><span class="p">:</span>
-<span class="linenos">26</span>    <span class="nt">metadata</span><span class="p">:</span>
-<span class="linenos">27</span>      <span class="nt">labels</span><span class="p">:</span>
-<span class="linenos">28</span>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> <span class="c1"># has to match .spec.selector.matchLabels</span>
-<span class="linenos">29</span>    <span class="nt">spec</span><span class="p">:</span>
-<span class="linenos">30</span>      <span class="nt">terminationGracePeriodSeconds</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-<span class="linenos">31</span>      <span class="nt">containers</span><span class="p">:</span>
-<span class="linenos">32</span>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="linenos">33</span>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ikubernetes/myapp:v1</span>
-<span class="linenos">34</span>        <span class="nt">ports</span><span class="p">:</span>
-<span class="linenos">35</span>        <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="linenos">36</span>          <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">web</span>
-<span class="linenos">37</span>        <span class="nt">volumeMounts</span><span class="p">:</span>
-<span class="linenos">38</span>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<span class="linenos">39</span>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span>
-<span class="linenos">40</span>  <span class="nt">volumeClaimTemplates</span><span class="p">:</span>
-<span class="linenos">41</span>  <span class="p p-Indicator">-</span> <span class="nt">metadata</span><span class="p">:</span>
-<span class="linenos">42</span>      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
-<span class="linenos">43</span>    <span class="nt">spec</span><span class="p">:</span>
-<span class="linenos">44</span>      <span class="nt">accessModes</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;ReadWriteOnce&quot;</span> <span class="p p-Indicator">]</span>
-<span class="linenos">45</span>      <span class="nt">storageClassName</span><span class="p">:</span> <span class="s">&quot;mysc&quot;</span>
-<span class="linenos">46</span>      <span class="nt">resources</span><span class="p">:</span>
-<span class="linenos">47</span>        <span class="nt">requests</span><span class="p">:</span>
-<span class="linenos">48</span>          <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5Gi</span>
+<span class="linenos"> 8</span>  <span class="nt">replicas</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span> 
+<span class="linenos"> 9</span>  <span class="nt">selector</span><span class="p">:</span> 
+<span class="linenos">10</span>    <span class="nt">matchLabels</span><span class="p">:</span> 
+<span class="linenos">11</span>      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
+<span class="linenos">12</span>  <span class="nt">serviceName</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">nginxsvc</span>  
+<span class="linenos">13</span>  <span class="nt">template</span><span class="p">:</span>
+<span class="linenos">14</span>    <span class="nt">metadata</span><span class="p">:</span>
+<span class="linenos">15</span>      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
+<span class="linenos">16</span>      <span class="nt">labels</span><span class="p">:</span>
+<span class="linenos">17</span>        <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="linenos">18</span>    <span class="nt">spec</span><span class="p">:</span>  
+<span class="linenos">19</span>      <span class="nt">containers</span><span class="p">:</span> 
+<span class="linenos">20</span>      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span> 
+<span class="linenos">21</span>        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="linenos">22</span>        <span class="nt">ports</span><span class="p">:</span>  
+<span class="linenos">23</span>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">web</span> 
+<span class="linenos">24</span>          <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="linenos">25</span>        <span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="linenos">26</span>        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span>
+<span class="linenos">27</span>          <span class="nt">mountPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/nginx/html</span>
+<span class="linenos">28</span>  <span class="nt">volumeClaimTemplates</span><span class="p">:</span>
+<span class="linenos">29</span>  <span class="p p-Indicator">-</span>  <span class="nt">metadata</span><span class="p">:</span>  
+<span class="linenos">30</span>      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">www</span> 
+<span class="linenos">31</span>     <span class="nt">spec</span><span class="p">:</span> 
+<span class="linenos">32</span>      <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="linenos">33</span>      <span class="nt">accessModes</span><span class="p">:</span>
+<span class="linenos">34</span>      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span>
+<span class="linenos">35</span>      <span class="nt">resources</span><span class="p">:</span>
+<span class="linenos">36</span>        <span class="nt">requests</span><span class="p">:</span> 
+<span class="linenos">37</span>          <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10M</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span>  
+<span class="linenos">41</span>
+<span class="linenos">42</span>  
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kubectl apply -f deploy-nginx.yml
-
-kubectl get pod
-NAME                                READY   STATUS    RESTARTS   AGE
-nginx-deployment-66b6c48dd5-bxwbl   1/1     Running   0          4m19s
-nginx-deployment-66b6c48dd5-xppgn   1/1     Running   0          4m19s
-nginx-deployment-66b6c48dd5-xv65j   1/1     Running   0          4m19s
-
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   3/3     3            3           7m2s
-</pre></div>
-</div>
-<p>主要字段说明:</p>
-<ul class="simple">
-<li><p>NAME: 列出名称</p></li>
-<li><p>READY: 显示的是就绪个数/期望个数</p></li>
-<li><p>UP-TO-DATE: 已经更新的副本数量</p></li>
-<li><p>AVAILABLE: 当前可供应用使用的副本数量</p></li>
-<li><p>AGE: 应用程序运行的时间</p></li>
-</ul>
+<p>创建出来的pod名称是$(StatefulSet 名称)-$(序号)，管理域的这个服务格式为: $(服务名称).$(命名空间).svc.cluster.local，其中 cluster.local 是集群域。</p>
+<p>pod对应的dns域为$(pod 名称).$(所属服务的 DNS 域名)</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.2.3. </span>更新<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
-<p>修改文件的镜像版本，然后再次apply一次。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get deploy -w
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   <span class="m">3</span>/3     <span class="m">1</span>            <span class="m">3</span>           18m
-nginx-deployment   <span class="m">4</span>/3     <span class="m">1</span>            <span class="m">4</span>           19m
-nginx-deployment   <span class="m">3</span>/3     <span class="m">1</span>            <span class="m">3</span>           19m
-nginx-deployment   <span class="m">3</span>/3     <span class="m">2</span>            <span class="m">3</span>           19m
-nginx-deployment   <span class="m">4</span>/3     <span class="m">2</span>            <span class="m">4</span>           20m
-nginx-deployment   <span class="m">4</span>/3     <span class="m">3</span>            <span class="m">4</span>           20m
-nginx-deployment   <span class="m">3</span>/3     <span class="m">3</span>            <span class="m">3</span>           20m
-nginx-deployment   <span class="m">4</span>/3     <span class="m">3</span>            <span class="m">4</span>           20m
-nginx-deployment   <span class="m">3</span>/3     <span class="m">3</span>            <span class="m">3</span>           20m
-</pre></div>
-</div>
+<h2><span class="section-number">1.5.2.3. </span>部署和缩容保障<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>对于n个副本的sts，当部署pod的时候，依次创建的，顺序为0..N-1</p></li>
+<li><p>删除pod的时候,它们是逆序终止的，顺序为 N-1..0。</p></li>
+<li><p>在将缩放操作应用到 Pod 之前，它前面的所有 Pod 必须是 Running 和 Ready 状态。</p></li>
+</ul>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.2.4. </span>查看变更<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl rollout <span class="nb">history</span> deploy nginx-deployment
-deployment.apps/nginx-deployment
-
-REVISION  CHANGE-CAUSE
-<span class="m">1</span>         &lt;none&gt;
-<span class="m">2</span>         &lt;none&gt;
-<span class="m">3</span>         &lt;none&gt;
-</pre></div>
-</div>
-</section>
-<section id="id5">
-<h2><span class="section-number">4.2.5. </span>获取上线进度<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim deploy_nginx.yml
-kubectl apply -f deploy_nginx.yml
-deployment.apps/nginx-deployment configured
-kubectl rollout status deployment nginx-deployment
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">1</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">1</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">1</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">2</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">2</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">2</span> out of <span class="m">3</span> new replicas have been updated...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">1</span> old replicas are pending termination...
-Waiting <span class="k">for</span> deployment <span class="s2">&quot;nginx-deployment&quot;</span> rollout to finish: <span class="m">1</span> old replicas are pending termination...
-deployment <span class="s2">&quot;nginx-deployment&quot;</span> successfully rolled out
-</pre></div>
-</div>
-</section>
-<section id="id6">
-<h2><span class="section-number">4.2.6. </span>升级失败的可能原因<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.5.2.4. </span>主要属性说明<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>镜像拉取问题</p></li>
-<li><p>权限不足</p></li>
-<li><p>配额不足</p></li>
-<li><p>就绪探测错误</p></li>
-<li><p>限制范围问题</p></li>
-<li><p>运行时候配置错误</p></li>
+<li><p>podManagementPolicy: OrderedReady 一个一个来，Parallel 并行的。</p></li>
 </ul>
 </section>
 </section>
@@ -241,8 +213,8 @@ deployment <span class="s2">&quot;nginx-deployment&quot;</span> successfully rol
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01-deployments.html" class="btn btn-neutral float-left" title="4.1. deployments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="1. 服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="01-deployments.html" class="btn btn-neutral float-left" title="1.5.1. deployments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03-daemonset.html" class="btn btn-neutral float-right" title="1.5.3. daemonset" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.5.6. ttl控制器 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.5.7. crontab" href="07-crontab.html" />
+    <link rel="prev" title="1.5.5. 垃圾回收" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.5. 工作负载资源</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-deployments.html">1.5.1. deployments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-statefulset.html">1.5.2. statefulset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-daemonset.html">1.5.3. daemonset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-jobs.html">1.5.4. jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html">1.5.5. 垃圾回收</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.5.6. ttl控制器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.5.6.1. TTL 控制器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.5.6.2. 使用ttl注意点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="07-crontab.html">1.5.7. crontab</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9C%8D%E5%8A%A1%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E8%81%94%E7%BD%91/index.html">1.6. 服务、负载均衡和联网</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.5. </span>工作负载资源</a> &raquo;</li>
+      <li><span class="section-number">1.5.6. </span>ttl控制器</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载资源/06-ttl控制器.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ttl">
+<h1><span class="section-number">1.5.6. </span>ttl控制器<a class="headerlink" href="#ttl" title="Permalink to this headline"></a></h1>
+<p>ttl控制器提供一种ttl机制来限制已完成执行的资源对象的生命周期，目前只处理job，以后可能支持其他类型资源。</p>
+<section id="id1">
+<h2><span class="section-number">1.5.6.1. </span>TTL 控制器<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>TTL 控制器现在只支持 Job。集群操作员可以通过指定 Job 的 .spec.ttlSecondsAfterFinished 字段来自动清理已结束的作业（Complete 或 Failed）</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.5.6.2. </span>使用ttl注意点<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>我们可以在资源创建后或者快ttl过期的时候修改ttl的， 但是一旦job过期，通过api修改ttl时间得到成功响应，系统不保证job被保留。</p>
+<p>ttl控制器使用存储在k8s的时间戳来确定ttl是过去的， 对集群的时间偏差很敏感，可能导致ttl控制器在错误的时间清理掉资源对象。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="05-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.html" class="btn btn-neutral float-left" title="1.5.5. 垃圾回收" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="07-crontab.html" class="btn btn-neutral float-right" title="1.5.7. crontab" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

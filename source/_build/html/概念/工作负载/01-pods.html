@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.1. pods &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.4.1. pods &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,8 +18,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.2. pods生命周期" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" />
-    <link rel="prev" title="3. 工作负载" href="index.html" /> 
+    <link rel="next" title="1.4.2. pods生命周期" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" />
+    <link rel="prev" title="1.4. 工作负载" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,25 +44,25 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1. 架构</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">2. 容器</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">3. 工作负载</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1. pods</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pod">3.1.1. 什么是pod</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.2. 静态pod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.4. 工作负载</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.4.1. pods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pod">1.4.1.1. 什么是pod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.4.1.2. 静态pod</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">3.2. pods生命周期</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">3.3. init容器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html">3.4. pod拓扑分布约束</a></li>
-<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">3.5. 干扰</a></li>
-<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">3.6. 临时容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html">1.4.2. pods生命周期</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-init%E5%AE%B9%E5%99%A8.html">1.4.3. init容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-pod%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F.html">1.4.4. pod拓扑分布约束</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E5%B9%B2%E6%89%B0.html">1.4.5. 干扰</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E4%B8%B4%E6%97%B6%E5%AE%B9%E5%99%A8.html">1.4.6. 临时容器</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">4. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">1. 服务</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
 </ul>
 
         </div>
@@ -80,8 +80,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">3. </span>工作负载</a> &raquo;</li>
-      <li><span class="section-number">3.1. </span>pods</li>
+          <li><a href="index.html"><span class="section-number">1.4. </span>工作负载</a> &raquo;</li>
+      <li><span class="section-number">1.4.1. </span>pods</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/工作负载/01-pods.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -92,17 +92,17 @@
            <div itemprop="articleBody">
              
   <section id="pods">
-<h1><span class="section-number">3.1. </span>pods<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.4.1. </span>pods<a class="headerlink" href="#pods" title="Permalink to this headline"></a></h1>
 <p>pod是可以在k8s创建和管理的、最小的可部署的计算单元。</p>
 <p>pod是一组容器，这些容器共享存储、网络、以及怎么运行这些容器的声明。</p>
 <section id="pod">
-<h2><span class="section-number">3.1.1. </span>什么是pod<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.1.1. </span>什么是pod<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h2>
 <p>pod的共享上下文包括一组linux命名空间、控制组和可能一些其他的隔离方面。</p>
 <p>pod可以说是共享命名空间和文件卷的一组docker容器。</p>
 <p>Pod 天生地为其成员容器提供了两种共享资源：网络和 存储。</p>
 </section>
 <section id="id1">
-<h2><span class="section-number">3.1.2. </span>静态pod<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2><span class="section-number">1.4.1.2. </span>静态pod<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>静态pod是由特定节点上的kubelet守护进程管理，不需要api服务器看到他们，大部分的pod都是通过控制面板来管理的，对于静态pod是通过kubelet直接监控每个pod,并在失效时候重启。</p>
 <p>kubelet自动尝试为每个静态pod在api服务器上面创建一个镜像pod，这意味节点上运行的pod在api服务器上面是可见的，但不可以通过api 服务器进行控制。</p>
 </section>
@@ -112,8 +112,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="3. 工作负载" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="btn btn-neutral float-right" title="3.2. pods生命周期" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="1.4. 工作负载" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.html" class="btn btn-neutral float-right" title="1.4.2. pods生命周期" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

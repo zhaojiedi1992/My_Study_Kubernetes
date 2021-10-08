@@ -16,96 +16,40 @@ statefulset是用来管理有状态应用的工作负载api对象
 创建statefulset
 ----------------------------
 
+需要一个svc
 
-.. literalinclude:: ../../../scripts/statefulset/demo01.yml
+.. literalinclude:: ../../../scripts/statefulset/demo_svc.yml
+   :language: yaml
+   :linenos:
+
+需要存储类
+
+.. literalinclude:: ../../../scripts/statefulset/demo_storageclass.yml
+   :language: yaml
+   :linenos:
+
+创建sts 
+
+.. literalinclude:: ../../../scripts/statefulset/demo_stateful.yml
    :language: yaml
    :linenos:
 
 
+创建出来的pod名称是$(StatefulSet 名称)-$(序号)，管理域的这个服务格式为: $(服务名称).$(命名空间).svc.cluster.local，其中 cluster.local 是集群域。 
 
-.. code-block:: text 
-
-   kubectl apply -f deploy-nginx.yml 
-
-   kubectl get pod 
-   NAME                                READY   STATUS    RESTARTS   AGE
-   nginx-deployment-66b6c48dd5-bxwbl   1/1     Running   0          4m19s
-   nginx-deployment-66b6c48dd5-xppgn   1/1     Running   0          4m19s
-   nginx-deployment-66b6c48dd5-xv65j   1/1     Running   0          4m19s
-
-   NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-   nginx-deployment   3/3     3            3           7m2s
-
-主要字段说明:
-
-* NAME: 列出名称
-* READY: 显示的是就绪个数/期望个数
-* UP-TO-DATE: 已经更新的副本数量
-* AVAILABLE: 当前可供应用使用的副本数量
-* AGE: 应用程序运行的时间
-
-更新
-----------------------------
-
-修改文件的镜像版本，然后再次apply一次。
-
-
-.. code-block:: bash 
-
-   kubectl get deploy -w
-   NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-   nginx-deployment   3/3     1            3           18m
-   nginx-deployment   4/3     1            4           19m
-   nginx-deployment   3/3     1            3           19m
-   nginx-deployment   3/3     2            3           19m
-   nginx-deployment   4/3     2            4           20m
-   nginx-deployment   4/3     3            4           20m
-   nginx-deployment   3/3     3            3           20m
-   nginx-deployment   4/3     3            4           20m
-   nginx-deployment   3/3     3            3           20m
+pod对应的dns域为$(pod 名称).$(所属服务的 DNS 域名)
 
 
 
-查看变更
-----------------------------
+部署和缩容保障
+--------------------------------------------------------
 
-.. code-block:: bash 
-
-   kubectl rollout history deploy nginx-deployment                               
-   deployment.apps/nginx-deployment 
-   
-   REVISION  CHANGE-CAUSE
-   1         <none>
-   2         <none>
-   3         <none>
+- 对于n个副本的sts，当部署pod的时候，依次创建的，顺序为0..N-1
+- 删除pod的时候,它们是逆序终止的，顺序为 N-1..0。
+- 在将缩放操作应用到 Pod 之前，它前面的所有 Pod 必须是 Running 和 Ready 状态。
 
 
-获取上线进度
-----------------------------
+主要属性说明
+--------------------------------------------------------
 
-.. code-block:: bash 
-
-   vim deploy_nginx.yml                                       
-   kubectl apply -f deploy_nginx.yml                           
-   deployment.apps/nginx-deployment configured
-   kubectl rollout status deployment nginx-deployment          
-   Waiting for deployment "nginx-deployment" rollout to finish: 1 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 1 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 1 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 2 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 2 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 2 out of 3 new replicas have been updated...
-   Waiting for deployment "nginx-deployment" rollout to finish: 1 old replicas are pending termination...
-   Waiting for deployment "nginx-deployment" rollout to finish: 1 old replicas are pending termination...
-   deployment "nginx-deployment" successfully rolled out
-
-
-升级失败的可能原因
-----------------------------
-
-- 镜像拉取问题
-- 权限不足
-- 配额不足
-- 就绪探测错误
-- 限制范围问题
-- 运行时候配置错误
+- podManagementPolicy: OrderedReady 一个一个来，Parallel 并行的。
