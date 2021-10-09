@@ -56,4 +56,10 @@ dnsConfig 字段是可选的，它可以与任何 dnsPolicy 设置一起使用�
 - searches：用于在 Pod 中查找主机名的 DNS 搜索域的列表。此属性是可选的。 指定此属性时，所提供的列表将合并到根据所选 DNS 策略生成的基本搜索域名中。 重复的域名将被删除。Kubernetes 最多允许 6 个搜索域。
 - options：可选的对象列表，其中每个对象可能具有 name 属性（必需）和 value 属性（可选）。 此属性中的内容将合并到从指定的 DNS 策略生成的选项。 重复的条目将被删除。
 
+扩展 DNS 配置
+---------------------------
+对于 Pod DNS 配置，Kubernetes 默认允许最多 6 个 搜索域（ Search Domain） 以及一个最多 256 个字符的搜索域列表。
+
+如果启用 kube-apiserver 和 kubelet 的特性门控 ExpandedDNSConfig，Kubernetes 将可以有最多 32 个 搜索域以及一个最多 2048 个字符的搜索域列表。
+
 

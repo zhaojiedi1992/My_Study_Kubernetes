@@ -57,3 +57,5 @@ k8s支持2中查找服务的模式， 环境变量和dns
     100   612  100   612    0     0   6274      0 --:--:-- --:--:-- --:--:--  6309
     <title>Welcome to nginx!</title>
     <h1>Welcome to nginx!</h1>
+
+    

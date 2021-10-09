@@ -58,6 +58,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#pod-a">1.6.2.5. Pod A记录</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pod-dns">1.6.2.6. Pod 的 DNS 策略</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id1">1.6.2.7. Pod 的 DNS 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.6.2.8. 扩展 DNS 配置</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="03-%E4%BD%BF%E7%94%A8service%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%BA%94%E7%94%A8.html">1.6.3. 使用 Service 连接到应用</a></li>
@@ -150,6 +151,11 @@ options ndots:5
 <li><p>searches：用于在 Pod 中查找主机名的 DNS 搜索域的列表。此属性是可选的。 指定此属性时，所提供的列表将合并到根据所选 DNS 策略生成的基本搜索域名中。 重复的域名将被删除。Kubernetes 最多允许 6 个搜索域。</p></li>
 <li><p>options：可选的对象列表，其中每个对象可能具有 name 属性（必需）和 value 属性（可选）。 此属性中的内容将合并到从指定的 DNS 策略生成的选项。 重复的条目将被删除。</p></li>
 </ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.6.2.8. </span>扩展 DNS 配置<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>对于 Pod DNS 配置，Kubernetes 默认允许最多 6 个 搜索域（ Search Domain） 以及一个最多 256 个字符的搜索域列表。</p>
+<p>如果启用 kube-apiserver 和 kubelet 的特性门控 ExpandedDNSConfig，Kubernetes 将可以有最多 32 个 搜索域以及一个最多 2048 个字符的搜索域列表。</p>
 </section>
 </section>
 
