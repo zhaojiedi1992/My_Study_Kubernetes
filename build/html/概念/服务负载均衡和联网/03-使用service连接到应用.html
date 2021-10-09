@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.6.3. 使用 Service 连接到应用 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. 服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
+    <link rel="prev" title="1.6.2. pod与service的dns" href="02-pod%E4%B8%8Eservice%E7%9A%84dns.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.6. 服务、负载均衡和联网</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E6%9C%8D%E5%8A%A1.html">1.6.1. 服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-pod%E4%B8%8Eservice%E7%9A%84dns.html">1.6.2. pod与service的dns</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.6.3. 使用 Service 连接到应用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.6.3.1. 访问 Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.6.3.2. 保护 Service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.6. </span>服务、负载均衡和联网</a> &raquo;</li>
+      <li><span class="section-number">1.6.3. </span>使用 Service 连接到应用</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/服务负载均衡和联网/03-使用service连接到应用.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="service">
+<h1><span class="section-number">1.6.3. </span>使用 Service 连接到应用<a class="headerlink" href="#service" title="Permalink to this headline"></a></h1>
+<section id="id1">
+<h2><span class="section-number">1.6.3.1. </span>访问 Service<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>k8s支持2中查找服务的模式， 环境变量和dns</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.6.3.2. </span>保护 Service<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>我们只在集群内部访问了 Nginx 服务器。在将 Service 暴露到因特网之前，我们希望确保通信信道是安全的。 为实现这一目的，可能需要：</p>
+<ul class="simple">
+<li><p>用于 HTTPS 的自签名证书（除非已经有了一个识别身份的证书）</p></li>
+<li><p>使用证书配置的 Nginx 服务器</p></li>
+<li><p>使证书可以访问 Pod 的 Secret</p></li>
+</ul>
+<p>准备公钥和私钥</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nv">KEY</span><span class="o">=</span>nginx.key
+<span class="linenos">2</span><span class="nv">CERT</span><span class="o">=</span>nginx.crt
+<span class="linenos">3</span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout <span class="nv">$KEY</span> -out <span class="nv">$CERT</span> -subj <span class="s2">&quot;/CN=nginxsvc/O=nginxsvc&quot;</span>
+</pre></div>
+</div>
+<p>执行上面的脚本，生成证书，然后执行下面脚本完成secret的创建
+.. code-block:: bash</p>
+<blockquote>
+<div><p># 直接跟进文件创建
+kubectl create secret  tls nginxsvc.tls –key=nginx.key –cert=nginx.crt
+# 通过命令方式，进行归档成为文件
+kubectl get secret  nginxsvc.tls  -o yaml &gt;nginxsvc.tls</p>
+</div></blockquote>
+<p>准备个nginx配置下</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s1">&#39;https://raw.githubusercontent.com/kubernetes/examples/master/staging/https-nginx/default.conf&#39;</span>  &gt;default.conf
+kubectl get cm nginxconfigmap -o yaml &gt;nginxconfigmap.yaml
+</pre></div>
+</div>
+<p>准备nginx service和deployment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>apiVersion: v1
+<span class="linenos"> 2</span>kind: Service
+<span class="linenos"> 3</span>metadata:
+<span class="linenos"> 4</span>  name: my-nginx
+<span class="linenos"> 5</span>  labels:
+<span class="linenos"> 6</span>    run: my-nginx
+<span class="linenos"> 7</span>spec:
+<span class="linenos"> 8</span>  type: NodePort
+<span class="linenos"> 9</span>  ports:
+<span class="linenos">10</span>  - port: <span class="m">8080</span>
+<span class="linenos">11</span>    targetPort: <span class="m">80</span>
+<span class="linenos">12</span>    protocol: TCP
+<span class="linenos">13</span>    name: http
+<span class="linenos">14</span>  - port: <span class="m">443</span>
+<span class="linenos">15</span>    protocol: TCP
+<span class="linenos">16</span>    name: https
+<span class="linenos">17</span>  selector:
+<span class="linenos">18</span>    run: my-nginx
+<span class="linenos">19</span>---
+<span class="linenos">20</span>apiVersion: apps/v1
+<span class="linenos">21</span>kind: Deployment
+<span class="linenos">22</span>metadata:
+<span class="linenos">23</span>  name: my-nginx
+<span class="linenos">24</span>spec:
+<span class="linenos">25</span>  selector:
+<span class="linenos">26</span>    matchLabels:
+<span class="linenos">27</span>      run: my-nginx
+<span class="linenos">28</span>  replicas: <span class="m">1</span>
+<span class="linenos">29</span>  template:
+<span class="linenos">30</span>    metadata:
+<span class="linenos">31</span>      labels:
+<span class="linenos">32</span>        run: my-nginx
+<span class="linenos">33</span>    spec:
+<span class="linenos">34</span>      volumes:
+<span class="linenos">35</span>      - name: secret-volume
+<span class="linenos">36</span>        secret:
+<span class="linenos">37</span>          secretName: nginxsvc.tls
+<span class="linenos">38</span>      - name: configmap-volume
+<span class="linenos">39</span>        configMap:
+<span class="linenos">40</span>          name: nginxconfigmap
+<span class="linenos">41</span>      containers:
+<span class="linenos">42</span>      - name: nginxhttps
+<span class="linenos">43</span>        image: bprashanth/nginxhttps:1.0
+<span class="linenos">44</span>        ports:
+<span class="linenos">45</span>        - containerPort: <span class="m">443</span>
+<span class="linenos">46</span>        - containerPort: <span class="m">80</span>
+<span class="linenos">47</span>        volumeMounts:
+<span class="linenos">48</span>        - mountPath: /etc/nginx/ssl
+<span class="linenos">49</span>          name: secret-volume
+<span class="linenos">50</span>        - mountPath: /etc/nginx/conf.d
+<span class="linenos">51</span>          name: configmap-volume
+</pre></div>
+</div>
+<p>访问测试</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 确认ip</span>
+kubectl get pod my-nginx-77fd8b978f-rcvh2 -o yaml <span class="p">|</span>grep podip -i
+podIP: <span class="m">10</span>.244.2.219
+podIPs:
+
+<span class="c1"># 测试访问</span>
+$ curl -k https://10.244.2.219/ <span class="p">|</span>grep Welcome
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                Dload  Upload   Total   Spent    Left  Speed
+<span class="m">100</span>   <span class="m">612</span>  <span class="m">100</span>   <span class="m">612</span>    <span class="m">0</span>     <span class="m">0</span>   <span class="m">6274</span>      <span class="m">0</span> --:--:-- --:--:-- --:--:--  <span class="m">6309</span>
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-pod%E4%B8%8Eservice%E7%9A%84dns.html" class="btn btn-neutral float-left" title="1.6.2. pod与service的dns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="2. 服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

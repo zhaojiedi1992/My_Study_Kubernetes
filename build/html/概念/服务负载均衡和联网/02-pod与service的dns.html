@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.6.2. pod与service的dns &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.6.3. 使用 Service 连接到应用" href="03-%E4%BD%BF%E7%94%A8service%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%BA%94%E7%94%A8.html" />
+    <link rel="prev" title="1.6.1. 服务" href="01-%E6%9C%8D%E5%8A%A1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.6. 服务、负载均衡和联网</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E6%9C%8D%E5%8A%A1.html">1.6.1. 服务</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.6.2. pod与service的dns</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#service">1.6.2.1. Service 的名字空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns">1.6.2.2. DNS记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a">1.6.2.3. 服务A记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#srv">1.6.2.4. 服务SRV记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pod-a">1.6.2.5. Pod A记录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pod-dns">1.6.2.6. Pod 的 DNS 策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.6.2.7. Pod 的 DNS 配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-%E4%BD%BF%E7%94%A8service%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%BA%94%E7%94%A8.html">1.6.3. 使用 Service 连接到应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.6. </span>服务、负载均衡和联网</a> &raquo;</li>
+      <li><span class="section-number">1.6.2. </span>pod与service的dns</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/服务负载均衡和联网/02-pod与service的dns.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="podservicedns">
+<h1><span class="section-number">1.6.2. </span>pod与service的dns<a class="headerlink" href="#podservicedns" title="Permalink to this headline"></a></h1>
+<p>k8s为服务和pod创建dns记录， 可以使用dns名称而非地址访问服务。</p>
+<section id="service">
+<h2><span class="section-number">1.6.2.1. </span>Service 的名字空间<a class="headerlink" href="#service" title="Permalink to this headline"></a></h2>
+<p>看一个service的配置文件  /etc/resolv.conf</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># kubectl get svc |grep nginx</span>
+nginxsvc                                                 ClusterIP   None             &lt;none&gt;        <span class="m">80</span>/TCP     9d
+<span class="c1"># kubectl exec svc/nginxsvc -- cat /etc/resolv.conf</span>
+nameserver <span class="m">10</span>.96.0.10
+search default.svc.cluster.local svc.cluster.local cluster.local epc.duxiaoman.com
+options ndots:5
+</pre></div>
+</div>
+</section>
+<section id="dns">
+<h2><span class="section-number">1.6.2.2. </span>DNS记录<a class="headerlink" href="#dns" title="Permalink to this headline"></a></h2>
+<p>哪些对象可以获得dns记录？</p>
+<ul class="simple">
+<li><p>Services</p></li>
+<li><p>Pods</p></li>
+</ul>
+</section>
+<section id="a">
+<h2><span class="section-number">1.6.2.3. </span>服务A记录<a class="headerlink" href="#a" title="Permalink to this headline"></a></h2>
+<p>普通服务（除了无头服务）回馈有一个dns记录，my-svc.my-namespace.svc.cluster-domain.example的这种形式的。</p>
+</section>
+<section id="srv">
+<h2><span class="section-number">1.6.2.4. </span>服务SRV记录<a class="headerlink" href="#srv" title="Permalink to this headline"></a></h2>
+<p>_my-port-name._my-port-protocol.my-svc.my-namespace.svc.cluster-domain.example 这种形式。</p>
+</section>
+<section id="pod-a">
+<h2><span class="section-number">1.6.2.5. </span>Pod A记录<a class="headerlink" href="#pod-a" title="Permalink to this headline"></a></h2>
+<p>pod-ip-address.my-namespace.pod.cluster-domain.example</p>
+</section>
+<section id="pod-dns">
+<h2><span class="section-number">1.6.2.6. </span>Pod 的 DNS 策略<a class="headerlink" href="#pod-dns" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Default: pod从运行的节点集成名称解析配置</p></li>
+<li><p>ClusterFirst: 与配置的集群与后缀不匹配的dns查询都转发到从节点集成的上游名称服务器</p></li>
+<li><p>ClusterFirstWithHostNet： 对于以 hostNetwork 方式运行的 Pod，应显式设置其 DNS 策略</p></li>
+<li><p>None： 设置忽略k8s环境变量的dns设置，pod会使用dnsconfig字段锁提供的dns设置。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Default” 不是默认的 DNS 策略。如果未明确指定 dnsPolicy，则使用 “ClusterFirst”。</p>
+</div>
+</section>
+<section id="id1">
+<h2><span class="section-number">1.6.2.7. </span>Pod 的 DNS 配置<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>dnsConfig 字段是可选的，它可以与任何 dnsPolicy 设置一起使用。 但是，当 Pod 的 dnsPolicy 设置为 “None” 时，必须指定 dnsConfig 字段。</p>
+<ul class="simple">
+<li><p>nameservers：将用作于 Pod 的 DNS 服务器的 IP 地址列表。 最多可以指定 3 个 IP 地址。当 Pod 的 dnsPolicy 设置为 “None” 时， 列表必须至少包含一个 IP 地址，否则此属性是可选的。 所列出的服务器将合并到从指定的 DNS 策略生成的基本名称服务器，并删除重复的地址。</p></li>
+<li><p>searches：用于在 Pod 中查找主机名的 DNS 搜索域的列表。此属性是可选的。 指定此属性时，所提供的列表将合并到根据所选 DNS 策略生成的基本搜索域名中。 重复的域名将被删除。Kubernetes 最多允许 6 个搜索域。</p></li>
+<li><p>options：可选的对象列表，其中每个对象可能具有 name 属性（必需）和 value 属性（可选）。 此属性中的内容将合并到从指定的 DNS 策略生成的选项。 重复的条目将被删除。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01-%E6%9C%8D%E5%8A%A1.html" class="btn btn-neutral float-left" title="1.6.1. 服务" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="03-%E4%BD%BF%E7%94%A8service%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%BA%94%E7%94%A8.html" class="btn btn-neutral float-right" title="1.6.3. 使用 Service 连接到应用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
