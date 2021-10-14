@@ -1,0 +1,7 @@
+服务内部流量策略
+==========================================
+服务内部流量策略开启了内部流量限制，只是路由内部流量都和发起方处于相同节点的服务端点，这种机制能节省开销，提升效率。
+
+工作原理
+---------------------------
+kube-proxy 基于 spec.internalTrafficPolicy 的设置来过滤路由的目标服务端点。 当它的值设为 Local 时，只选择节点本地的服务端点。 当它的值设为 Cluster 或缺省时，则选择所有的服务端点。 启用特性门控 ServiceInternalTrafficPolicy 后， spec.internalTrafficPolicy 的值默认设为 Cluster。

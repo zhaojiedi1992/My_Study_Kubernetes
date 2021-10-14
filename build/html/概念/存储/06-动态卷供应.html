@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>存储类 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">1. 概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>存储类</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/存储/06-动态卷供应.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>存储类<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>存储类是提供动态pv分配的。存储类一旦创建不能对其更新的。</p>
+<section id="id2">
+<h2>存储类资源样例<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">storage.k8s.io/v1</span>
+<span class="linenos"> 2</span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">StorageClass</span>
+<span class="linenos"> 3</span><span class="nt">metadata</span><span class="p">:</span>
+<span class="linenos"> 4</span>  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="linenos"> 5</span><span class="nt">provisioner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes.io/glusterfs</span>
+<span class="linenos"> 6</span><span class="nt">parameters</span><span class="p">:</span>
+<span class="linenos"> 7</span>  <span class="nt">resturl</span><span class="p">:</span> <span class="s">&quot;http://10.157.89.215:8077&quot;</span>
+<span class="linenos"> 8</span>  <span class="nt">clusterid</span><span class="p">:</span> <span class="s">&quot;b8bc571569b52c572f56b19a5f6b6d9a&quot;</span>
+<span class="linenos"> 9</span>  <span class="nt">restauthenabled</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
+<span class="linenos">10</span>  <span class="nt">restuser</span><span class="p">:</span> <span class="s">&quot;admin&quot;</span>
+<span class="linenos">11</span>  <span class="nt">restuserkey</span><span class="p">:</span> <span class="s">&quot;admin&quot;</span>
+<span class="linenos">12</span>  <span class="nt">gidMin</span><span class="p">:</span> <span class="s">&quot;40000&quot;</span>
+<span class="linenos">13</span>  <span class="nt">gidMax</span><span class="p">:</span> <span class="s">&quot;50000&quot;</span>
+<span class="linenos">14</span>  <span class="nt">volumetype</span><span class="p">:</span> <span class="s">&quot;replicate:2&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>回收策略<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>如果存储类没有没有指定回收策略，默认是delete的。</p>
+</section>
+<section id="id4">
+<h2>允许卷扩展<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>当下层 StorageClass 的 allowVolumeExpansion 字段设置为 true 时。</p>
+</section>
+<section id="id5">
+<h2>挂载选项<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>挂载选项通过mountOption来指定的。
+如果卷插件不支持挂载选项，却指定了挂载选项，则制备操作会失败。 挂载选项在 StorageClass 和 PV 上都不会做验证，如果其中一个挂载选项无效，那么这个 PV 挂载操作就会失败。</p>
+</section>
+<section id="id6">
+<h2>卷绑定模式<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<p>卷绑定模式控制卷绑定和动态制备的发生时候， 默认情况immediate是pvc有了就创建和完成绑定的。 这个时候pod还没有调度呢。</p>
+<p>可以修改为WaitForFirstCons</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

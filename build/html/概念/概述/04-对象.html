@@ -126,8 +126,7 @@
   <span class="nt">selector</span><span class="p">:</span>
     <span class="nt">matchLabels</span><span class="p">:</span>
       <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="l l-Scalar l-Scalar-Plain">yment to run 2 pods matching the template</span>
-  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+  <span class="nt">template</span><span class="p">:</span>
     <span class="nt">metadata</span><span class="p">:</span>
       <span class="nt">labels</span><span class="p">:</span>
         <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
@@ -156,7 +155,7 @@
 <h2><span class="section-number">1.1.4.5. </span>对象管理<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <p>对象管理的方式比较多， 这里主要说下kubectl方式，有如下几种方式。</p>
 <table class="colwidths-given docutils align-default" id="id18">
-<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id18" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">对象管理方式对比</span><a class="headerlink" href="#id18" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 18%" />
 <col style="width: 12%" />
@@ -328,54 +327,6 @@ kubectl get pods -l <span class="s1">&#39;environment in (production, qa)&#39;</
 </section>
 <section id="id15">
 <h2><span class="section-number">1.1.4.14. </span>推荐使用的标签<a class="headerlink" href="#id15" title="Permalink to this headline"></a></h2>
-<table class="docutils align-default" id="id19">
-<caption><span class="caption-text">推荐的标签
- :header: 键,  描述,     示例,     类型
- :widths: 15, 10, 30,30</span><a class="headerlink" href="#id19" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>app.kubernetes.io/name</p></td>
-<td><p>应用程序的名称</p></td>
-<td><p>mysql</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-even"><td><p>app.kubernetes.io/instance</p></td>
-<td><p>用于唯一确定应用实例的名称</p></td>
-<td><p>mysql-abcxzy</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-odd"><td><p>app.kubernetes.io/version</p></td>
-<td><p>应用程序的当前版本（例如，语义版本，修订版哈希等）</p></td>
-<td><p>5.7.21</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-even"><td><p>app.kubernetes.io/component</p></td>
-<td><p>架构中的组件</p></td>
-<td><p>database</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-odd"><td><p>app.kubernetes.io/part-of</p></td>
-<td><p>此级别的更高级别应用程序的名称</p></td>
-<td><p>wordpress</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-even"><td><p>app.kubernetes.io/managed-by</p></td>
-<td><p>用于管理应用程序的工具</p></td>
-<td><p>helm</p></td>
-<td><p>字符串</p></td>
-</tr>
-<tr class="row-odd"><td><p>app.kubernetes.io/created-by</p></td>
-<td><p>创建该资源的控制器或者用户</p></td>
-<td><p>controller-manager</p></td>
-<td><p>字符串</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="id16">
 <h2><span class="section-number">1.1.4.15. </span>注解<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h2>

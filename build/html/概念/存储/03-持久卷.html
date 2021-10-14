@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>持久卷 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">1. 概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>持久卷</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/存储/03-持久卷.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>持久卷<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>持久卷是集群中的一块存储，可以由管理员实现供应或者存储类动态供应。</p>
+<section id="id2">
+<h2>持久卷申请<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>PV 卷的供应有两种方式：静态供应或动态供应。</p>
+</section>
+<section id="id3">
+<h2>静态供应<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>管理员需要提前创建一个pv。</p>
+</section>
+<section id="id4">
+<h2>动态供应<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>管理员提供存储类即可， 使用者pvc申请指定这个存储类，会自动创建pv的。</p>
+</section>
+<section id="id5">
+<h2>回收<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>回收策略</p>
+<ul class="simple">
+<li><p>保留（Retain）</p></li>
+<li><p>删除</p></li>
+<li><p>回收</p></li>
+</ul>
+<p>目前，仅 NFS 和 HostPath 支持回收（Recycle）。 AWS EBS、GCE PD、Azure Disk 和 Cinder 卷都支持删除（Delete）。</p>
+</section>
+<section id="id6">
+<h2>卷模式<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<p>volumeMode 属性设置为 Filesystem 的卷会被 Pod 挂载（Mount） 到某个目录。
+如果卷的存储来自某块设备而该设备目前为空，Kuberneretes 会在第一次挂载卷之前 在设备上创建文件系统。</p>
+</section>
+<section id="id7">
+<h2>访问模式<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>ReadWriteOnce: 被一个节点读写挂载   RWO</p></li>
+<li><p>ReadOnlyMany: 卷可以被多个节点只读挂载 ROX</p></li>
+<li><p>ReadWriteMany: 卷可以被多个节点读写挂载 RWX</p></li>
+<li><p>ReadWriteOncePod: 卷可以被单个pod读写方式挂载，RWOP</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>存储类<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<p>早前，Kubernetes 使用注解 volume.beta.kubernetes.io/storage-class 而不是 storageClassName 属性。
+这一注解目前仍然起作用，不过在将来的 Kubernetes 发布版本中该注解会被彻底废弃。</p>
+</section>
+<section id="id9">
+<h2>卷的状态<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Available（可用）– 卷是一个空闲资源，尚未绑定到任何申领；</p></li>
+<li><p>Bound（已绑定）– 该卷已经绑定到某申领；</p></li>
+<li><p>Released（已释放）– 所绑定的申领已被删除，但是资源尚未被集群回收；</p></li>
+<li><p>Failed（失败）– 卷的自动回收操作失败。</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>基于卷快照恢复卷<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restore-pvc</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csi-hostpath-sc</span>
+  <span class="nt">dataSource</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">new-snapshot-test</span>
+    <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">VolumeSnapshot</span>
+    <span class="nt">apiGroup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">snapshot.storage.k8s.io</span>
+  <span class="nt">accessModes</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+  <span class="nt">resources</span><span class="p">:</span>
+    <span class="nt">requests</span><span class="p">:</span>
+      <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10Gi</span>
+</pre></div>
+</div>
+<p>d之一。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

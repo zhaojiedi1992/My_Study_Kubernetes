@@ -18,7 +18,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. 服务" href="../../%E4%BB%BB%E5%8A%A1/index.html" />
+    <link rel="next" title="1.6.4. ingress" href="04-ingress.html" />
     <link rel="prev" title="1.6.2. pod与service的dns" href="02-pod%E4%B8%8Eservice%E7%9A%84dns.html" /> 
 </head>
 
@@ -56,6 +56,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#id2">1.6.3.2. 保护 Service</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="04-ingress.html">1.6.4. ingress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-%E6%9C%8D%E5%8A%A1%E5%86%85%E9%83%A8%E6%B5%81%E9%87%8F%E7%AD%96%E7%95%A5.html">1.6.5. ingress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E7%AB%AF%E7%82%B9%E5%88%87%E7%89%87.html">1.6.6. 端点切片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-%E7%BD%91%E7%BB%9C%E7%AD%96%E7%95%A5.html">1.6.7. 网络策略</a></li>
 </ul>
 </li>
 </ul>
@@ -109,14 +113,13 @@
 <span class="linenos">3</span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout <span class="nv">$KEY</span> -out <span class="nv">$CERT</span> -subj <span class="s2">&quot;/CN=nginxsvc/O=nginxsvc&quot;</span>
 </pre></div>
 </div>
-<p>执行上面的脚本，生成证书，然后执行下面脚本完成secret的创建
-.. code-block:: bash</p>
-<blockquote>
-<div><p># 直接跟进文件创建
-kubectl create secret  tls nginxsvc.tls –key=nginx.key –cert=nginx.crt
-# 通过命令方式，进行归档成为文件
-kubectl get secret  nginxsvc.tls  -o yaml &gt;nginxsvc.tls</p>
-</div></blockquote>
+<p>执行上面的脚本，生成证书，然后执行下面脚本完成secret的创建</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 直接跟进文件创建</span>
+kubectl create secret  tls nginxsvc.tls --key<span class="o">=</span>nginx.key --cert<span class="o">=</span>nginx.crt
+<span class="c1"># 通过命令方式，进行归档成为文件</span>
+kubectl get secret  nginxsvc.tls  -o yaml &gt;nginxsvc.tls
+</pre></div>
+</div>
 <p>准备个nginx配置下</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s1">&#39;https://raw.githubusercontent.com/kubernetes/examples/master/staging/https-nginx/default.conf&#39;</span>  &gt;default.conf
 kubectl get cm nginxconfigmap -o yaml &gt;nginxconfigmap.yaml
@@ -199,7 +202,7 @@ $ curl -k https://10.244.2.219/ <span class="p">|</span>grep Welcome
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="02-pod%E4%B8%8Eservice%E7%9A%84dns.html" class="btn btn-neutral float-left" title="1.6.2. pod与service的dns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../%E4%BB%BB%E5%8A%A1/index.html" class="btn btn-neutral float-right" title="2. 服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04-ingress.html" class="btn btn-neutral float-right" title="1.6.4. ingress" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

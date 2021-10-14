@@ -25,7 +25,6 @@ k8s中的对象是持久化的实体，ks8使用这些实体来表示整个集�
     selector:
       matchLabels:
         app: nginx
-  yment to run 2 pods matching the template
     template:
       metadata:
         labels:
@@ -53,7 +52,7 @@ metadata:
 -------------------------
 对象管理的方式比较多， 这里主要说下kubectl方式，有如下几种方式。
 
-.. csv-table:: Frozen Delights!
+.. csv-table:: 对象管理方式对比
    :header: "管理技术", "作用与", "建议环境", "学习难度"
    :widths: 15, 10, 30,30
 
@@ -204,14 +203,13 @@ yaml资源定义清单文件中使用matchLabels或者matchExpressions2种方式
 .. csv-table:: 推荐的标签
    :header: 键,	描述,	示例,	类型
    :widths: 15, 10, 30,30
-
-  app.kubernetes.io/name,	应用程序的名称,	mysql,	字符串
-  app.kubernetes.io/instance,	用于唯一确定应用实例的名称,	mysql-abcxzy,	字符串
-  app.kubernetes.io/version,	应用程序的当前版本（例如，语义版本，修订版哈希等）,	5.7.21,	字符串
-  app.kubernetes.io/component,	架构中的组件,	database,	字符串
-  app.kubernetes.io/part-of,	此级别的更高级别应用程序的名称,	wordpress,	字符串
-  app.kubernetes.io/managed-by,	用于管理应用程序的工具,	helm,	字符串
-  app.kubernetes.io/created-by,	创建该资源的控制器或者用户,	controller-manager,	字符串
+   app.kubernetes.io/name,	应用程序的名称,	mysql,	字符串
+   app.kubernetes.io/instance,	用于唯一确定应用实例的名称,	mysql-abcxzy,	字符串
+   app.kubernetes.io/version,	应用程序的当前版本（例如，语义版本，修订版哈希等）,	5.7.21,	字符串
+   app.kubernetes.io/component,	架构中的组件,	database,	字符串
+   app.kubernetes.io/part-of,	此级别的更高级别应用程序的名称,	wordpress,	字符串
+   app.kubernetes.io/managed-by,	用于管理应用程序的工具,	helm,	字符串
+   app.kubernetes.io/created-by,	创建该资源的控制器或者用户,	controller-manager,	字符串
 
 
 
