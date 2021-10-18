@@ -12,3 +12,6 @@
    工作负载/index
    工作负载资源/index
    服务负载均衡和联网/index
+   存储/index
+   配置/index
+   策略/index

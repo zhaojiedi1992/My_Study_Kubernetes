@@ -3,10 +3,8 @@
 卷快照能力为 Kubernetes 用户提供了一种标准的方式来在指定时间点 复制卷的内容，并且不需要创建全新的卷。例如，
 这一功能使得数据库管理员 能够在执行编辑或删除之类的修改之前对数据库执行备份。
 
-nfs 
+卷快照样例
 --------------------------------
-
-
 
 .. code-block:: bash 
 
@@ -18,7 +16,7 @@ nfs
       volumeSnapshotClassName: csi-hostpath-snapclass
       source:
         persistentVolumeClaimName: pvc-test
-    
+
 
 
 

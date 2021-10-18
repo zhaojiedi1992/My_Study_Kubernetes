@@ -19,5 +19,7 @@
 
 podSelect: 设置策略应用的pod是那些。
 ingress: 入栈策略， 控制那些来源访问选定的pod
-egress
+egress: 出站策略，控制选定的pod可以访问外部的。
+
+可以放行一段端口范围的。 
 

@@ -1,190 +1,106 @@
-服务
+卷
 ==========================================
+容器都是临时的， 重启都会回到一个干净状态的，怎么保证数据的存储就是一个问题， 另外一个pod里面是包含多个容器的， 怎么在几个容器共享文件？
+这就需要卷。
 
-将运行在一组 Pods 上的应用程序公开为网络服务的抽象方法。
 
-k8s为pods提供自己的ip地址，并为一组pod提供相同的dns名字，可以通过他们完成负载均衡。
 
-service资源
+nfs 
+--------------------------------
+
+
+
+使用 subPath 
 ---------------------------
-逻辑上的一组 Pod，一种可以访问它们的策略 —— 通常称为微服务。 Service 所针对的 Pods 集合通常是通过选择算符来确定的。
+有时，在单个 Pod 中共享卷以供多方使用是很有用的。 volumeMounts.subPath 属性可用于指定所引用的卷内的子路径，而不是其根路径。
 
 
-定义service
----------------------------
-
-定义service或者一个负载均衡，主要是2个部分， 后端是那些节点，哪个端口还有协议等。
-后端是那些节点是可以通过标签选择器来选择即可， 具体的端口需要通过spec.ports来指定的。 
 
 
-定义service样例
-------------------------------
 
 
-.. literalinclude:: ../../../scripts/service/service_demo.yaml
-   :language: yaml
-   :linenos:
-
-.. code-block:: bash
-
-    # 查看创建的服务
-    kubectl get svc
-    NAME                                                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-    glusterfs-dynamic-37d63494-2b84-4820-94c8-20cb328315f5   ClusterIP   10.101.172.236   <none>        1/TCP     8d
-    glusterfs-dynamic-d6cfa4b3-54d2-4174-b481-e5fb67eed218   ClusterIP   10.109.124.189   <none>        1/TCP     8d
-    glusterfs-dynamic-de235013-3d3a-42f0-8e39-b094a4761b5e   ClusterIP   10.97.26.122     <none>        1/TCP     8d
-    kubernetes                                               ClusterIP   10.96.0.1        <none>        443/TCP   13d
-    my-service                                               ClusterIP   10.98.65.196     <none>        80/TCP    4s
-    nginxsvc                                                 ClusterIP   None             <none>        80/TCP    9d
-    # 查看创建的endpoint
-    kubectl get ep                                                                            
-    NAME                                                     ENDPOINTS                                        AGE
-    glusterfs-dynamic-37d63494-2b84-4820-94c8-20cb328315f5   10.157.89.216:1,10.157.31.40:1,10.157.89.215:1   8d
-    glusterfs-dynamic-d6cfa4b3-54d2-4174-b481-e5fb67eed218   <none>                                           8d
-    glusterfs-dynamic-de235013-3d3a-42f0-8e39-b094a4761b5e   10.157.89.216:1,10.157.31.40:1,10.157.89.215:1   8d
-    kubernetes                                               10.157.89.215:6443                               13d
-    my-service                                               <none>                                           9s
-    nginxsvc                                                 10.244.1.10:80,10.244.2.9:80                     9d
 
 
-没有选择符的service
-------------------------------
-
-这种主要适用在如下几个场景中。
-
-- 生产环境使用外部的数据库
-- 服务在另外一个ns中，或者别的集群中。
-- 服务迁移k8s中间阶段，部分服务还在非k8s中。
-
-创建外部服务过程
------------------------------------
 
 
-.. literalinclude:: ../../../scripts/service/service_study01.yaml 
-   :language: yaml
-   :linenos:
 
 
-.. literalinclude:: ../../../scripts/service/service_study02.yaml 
-   :language: yaml
-   :linenos:
-
-.. code-block:: bash 
-
-    # 查看服务
-    kubectl get svc                                                                            
-    NAME                                                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-    glusterfs-dynamic-37d63494-2b84-4820-94c8-20cb328315f5   ClusterIP   10.101.172.236   <none>        1/TCP      8d
-    glusterfs-dynamic-d6cfa4b3-54d2-4174-b481-e5fb67eed218   ClusterIP   10.109.124.189   <none>        1/TCP      8d
-    glusterfs-dynamic-de235013-3d3a-42f0-8e39-b094a4761b5e   ClusterIP   10.97.26.122     <none>        1/TCP      8d
-    kubernetes                                               ClusterIP   10.96.0.1        <none>        443/TCP    13d
-    my-service                                               ClusterIP   10.98.65.196     <none>        80/TCP     11m
-    mydb                                                     ClusterIP   10.98.213.29     <none>        3306/TCP   65s
-    nginxsvc                                                 ClusterIP   None             <none>        80/TCP     9d
-    # 查看endpoint
-    kubectl get ep                                                                             
-    NAME                                                     ENDPOINTS                                        AGE
-    glusterfs-dynamic-37d63494-2b84-4820-94c8-20cb328315f5   10.157.89.216:1,10.157.31.40:1,10.157.89.215:1   8d
-    glusterfs-dynamic-d6cfa4b3-54d2-4174-b481-e5fb67eed218   <none>                                           8d
-    glusterfs-dynamic-de235013-3d3a-42f0-8e39-b094a4761b5e   10.157.89.216:1,10.157.31.40:1,10.157.89.215:1   8d
-    kubernetes                                               10.157.89.215:6443                               13d
-    my-service                                               <none>                                           11m
-    mydb                                                     192.168.0.5:3306                                 21s
-    nginxsvc                                                 10.244.1.10:80,10.244.2.9:80                     9d
 
 
-超出容量的endpoint
------------------------------------
-
-如果某个ep资源超过1000的话，会被截断的， 另外添加一个注解。endpoints.kubernetes.io/over-capacity: truncated。
-
-虚拟 IP 和 Service 代理
------------------------------------
-
-在k8s中，每个node是运行一个kube-proxy进程的，kube-proxy负责为service实现一种vip的形式。
-
-为啥不使用dns轮训
-
-- 不遵守记录ttl设置
-- 无限期缓存
-- 大量解析会是的dns高负载
-
-userspace 代理模式 
-
-iptables 代理模式
-
-IPVS 代理模式
-
-在ipvs模式下，kube-proxy会监视k8s的服务和端点，调用netLink接口完成创建ipvs规则，并定期同步。访问服务的时候流量定向到具体后端pod之一。
-
-ipvs大力模式类似于iptables模式的netfilter挂钩函数，但是使用哈希表作为基础数据结构。兵器在内核空间工作，延迟更短，支持更高的网络流量吞吐量。
-
-支持多种流量调度算法
-
-* rr：轮替（Round-Robin）
-* lc：最少链接（Least Connection），即打开链接数量最少者优先
-* dh：目标地址哈希（Destination Hashing）
-* sh：源地址哈希（Source Hashing）
-* sed：最短预期延迟（Shortest Expected Delay）
-* nq：从不排队（Never Queue）
 
 
-会话粘性
-    service.spec.sessionAffinity 设置为 "ClientIP" （默认值是 "None"），来基于客户端的 IP 地址选择会话关联。 
-    service.spec.sessionAffinityConfig.clientIP.timeoutSeconds 来设置最大会话停留时间
 
 
-多端口service
------------------------------------
-多端口server建议给server.ports[*].name进行指定，减少端口歧义。
 
-服务发现
------------------------------------
 
-k8s支持2中基本的服务于发现模式，环境变量和dns。
 
------------------------------------
-环境变量
------------------------------------
 
-当 Pod 运行在 Node 上，kubelet 会为每个活跃的 Service 添加一组环境变量。 它同时支持 Docker links兼容 变量 （查看 makeLinkVariables）、 
-简单的 {SVCNAME}_SERVICE_HOST 和 {SVCNAME}_SERVICE_PORT 变量。 这里 Service 的名称需大写，横线被转换成下划线。
 
-.. warning:: pod使用环境变量前，这个服务必须是有的，没有没法使用。
 
------------------------------------
-DNS
------------------------------------
 
-支持集群的 DNS 服务器（例如 CoreDNS）监视 Kubernetes API 中的新服务，并为每个服务创建一组 DNS 记录。 如果在整个集群中都启用了 DNS，则所有 Pod 都应该能够通过其 DNS 名称自动解析服务。
 
-Kubernetes DNS 服务器是唯一的一种能够访问 ExternalName 类型的 Service 的方式。 
 
-无头服务
------------------------------------
-有时不需要或不想要负载均衡，以及单独的 Service IP。 遇到这种情况，可以通过指定 Cluster IP（spec.clusterIP）的值为 "None" 来创建 Headless Service。
 
-- 带选择符的服务： ，Endpoint 控制器在 API 中创建了 Endpoints 记录， 并且修改 DNS 配置返回 A 记录
-- 无选择符的服务： 不会创建endpoint记录，externalName会查询cname记录，其他的会查询同名endpoint。
 
-发布服务（服务类型) 
------------------------------------
 
-service的类型比较多的。 
-主要是如下几种。
 
-* ClusterIP：通过集群的内部 IP 暴露服务，选择该值时服务只能够在集群内部访问。 这也是默认的 ServiceType。
-* NodePort：通过每个节点上的 IP 和静态端口（NodePort）暴露服务。 NodePort 服务会路由到自动创建的 ClusterIP 服务。 通过请求 <节点 IP>:<节点端口>，你可以从集群的外部访问一个 NodePort 服务。
-* LoadBalancer：使用云提供商的负载均衡器向外部暴露服务。 外部负载均衡器可以将流量路由到自动创建的 NodePort 服务和 ClusterIP 服务上。
-* ExternalName：通过返回 CNAME 和对应值，可以将服务映射到 externalName 字段的内容（例如，foo.bar.example.com）。 无需创建任何类型代理。
 
-支持的协议
------------------------------------
 
-- tcp
-- udp
-- sctp
-- HTTP 
-- Proxy
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d之一。
+
+
+
+
+
+
+
+
+
+
 

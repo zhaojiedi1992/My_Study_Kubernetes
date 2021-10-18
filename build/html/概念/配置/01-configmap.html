@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.8.1. configmap &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.8.2. configmap" href="02-secret.html" />
+    <link rel="prev" title="1.8. 配置" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9C%8D%E5%8A%A1%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E8%81%94%E7%BD%91/index.html">1.6. 服务、负载均衡和联网</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AD%98%E5%82%A8/index.html">1.7. 存储</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.8. 配置</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.8.1. configmap</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.8.1.1. ConfigMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.8.1.2. configmap创建样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.8.1.3. 如何使用configmap的数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#podconfigmap">1.8.1.4. pod使用configmap样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.8.1.5. 几种方式的不同</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.8.1.6. 不可变更的 ConfigMap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-secret.html">1.8.2. configmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-secret.html">1.8.3. secret</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AD%96%E7%95%A5/index.html">1.9. 策略</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.8. </span>配置</a> &raquo;</li>
+      <li><span class="section-number">1.8.1. </span>configmap</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/配置/01-configmap.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configmap">
+<h1><span class="section-number">1.8.1. </span>configmap<a class="headerlink" href="#configmap" title="Permalink to this headline"></a></h1>
+<p>configmap是一种api对象，用来将费机密性的数据保持到键值对中，</p>
+<section id="id1">
+<h2><span class="section-number">1.8.1.1. </span>ConfigMap<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>使用configmap可以保障配置和应用程序代码的分离。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.8.1.2. </span>configmap创建样例<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">game-demo</span>
+<span class="nt">data</span><span class="p">:</span>
+  <span class="c1"># 类属性键；每一个键都映射到一个简单的值</span>
+  <span class="nt">player_initial_lives</span><span class="p">:</span> <span class="s">&quot;3&quot;</span>
+  <span class="nt">ui_properties_file_name</span><span class="p">:</span> <span class="s">&quot;user-interface.properties&quot;</span>
+
+  <span class="c1"># 类文件键</span>
+  <span class="nt">game.properties</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+    <span class="no">enemy.types=aliens,monsters</span>
+    <span class="no">player.maximum-lives=5</span>
+  <span class="nt">user-interface.properties</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+    <span class="no">color.good=purple</span>
+    <span class="no">color.bad=yellow</span>
+    <span class="no">allow.textmode=true</span>
+</pre></div>
+</div>
+<p>data部分是个kv数据， 如果多行数据的话， 可以使用|来使用。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">1.8.1.3. </span>如何使用configmap的数据<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>容器命令和参数内</p></li>
+<li><p>容器的环境变量</p></li>
+<li><p>只读卷添加一个文件，应用读取</p></li>
+<li><p>编写代码在pod中运行，通过api方式读取configmap。</p></li>
+</ul>
+</section>
+<section id="podconfigmap">
+<h2><span class="section-number">1.8.1.4. </span>pod使用configmap样例<a class="headerlink" href="#podconfigmap" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">configmap-demo-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">containers</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">demo</span>
+      <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alpine</span>
+      <span class="nt">command</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;sleep&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;3600&quot;</span><span class="p p-Indicator">]</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="c1"># 定义环境变量</span>
+        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PLAYER_INITIAL_LIVES</span> <span class="c1"># 请注意这里和 ConfigMap 中的键名是不一样的</span>
+          <span class="nt">valueFrom</span><span class="p">:</span>
+            <span class="nt">configMapKeyRef</span><span class="p">:</span>
+              <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">game-demo</span>           <span class="c1"># 这个值来自 ConfigMap</span>
+              <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">player_initial_lives</span> <span class="c1"># 需要取值的键</span>
+        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">UI_PROPERTIES_FILE_NAME</span>
+          <span class="nt">valueFrom</span><span class="p">:</span>
+            <span class="nt">configMapKeyRef</span><span class="p">:</span>
+              <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">game-demo</span>
+              <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ui_properties_file_name</span>
+      <span class="nt">volumeMounts</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+        <span class="nt">mountPath</span><span class="p">:</span> <span class="s">&quot;/config&quot;</span>
+        <span class="nt">readOnly</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">volumes</span><span class="p">:</span>
+    <span class="c1"># 你可以在 Pod 级别设置卷，然后将其挂载到 Pod 内的容器中</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">config</span>
+      <span class="nt">configMap</span><span class="p">:</span>
+        <span class="c1"># 提供你想要挂载的 ConfigMap 的名字</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">game-demo</span>
+        <span class="c1"># 来自 ConfigMap 的一组键，将被创建为文件</span>
+        <span class="nt">items</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="s">&quot;game.properties&quot;</span>
+          <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;game.properties&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">key</span><span class="p">:</span> <span class="s">&quot;user-interface.properties&quot;</span>
+          <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;user-interface.properties&quot;</span>
+</pre></div>
+</div>
+<p>这个pod使用了2种， 第一种环境变量方式， 通过valuefrom方式，指定了环境变量的value从一个configmap的特定key获取。
+第二种方式，通过读取一个configmap的特定key，弄成多个文件，然后这个卷包含多个文件的， 挂载到pod中，然后给pod使用。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">1.8.1.5. </span>几种方式的不同<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>通过环境变量的方式，不会自动更新的，通过文件方式，文件可以自动改变的。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">1.8.1.6. </span>不可变更的 ConfigMap<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>Kubernetes 特性 不可变更的 Secret 和 ConfigMap 提供了一种将各个 Secret 和 ConfigMap 设置为不可变更的选项。</p>
+<p>一旦某 ConfigMap 被标记为不可变更，则 无法 逆转这一变化，，也无法更改 data 或 binaryData 字段的内容。
+你只能删除并重建 ConfigMap。 因为现有的 Pod 会维护一个对已删除的 ConfigMap 的挂载点，建议重新创建 这些 Pods。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="1.8. 配置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-secret.html" class="btn btn-neutral float-right" title="1.8.2. configmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
