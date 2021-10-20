@@ -1,0 +1,32 @@
+扩展资源的资源装箱
+==========================================
+
+可以给扩展资源配置分数，辅助调度系统为节点评分，提高打醒集群中稀缺资源的资源利用率
+
+
+.. code-block:: yaml 
+
+    apiVersion: kubescheduler.config.k8s.io/v1beta1
+    kind: KubeSchedulerConfiguration
+    profiles:
+    # ...
+      pluginConfig:
+      - name: RequestedToCapacityRatio
+        args: 
+          shape:
+          - utilization: 0
+            score: 10
+          - utilization: 100
+            score: 0
+          resources:
+          - name: intel.com/foo
+            weight: 3
+          - name: intel.com/bar
+            weight: 5
+
+RequestedToCapacityRatioResourceAllocation 优先级函数如何对节点评分
+-------------------------------------------------------------------------------------------
+
+.. code-block:: tes
+
+

@@ -1,0 +1,71 @@
+节点压力驱逐
+==========================================
+节点压力驱逐是kubelet主动终止pod以回收节点资源的过程。
+
+kubelet 监控集群节点的 CPU、内存、磁盘空间和文件系统的 inode 等资源。 当这些资源中的一个或者多个达到特定的消耗水平， kubelet 可以主动地使节点上一个或者多个 Pod 失效，以回收资源防止饥饿。
+
+在节点压力驱逐期间，kubelet 将所选 Pod 的 PodPhase 设置为 Failed。这将终止 Pod。
+
+节点压力驱逐不同于 API 发起的驱逐。
+
+
+
+kubelet 并不理会你配置的 PodDisruptionBudget 或者是 Pod 的 terminationGracePeriodSeconds。 
+如果你使用了软驱逐条件，kubelet 会考虑你所配置的 eviction-max-pod-grace-period。 如果你使用了硬驱逐条件，它使用 0s 宽限期来终止 Pod。
+
+
+驱逐信号
+-------------------------
+
+驱逐信号是特定资源在特定时间点的当前状态。 kubelet 使用驱逐信号，通过将信号与驱逐条件进行比较来做出驱逐决定， 驱逐条件是节点上应该可用资源的最小量。
+
+- 驱逐信号	描述
+- memory.available	memory.available := node.status.capacity[memory] - node.stats.memory.workingSet
+- nodefs.available	nodefs.available := node.stats.fs.available
+- nodefs.inodesFree	nodefs.inodesFree := node.stats.fs.inodesFree
+- imagefs.available	imagefs.available := node.stats.runtime.imagefs.available
+- imagefs.inodesFree	imagefs.inodesFree := node.stats.runtime.imagefs.inodesFree
+- pid.available	pid.available := node.stats.rlimit.maxpid - node.stats.rlimit.curproc
+
+驱逐条件
+-------------------------
+驱逐条件的形式为 [eviction-signal][operator][quantity]，样例： memory.available<10%
+
+
+软驱逐条件 
+
+你可以既指定软驱逐条件宽限期，又指定 Pod 终止宽限期的上限，，给 kubelet 在驱逐期间使用。 如果你指定了宽限期的上限并且 Pod 满足软驱逐阈条件，
+则 kubelet 将使用两个宽限期中的较小者。 如果你没有指定宽限期上限，kubelet 会立即杀死被驱逐的 Pod，不允许其体面终止。
+
+硬驱逐条件 
+
+硬驱逐条件没有宽限期。当达到硬驱逐条件时， kubelet 会立即杀死 pod，而不会正常终止以回收紧缺的资源。
+
+kubelet 具有以下默认硬驱逐条件：
+
+- memory.available<100Mi
+- nodefs.available<10%
+- imagefs.available<15%
+- nodefs.inodesFree<5%（Linux 节点）
+
+
+
+节点条件 
+-------------------------
+
+- 节点条件	驱逐信号	描述
+- MemoryPressure	memory.available	节点上的可用内存已满足驱逐条件
+- DiskPressure	nodefs.available、nodefs.inodesFree、imagefs.available 或 imagefs.inodesFree	节点的根文件系统或映像文件系统上的可用磁盘空间和 inode 已满足驱逐条件
+- PIDPressure	pid.available	(Linux) 节点上的可用进程标识符已低于驱逐条件
+
+
+kubelet 驱逐时 Pod 的选择 
+--------------------------------------------------
+
+首先考虑资源使用量超过其请求的 BestEffort 或 Burstable Pod。 这些 Pod 会根据它们的优先级以及它们的资源使用级别超过其请求的程度被逐出。
+资源使用量少于请求量的 Guaranteed Pod 和 Burstable Pod 根据其优先级被最后驱逐。
+
+
+最小驱逐回收 
+--------------------------------------------------
+.. code-block:: bas

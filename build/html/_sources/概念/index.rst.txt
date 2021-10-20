@@ -16,3 +16,4 @@
    配置/index
    策略/index
    调度抢占和驱逐/index
+   集群管理/index

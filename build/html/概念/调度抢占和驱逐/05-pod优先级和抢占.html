@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.10.5. 优先级和抢占 &mdash; My_Study_Kubernates v1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.10.6. 节点压力驱逐" href="06-%E8%8A%82%E7%82%B9%E5%8E%8B%E5%8A%9B%E9%A9%B1%E9%80%90.html" />
+    <link rel="prev" title="1.10.4. 污点和容忍度" href="04-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> My_Study_Kubernates
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">k8s</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">1. 概念</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../%E6%A6%82%E8%BF%B0/index.html">1.1. 概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9E%B6%E6%9E%84/index.html">1.2. 架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AE%B9%E5%99%A8/index.html">1.3. 容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD/index.html">1.4. 工作负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E8%B5%84%E6%BA%90/index.html">1.5. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E6%9C%8D%E5%8A%A1%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E8%81%94%E7%BD%91/index.html">1.6. 服务、负载均衡和联网</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%AD%98%E5%82%A8/index.html">1.7. 存储</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E9%85%8D%E7%BD%AE/index.html">1.8. 配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AD%96%E7%95%A5/index.html">1.9. 策略</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.10. 调度、抢占和驱逐</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-%E8%B0%83%E5%BA%A6%E5%99%A8.html">1.10.1. 调度器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-%E5%B0%86pod%E5%88%86%E9%85%8D%E7%BB%99%E8%8A%82%E7%82%B9.html">1.10.2. 将pod分配给节点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-pod%E5%BC%80%E9%94%80.html">1.10.3. pod开销</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6.html">1.10.4. 污点和容忍度</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.10.5. 优先级和抢占</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.10.5.1. 如何使用优先级</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#priorityclass">1.10.5.2. PriorityClass</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.10.5.3. 样例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.10.5.4. 抢占策略</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pod">1.10.5.5. Pod 优先级对调度顺序的影响</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.10.5.6. 被提名节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.10.5.7. 抢占的限制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="06-%E8%8A%82%E7%82%B9%E5%8E%8B%E5%8A%9B%E9%A9%B1%E9%80%90.html">1.10.6. 节点压力驱逐</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-api%E5%8F%91%E8%B5%B7%E7%9A%84%E9%A9%B1%E9%80%90.html">1.10.7. 节点压力驱逐</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08-%E6%89%A9%E5%B1%95%E8%B5%84%E6%BA%90%E7%9A%84%E8%B5%84%E6%BA%90%E8%A3%85%E7%AE%B1.html">1.10.8. 扩展资源的资源装箱</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09-%E8%B0%83%E5%BA%A6%E6%A1%86%E6%9E%B6.html">1.10.9. 调度框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html">1.10.10. 调度框架</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86/index.html">1.11. 工作负载资源</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">My_Study_Kubernates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.10. </span>调度、抢占和驱逐</a> &raquo;</li>
+      <li><span class="section-number">1.10.5. </span>优先级和抢占</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/调度抢占和驱逐/05-pod优先级和抢占.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">1.10.5. </span>优先级和抢占<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>pod可以有优先级，优先级表示已一个pod相对其他的pod的重要性，如果一个pod无法调度，调度程序会尝试抢占优先级毕竟低的pod。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>可以通过创建resourcequota来限制用户创建高优先级的pod。 避免驱逐别的pod.</p>
+</div>
+<section id="id2">
+<h2><span class="section-number">1.10.5.1. </span>如何使用优先级<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>先创建一个优先级类</p></li>
+<li><p>然后在使用pod的deployment或者其他类资源的template指定对应priorityClassName为新建的优先级类</p></li>
+</ul>
+<p>k8s内置了2个优先级类，system-cluster-critical 和system-node-critical</p>
+</section>
+<section id="priorityclass">
+<h2><span class="section-number">1.10.5.2. </span>PriorityClass<a class="headerlink" href="#priorityclass" title="Permalink to this headline"></a></h2>
+<p>PriorityClass 还有两个可选字段：globalDefault 和 description。
+globalDefault 字段表示这个 PriorityClass 的值应该用于没有 priorityClassName 的 Pod。 系统中只能存在一个 globalDefault 设置为 true 的</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">1.10.5.3. </span>样例<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">scheduling.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PriorityClass</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">high-priority</span>
+<span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000000</span>
+<span class="nt">globalDefault</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">description</span><span class="p">:</span> <span class="s">&quot;此优先级类应仅用于</span><span class="nv"> </span><span class="s">XYZ</span><span class="nv"> </span><span class="s">服务</span><span class="nv"> </span><span class="s">Pod。&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">1.10.5.4. </span>抢占策略<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>PreemptionPolicy默认是PreeemptLowerPriority的， 可以抢占低优先级的pod的， 如果这个值为never那就不会抢占的。</p>
+</section>
+<section id="pod">
+<h2><span class="section-number">1.10.5.5. </span>Pod 优先级对调度顺序的影响<a class="headerlink" href="#pod" title="Permalink to this headline"></a></h2>
+<p>当启用 Pod 优先级时，调度程序会按优先级对悬决 Pod 进行排序， 并且每个悬决的 Pod 会被放置在调度队列中其他优先级较低的悬决 Pod 之前。
+因此，如果满足调度要求，较高优先级的 Pod 可能会比具有较低优先级的 Pod 更早调度。 如果无法调度此类 Pod，调度程序将继续并尝试调度其他较低优先级的 Pod。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">1.10.5.6. </span>被提名节点<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<p>当 Pod P 抢占节点 N 上的一个或多个 Pod 时， Pod P 状态的 nominatedNodeName 字段被设置为节点 N 的名称。 该字段帮助调度程序跟踪为 Pod P 保留的资源，并为用户提供有关其集群中抢占的信息。
+请注意，Pod P 不一定会调度到“被提名的节点（Nominated Node。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">1.10.5.7. </span>抢占的限制<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
+<p>被抢占的牺牲者体面终止， 如果想让低优先级快速终止，可以设置终止时间为很小的一个数值。</p>
+<p>支持pdb pod dis</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04-%E6%B1%A1%E7%82%B9%E5%92%8C%E5%AE%B9%E5%BF%8D%E5%BA%A6.html" class="btn btn-neutral float-left" title="1.10.4. 污点和容忍度" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06-%E8%8A%82%E7%82%B9%E5%8E%8B%E5%8A%9B%E9%A9%B1%E9%80%90.html" class="btn btn-neutral float-right" title="1.10.6. 节点压力驱逐" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, zhaojiedi1992@outlook.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
