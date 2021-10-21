@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1.11. 工作负载资源 &mdash; My_Study_Kubernates v1.0 documentation</title>
+  <title>1.11. 集群管理 &mdash; My_Study_Kubernates v1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1.11.1. 证书" href="01-%E8%AF%81%E4%B9%A6.html" />
-    <link rel="prev" title="1.10.10. 调度框架" href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html" /> 
+    <link rel="prev" title="1.10.10. 调度器性能调优" href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,7 +53,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../%E9%85%8D%E7%BD%AE/index.html">1.8. 配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AD%96%E7%95%A5/index.html">1.9. 策略</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/index.html">1.10. 调度、抢占和驱逐</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.11. 工作负载资源</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.11. 集群管理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="01-%E8%AF%81%E4%B9%A6.html">1.11.1. 证书</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html">1.11.2. 管理资源</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F.html">1.11.3. 集群网络系统</a></li>
@@ -80,7 +80,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-      <li><span class="section-number">1.11. </span>工作负载资源</li>
+      <li><span class="section-number">1.11. </span>集群管理</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/集群管理/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -91,9 +91,9 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">1.11. </span>工作负载资源<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<h1><span class="section-number">1.11. </span>集群管理<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">工作负载资源</span></p>
+<p class="caption" role="heading"><span class="caption-text">集群管理</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01-%E8%AF%81%E4%B9%A6.html">1.11.1. 证书</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="01-%E8%AF%81%E4%B9%A6.html#openssl">1.11.1.1. openssl</a></li>
@@ -102,9 +102,14 @@
 <li class="toctree-l1"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html">1.11.2. 管理资源</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html#id2">1.11.2.1. 组织资源配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html#kubectl">1.11.2.2. kubectl 中的批量操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html#canary-deployments">1.11.2.3. 金丝雀部署（Canary Deployments）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html#kubectl-edit">1.11.2.4. kubectl edit</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="03-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F.html">1.11.3. 集群网络系统</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F.html">1.11.3. 集群网络系统</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03-%E9%9B%86%E7%BE%A4%E7%BD%91%E7%BB%9C%E7%B3%BB%E7%BB%9F.html#k8s">1.11.3.1. k8s网络模型</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="04-k8s%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6%E6%8C%87%E6%A0%87.html">1.11.4. 04-k8s系统组件指标</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="04-k8s%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6%E6%8C%87%E6%A0%87.html#id1">1.11.4.1. k8s中组件的指标</a></li>
 </ul>
@@ -117,7 +122,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html" class="btn btn-neutral float-left" title="1.10.10. 调度框架" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html" class="btn btn-neutral float-left" title="1.10.10. 调度器性能调优" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="01-%E8%AF%81%E4%B9%A6.html" class="btn btn-neutral float-right" title="1.11.1. 证书" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

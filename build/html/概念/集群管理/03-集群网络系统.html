@@ -53,10 +53,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../%E9%85%8D%E7%BD%AE/index.html">1.8. 配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AD%96%E7%95%A5/index.html">1.9. 策略</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E8%B0%83%E5%BA%A6%E6%8A%A2%E5%8D%A0%E5%92%8C%E9%A9%B1%E9%80%90/index.html">1.10. 调度、抢占和驱逐</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.11. 工作负载资源</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">1.11. 集群管理</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="01-%E8%AF%81%E4%B9%A6.html">1.11.1. 证书</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90.html">1.11.2. 管理资源</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">1.11.3. 集群网络系统</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1.11.3. 集群网络系统</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#k8s">1.11.3.1. k8s网络模型</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="04-k8s%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6%E6%8C%87%E6%A0%87.html">1.11.4. 04-k8s系统组件指标</a></li>
 </ul>
 </li>
@@ -80,7 +83,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html"><span class="section-number">1. </span>概念</a> &raquo;</li>
-          <li><a href="index.html"><span class="section-number">1.11. </span>工作负载资源</a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1.11. </span>集群管理</a> &raquo;</li>
       <li><span class="section-number">1.11.3. </span>集群网络系统</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/zhaojiedi1992/My_Study_Kubernates/blob/../edit/master/source/概念/集群管理/03-集群网络系统.rst" class="fa fa-github"> Edit on GitHub</a>
@@ -93,7 +96,24 @@
              
   <section id="id1">
 <h1><span class="section-number">1.11.3. </span>集群网络系统<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<p>集群网络系统是k8s</p>
+<p>集群网络系统是k8s的核心系统，网络系统的4个主要问题。</p>
+<ul class="simple">
+<li><p>高度耦合的容器间通信，</p></li>
+<li><p>pod间通信，</p></li>
+<li><p>pod和服务间通信</p></li>
+<li><p>外部和服务间通信</p></li>
+</ul>
+<section id="k8s">
+<h2><span class="section-number">1.11.3.1. </span>k8s网络模型<a class="headerlink" href="#k8s" title="Permalink to this headline"></a></h2>
+<p>每个pod都有它自己的地址，在这个模型里，从端口分配、命名、服务发现、负载均衡、应用配置和迁移的角度来看，pod都可以视为虚拟机或者物理机器。</p>
+<p>基本要求</p>
+<ul class="simple">
+<li><p>节点上的pod可以不通过nat和其他的任何节点上的pod进行通信。</p></li>
+<li><p>节点上的代理（kubelet)可以和节点上的所有pod进行通信。</p></li>
+</ul>
+<p>Kubernetes 的 IP 地址存在于 Pod 范围内 - 容器共享它们的网络命名空间 - 包括它们的 IP 地址和 MAC 地址。 这就意味着 Pod 内的容器都可以通过 localhost 到达各个端口。
+这也意味着 Pod 内的容器都需要相互协调端口的使用，但是这和虚拟机中的进程似乎没有什么不同， 这也被称为“一个 Pod 一个 IP”模型。</p>
+</section>
 </section>
 
 

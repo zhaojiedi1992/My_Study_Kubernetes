@@ -10,19 +10,69 @@
 也是可以通过目录形式，通过读取目录即可。 会自动识别后缀为yml yaml json这些文件。
 
 kubectl 中的批量操作
--------------------------
+--------------------------------------------------
 
 
-.. code-block:: bas
+.. code-block:: bash 
+
+   # 通过起初创建的文件进行删除
+   kubectl delete -f https://k8s.io/examples/application/nginx-app.yaml
+
+   # 命令式删除特定资源
+   kubectl delete deployments/my-nginx services/my-nginx-svc
+
+   # 资源删除指定标签删除，不建议
+   kubectl delete deployment,services -l app=nginx
+
+
+金丝雀部署（Canary Deployments） 
+--------------------------------------------------
+
+如何做个金丝雀发布。
+对于一个服务来说， 有个service 有个deployment的， 我们通过service选择的时候既能选择到老的deployment也能选择个数为1个的新的deployment， 这样就接收了一些流量。
+通过后续的调整实例数量， 逐步下掉老的deployment即可完成一个发布。
+
+
+具体可以通过track标签来区别不同的版本。
+
+.. code-block:: text
+
+   线上稳定的deployment配置
+
+     name: frontend
+     replicas: 3
+    
+     labels:
+        app: guestbook
+        tier: frontend
+        track: stable
+    
+     image: gb-frontend:v3
+
+   金丝雀的版本
+
+     name: frontend-canary
+     replicas: 1
+    
+     labels:
+        app: guestbook
+        tier: frontend
+        track: canary
+     
+     image: gb-frontend:v4
+
+
+服务选择
+  selector:
+     app: guestbook
+     tier: frontend
 
 
 
+kubectl edit 
+----------------------------
 
-
-
-
-
-
+不建议使用这种方式， 可以通过get到一个yaml文件，然后编辑文件后重新apply即可。 
 
 
 

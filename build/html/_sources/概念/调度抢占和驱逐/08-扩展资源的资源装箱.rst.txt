@@ -27,6 +27,56 @@
 RequestedToCapacityRatioResourceAllocation 优先级函数如何对节点评分
 -------------------------------------------------------------------------------------------
 
-.. code-block:: tes
+.. code-block:: text 
+
+    请求的资源
+
+    intel.com/foo: 2
+    Memory: 256MB
+    CPU: 2
+
+    资源权重
+
+    intel.com/foo: 5
+    Memory: 1
+    CPU: 3
+
+    FunctionShapePoint {{0, 0}, {100, 10}}
+
+    节点 Node 1 配置
+
+    可用：
+      intel.com/foo : 4
+      Memory : 1 GB
+      CPU: 8
+
+    已用：
+      intel.com/foo: 1
+      Memory: 256MB
+      CPU: 1
+
+    节点得分：
+
+    intel.com/foo  = resourceScoringFunction((2+1),4)
+                   = (100 - ((4-3)*100/4)
+                   = (100 - 25)
+                   = 75
+                   = rawScoringFunction(75)
+                   = 7
+
+    Memory         = resourceScoringFunction((256+256),1024)
+                   = (100 -((1024-512)*100/1024))
+                   = 50
+                   = rawScoringFunction(50)
+                   = 5
+
+    CPU            = resourceScoringFunction((2+1),8)
+                   = (100 -((8-3)*100/8))
+                   = 37.5
+                   = rawScoringFunction(37.5)
+                   = 3
+
+    NodeScore   =  (7 * 5) + (5 * 1) + (3 * 3) / (5 + 1 + 3)
+                =  5
 
 

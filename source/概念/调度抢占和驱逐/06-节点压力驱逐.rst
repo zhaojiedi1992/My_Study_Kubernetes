@@ -68,4 +68,28 @@ kubelet 驱逐时 Pod 的选择
 
 最小驱逐回收 
 --------------------------------------------------
-.. code-block:: bas
+
+.. code-block:: yaml  
+
+  apiVersion: kubelet.config.k8s.io/v1beta1
+  kind: KubeletConfiguration
+  evictionHard:
+    memory.available: "500Mi"
+    nodefs.available: "1Gi"
+    imagefs.available: "100Gi"
+  evictionMinimumReclaim:
+    memory.available: "0Mi"
+    nodefs.available: "500Mi"
+    imagefs.available: "2Gi"
+
+
+
+节点内存不足行为
+--------------------------------------------------
+
+kubelet 根据 Pod 的服务质量（QoS）为每个容器设置一个 oom_score_adj 值。
+
+- 服务质量	oom_score_adj
+- Guaranteed	-997
+- BestEffort	1000
+- Burstable	min(max(2, 1000 - (1000 * memoryRequestBytes) / machineMemoryCapacityBytes), 999)

@@ -68,13 +68,13 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="06-%E8%8A%82%E7%82%B9%E5%8E%8B%E5%8A%9B%E9%A9%B1%E9%80%90.html">1.10.6. 节点压力驱逐</a></li>
-<li class="toctree-l3"><a class="reference internal" href="07-api%E5%8F%91%E8%B5%B7%E7%9A%84%E9%A9%B1%E9%80%90.html">1.10.7. 节点压力驱逐</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-api%E5%8F%91%E8%B5%B7%E7%9A%84%E9%A9%B1%E9%80%90.html">1.10.7. api发起的驱逐</a></li>
 <li class="toctree-l3"><a class="reference internal" href="08-%E6%89%A9%E5%B1%95%E8%B5%84%E6%BA%90%E7%9A%84%E8%B5%84%E6%BA%90%E8%A3%85%E7%AE%B1.html">1.10.8. 扩展资源的资源装箱</a></li>
 <li class="toctree-l3"><a class="reference internal" href="09-%E8%B0%83%E5%BA%A6%E6%A1%86%E6%9E%B6.html">1.10.9. 调度框架</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html">1.10.10. 调度框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-%E8%B0%83%E5%BA%A6%E5%99%A8%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.html">1.10.10. 调度器性能调优</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86/index.html">1.11. 工作负载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86/index.html">1.11. 集群管理</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../%E4%BB%BB%E5%8A%A1/index.html">2. 服务</a></li>
@@ -155,7 +155,8 @@ globalDefault 字段表示这个 PriorityClass 的值应该用于没有 priority
 <section id="id6">
 <h2><span class="section-number">1.10.5.7. </span>抢占的限制<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h2>
 <p>被抢占的牺牲者体面终止， 如果想让低优先级快速终止，可以设置终止时间为很小的一个数值。</p>
-<p>支持pdb pod dis</p>
+<p>支持pdb pod disruptionbudget,但不保证。允许多副本应用程序的所有者限制因自愿性质的干扰而同时终止的 Pod 数量。</p>
+<p>是仅针对同等或更高优先级的 Pod 设置 Pod 间亲和性。</p>
 </section>
 </section>
 
