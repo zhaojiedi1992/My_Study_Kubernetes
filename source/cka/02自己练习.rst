@@ -16,6 +16,9 @@
 16
 17 
 
+自己的联系
+================================
+
 .. code-block:: text 
 
     1、权限控制 RBAC（权重4%）
@@ -221,7 +224,7 @@
     sudo -i
 
 .. code-block:: text 
-    
+
     17、节点维护（权重4%）
     设置配置环境：
     [candidate@node-1] $ kubectl config use-context ek8s
