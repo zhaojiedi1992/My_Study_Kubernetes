@@ -1,0 +1,230 @@
+1
+2
+3
+4
+5
+6
+7
+8 
+9 
+10
+11
+12
+13 
+14
+15
+16
+17 
+
+.. code-block:: text 
+
+    1、权限控制 RBAC（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Context
+    为部署流水线创建一个新的 ClusterRole 并将其绑定到范围为特定的 namespace 的特定 ServiceAccount。
+    Task
+    创建一个名为 deployment-clusterrole 且仅允许创建以下资源类型的新 ClusterRole：
+    Deployment
+    StatefulSet
+    DaemonSet
+    在现有的 namespace app-team1 中创建一个名为 cicd-token 的新 ServiceAccount。
+    限于 namespace app-team1 中，将新的 ClusterRole deployment-clusterrole 绑定到新的 ServiceAccount cicd-token。
+
+
+
+.. code-block:: text 
+
+    2、查看 pod 的 CPU（权重5%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    通过 pod label name=cpu-loader，找到运行时占用大量 CPU 的 pod，
+    并将占用 CPU 最高的 pod 名称写入文件 /opt/KUTR000401/KUTR00401.txt（已存在）。
+
+.. code-block:: text 
+
+    3、配置网络策略 NetworkPolicy（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context hk8s
+    Task
+    在现有的 namespace my-app 中创建一个名为 allow-port-from-namespace 的新 NetworkPolicy。
+    确保新的 NetworkPolicy 允许 namespace echo 中的 Pods 连接到 namespace my-app 中的 Pods 的 9000 端口。
+    进一步确保新的 NetworkPolicy：
+    不允许对没有在监听 端口 9000 的 Pods 的访问
+    不允许非来自 namespace echo 中的 Pods 的访问
+
+.. code-block:: text 
+
+    4、暴露服务 service（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    请重新配置现有的 deployment front-end 以及添加名为 http 的端口规范来公开现有容器 nginx 的端口 80/tcp。
+    创建一个名为 front-end-svc 的新 service，以公开容器端口 http。
+    配置此 service，以通过各个 Pod 所在的节点上的 NodePort 来公开他们。
+
+.. code-block:: text 
+
+    5、创建 Ingress（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    如下创建一个新的 nginx Ingress 资源：
+    名称: ping
+    Namespace: ing-internal
+    使用服务端口 5678 在路径 /hello 上公开服务 hello
+    可以使用以下命令检查服务 hello 的可用性，该命令应返回 hello：
+    curl -kL <INTERNAL_IP>/hello
+
+
+.. code-block:: text 
+
+    6、扩容 deployment 副本数量（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    将 deployment presentation 扩展至 4 个 pods
+
+.. code-block:: text 
+
+    7、调度 pod 到指定节点（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    按如下要求调度一个 pod：
+    名称：nginx-kusc00401
+    Image：nginx
+    Node selector：disk=ssd
+
+
+.. code-block:: text 
+
+    8、查看可用节点数量（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    检查有多少 nodes 已准备就绪（不包括被打上 Taint：NoSchedule 的节点），
+    并将数量写入 /opt/KUSC00402/kusc00402.txt
+
+
+.. code-block:: text 
+
+    9、创建多容器的 pod（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    按如下要求调度一个 Pod：
+    名称：kucc8
+    app containers: 2
+    container 名称/images：
+
+    nginx
+    consu
+
+.. code-block:: text 
+
+    10、创建 PV（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context hk8s
+    Task
+    创建名为 app-config 的 persistent volume，容量为 1Gi，访问模式为 ReadWriteMany。
+    volume 类型为 hostPath，位于 /srv/app-config
+
+
+.. code-block:: text
+
+
+    11、创建 PVC（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context ok8s
+    Task
+    创建一个新的 PersistentVolumeClaim：
+    名称: pv-volume
+    Class: csi-hostpath-sc
+    容量: 10Mi
+    创建一个新的 Pod，来将 PersistentVolumeClaim 作为 volume 进行挂载：
+    名称：web-server
+    Image：nginx:1.16
+    挂载路径：/usr/share/nginx/html
+    配置新的 Pod，以对 volume 具有 ReadWriteOnce 权限。
+    最后，使用 kubectl edit 或 kubectl patch 将 PersistentVolumeClaim 的容量扩展为 70Mi，并记录此更改。
+
+.. code-block:: text 
+
+    12、查看 pod 日志（权重5%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Task
+    监控 pod foo 的日志并：
+    提取与错误 RLIMIT_NOFILE 相对应的日志行
+    将这些日志行写入 /opt/KUTR00101/foo
+
+.. code-block:: text 
+
+    13、使用 sidecar 代理容器日志（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+    Context
+    将一个现有的 Pod 集成到 Kubernetes 的内置日志记录体系结构中（例如 kubectl logs）。
+    添加 streaming sidecar 容器是实现此要求的一种好方法。
+    Task
+    使用 busybox Image 来将名为 sidecar 的 sidecar 容器添加到现有的 Pod 11-factor-app 中。
+    新的 sidecar 容器必须运行以下命令：
+    /bin/sh -c tail -n+1 -f /var/log/11-factor-app.log
+    使用挂载在/var/log 的 Volume，使日志文件 11-factor-app.log 可用于 sidecar 容器。
+    除了添加所需要的 volume mount 以外，请勿更改现有容器的规格。
+
+
+.. code-block:: text 
+        
+    14、升级集群（权重7%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context mk8s
+    Task
+    现有的 Kubernetes 集群正在运行版本 1.28.0。仅将 master 节点上的所有 Kubernetes 控制平面和节点组件升级到版本 1.28.1。
+    确保在升级之前 drain master 节点，并在升级后 uncordon master 节点。
+    可以使用以下命令，通过 ssh 连接到 master 节点：
+    ssh master01
+    可以使用以下命令，在该 master 节点上获取更高权限：
+    sudo -i
+    另外，在主节点上升级 kubelet 和 kubectl。
+    请不要升级工作节点，etcd，container 管理器，CNI 插件， DNS 服务或任何其他插件。
+
+.. code-block:: text 
+
+    15、备份还原 etcd（权重7%）
+    设置配置环境
+    此项目无需更改配置环境。但是，在执行此项目之前，请确保您已返回初始节点。
+    [candidate@master01] $ exit #注意，这个之前是在 master01 上，所以要 exit 退到 node01，如果已经是 node01 了，就不要再 exit 了。
+    Task
+    首先，为运行在 https://11.0.1.111:2379 上的现有 etcd 实例创建快照并将快照保存到 /var/lib/backup/etcd-snapshot.db
+    （注意，真实考试中，这里写的是 https://127.0.0.1:2379）
+    为给定实例创建快照预计能在几秒钟内完成。 如果该操作似乎挂起，则命令可能有问题。用 CTRL + C 来取消操作，然后重试。
+    然后还原位于/data/backup/etcd-snapshot-previous.db 的现有先前快照。
+    提供了以下 TLS 证书和密钥，以通过 etcdctl 连接到服务器。
+    CA 证书: /opt/KUIN00601/ca.crt
+    客户端证书: /opt/KUIN00601/etcd-client.crt
+    客户端密钥: /opt/KUIN00601/etcd-client.key
+
+
+.. code-block:: text 
+
+    16、排查集群中故障节点 （权重13%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context wk8s
+    Task
+    名为 node02 的 Kubernetes worker node 处于 NotReady 状态。
+    调查发生这种情况的原因，并采取相应的措施将 node 恢复为 Ready 状态，确保所做的任何更改永久生效。可以使用以下命令，通过 ssh 连接到 node02 节点：
+    ssh node02
+    可以使用以下命令，在该节点上获取更高权限：
+    sudo -i
+
+.. code-block:: text 
+    
+    17、节点维护（权重4%）
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context ek8s
+    Task
+    将名为 node02 的 node 设置为不可用，并重新调度该 node 上所有运行的 pods。
+
