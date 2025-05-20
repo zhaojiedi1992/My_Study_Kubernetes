@@ -1,0 +1,498 @@
+权限控制RBAC
+================================
+
+题目
+
+.. code-block:: text
+
+    设置答题配置环境：
+    kubectl config use-context k8s
+
+    Context：
+    为部署流水线创建一个新的 ClusterRole 并将其绑定到范围为特定的 namespace 的特定 ServiceAccount。
+
+    Task：
+    创建一个名为 deployment-clusterrole 且仅允许创建以下资源类型的新 ClusterRole：
+    Deployment
+    StatefulSet
+    DaemonSet
+    在现有的 namespace app-team1 中创建一个名为 cicd-token 的新 ServiceAccount。
+    限于 namespace app-team1 中，将新的 ClusterRole deployment-clusterrole 绑定到新的 ServiceAccount cicd-token。
+
+.. code-block:: bash
+
+    # 设置答题环境
+    kubectl config use-context k8s 
+    # 创建一个cluster role 
+    kubectl create clusterrole deployment-clusterrole --verb=create  --source=Deployment,StatefulSet,DaemonSet 
+    # 创建ServiceAccount
+    kubectl create serviceaccount cicd-token -n app-team1 
+    # 绑定 
+    kubectl create rolebinding cicd-token-binding  --clusterrole=deployment-clusterrole --serviceaccount=app-team1:cicd-token -n app-team1
+    # 检查
+    kubectl describe rolebinding cicd-token-binding -n app-team1
+    kubectl describe clusterrole deployment-clusterrole
+    kubectl describe serviceaccount cicd-token -n app-team1 
+
+node节点维护
+================================
+
+题目
+
+.. code-block:: text
+
+    配置环境kubectl config use-context ek8s
+
+    将名为ek8s-node-0的node节点设置为不可用，并重新调度该node上所有运行的pods。
+
+    官方参考地址：Kubectl Reference Docs
+    帮助命令： kubectl drain --help
+
+解答：
+
+.. code-block:: bash
+
+    # 切换答题环境
+    kubectl config use-context ek8s 
+    # 设置节点不可调度
+    kubectl cordon ek8s-node-0
+    # 驱逐
+    kubectl drain ek8s-node-0 --force  --ignore-daemonsets  --delete-emptydir-data 
+    # 查看ek8s-node-0机器上面pod情况
+    kubectl get pod -o wide -A | grep ek8s-node-0
+
+
+k8s集群版本升级
+================================
+
+ETCD数据备份与恢复
+================================
+
+题目
+
+.. code-block:: text
+
+    首先为运行在https://127.0.0.1:2379 上的现有etcd实例创建快照并将快照保存到
+    /srv/data/etcd-snapshot.db。
+
+    注：为给定实例创建快照预计能在几秒钟内完成。如果该操作似乎挂起，则命令可能有问题。用
+    ctrl+c 来取消操作，然后重试。
+
+    然后还原位于/srv/data/etcd-snapshot-previous.db的现有先前快照。
+
+    提供了TLS 证书和密钥，以通过etcdctl 连接到服务器。
+    CA 证书：/opt/KUIN00601/ca.crt
+    客户端证书: /opt/KUIN00601/etcd-client.crt
+    客户端密钥:/opt/KUIN00601/etcd-client.key
+
+    官方参考地址：https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/configure-upgrade-etcd/
+
+解答
+
+.. code-block:: bash
+
+    # 创建快照。
+    ETCDCTL_API=3 etcdctl --endpoints https://127.0.0.1:2379  --cacert=/opt/KUIN00601/ca.crt --cert=/opt/KUIN00601/etcd-client.crt --key=/opt/KUIN00601/etcd-client.key snapshot save /srv/data/etcd-snapshot.db
+    # 查看快照
+    etcdutl --write-out=table snapshot status /srv/data/etcd-snapshot.db
+    # 恢复快照
+    ETCDCTL_API=3 etcdctl --endpoints https://127.0.0.1:2379  --cacert=/opt/KUIN00601/ca.crt --cert=/opt/KUIN00601/etcd-client.crt --key=/opt/KUIN00601/etcd-client.key snapshot restore /srv/data/etcd-snapshot.db
+   
+
+
+配置网格策略
+================================
+
+题目1
+
+.. code-block:: text 
+
+题目一：设置配置环境：
+[candidate@node-1] $ kubectl config use-context hk8s
+
+Task
+在现有的 namespace my-app 中创建一个名为 allow-port-from-namespace 的新 NetworkPolicy。
+确保新的 NetworkPolicy 允许 namespace echo 中的 Pods 连接到 namespace my-app 中的 Pods 的 9000 端口。
+进一步确保新的 NetworkPolicy：
+-- 不允许对没有在监听 端口 9000 的 Pods 的访问
+-- 不允许非来自 namespace echo 中的 Pods 的访问
+
+
+
+.. code-block:: bash 
+
+    # # 1.更换配置环境
+    kubectl config use-context hk8s
+    # 创建命名空间
+    kubectl create ns my-app 
+    kubectl create ns echo 
+    # 查看ns标签
+    kubectl get ns --show-labels
+    # 创建network policy
+    kubectl apply -f allow-port-from-namespace.yaml
+
+.. code-block:: yaml
+
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+        name: allow-port-from-namespace
+        namespace: my-app
+    spec:
+        podSelector:
+          matchLabels: {}
+    policyTypes:
+    - Ingress
+    ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: echo
+        ports:
+        - protocol: TCP
+          port: 9000
+
+
+题目2
+
+.. code-block:: text
+
+    题目二：
+    设置配置环境kubectl config use-context k8s
+
+    创建一个名为allow-port-from-namespace2的新NetworkPolicy，以允许现有namespace my-app中的Pods连接到同一namespace中其他pods的端口9200。
+
+    确保新的NetworkPolicy：
+    -- 不允许对没有在监听端口9200的pods访问
+    -- 不允许不来自namespace my-app的pods的访问
+
+
+.. code-block:: bash 
+
+    #1.切换环境：
+    kubectl config use-context k8s
+    # 创建
+    kubectl apply -f allow-port-from-namespace2.yaml
+    # 查看
+    kubectl describe networkpolicy allow-port-from-namespace2 -n my-app
+
+.. code-block:: yaml
+
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+        name: allow-port-from-namespace2
+        namespace: my-app
+    spec:
+        podSelector:
+            matchLabels: {}
+    policyTypes:
+    - Ingress
+    ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+                kubernetes.io/metadata.name: my-app
+      ports:
+      - protocol: TCP
+        port: 6379
+
+
+
+service四层负载
+================================
+
+题目1 
+.. code-block:: text 
+
+    题目一：暴露服务service
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+
+    Task
+    请重新配置现有的 deployment front-end 以及添加名为 http 的端口规范来公开现有容器  nginx 的端口 80/tcp。 
+    创建一个名为 front-end-svc 的新 service，以公开容器端口 http。
+    配置此 service，以通过各个 Pod 所在的节点上的 NodePort 来公开他们。
+
+
+.. code-block:: bash
+
+     kubectl config use-context k8s
+     kubectl get deployment front-end -o yaml > front-end.yaml
+     kubectl explain pod.spec.containers.ports
+     vim front-end.yaml
+     containerPort: 80 
+     name: http
+     protocol: TCP
+
+     kubectl create expose deployment front-end --name=front-end-svc --port=80 --target-port=http --type=NodePort  -o yaml --dry-run=client > front-end-svc.yaml
+     vim front-end-svc.yaml
+     # 修改select 
+     kubectl apply -f front-end-svc.yaml
+     kubectl get svc front-end-svc -o wide
+
+
+ingress 7层负载
+================================
+
+题目
+
+.. code-block:: text 
+
+    官方文档：https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/：
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+
+    Task
+    如下创建一个新的 nginx Ingress 资源：
+    名称: ping
+    Namespace: ing-internal
+    使用服务端口 5678 在路径 /hello 上公开服务  hello
+
+    可以使用以下命令检查服务  hello 的可用性，该命令应返回  hello： 
+    curl -kL <INTERNAL_IP>/hello本次考试遇到问题：curl 请求没有反应；不记得是否有切换环境题目：IP/hi  端口：80
+
+
+
+.. code-block:: yaml 
+
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+        name: ping 
+        namespace: ing-internal
+    spec:
+        ingressClassName: nginx
+    rules:
+    - http:
+        paths:
+        - path: /hello
+            pathType: Prefix
+            backend:
+              service:
+                name: hello
+                port:
+                  number: 5678
+
+
+
+    apiVersion: networking.k8s.io/v1
+    kind: IngressClass
+    metadata:
+      labels:
+        app.kubernetes.io/component: controller
+      name: nginx
+    annotations:
+        ingressclass.kubernetes.io/is-default-class: "true"
+    spec:
+      controller: k8s.io/ingress-nginx
+
+
+
+deploy扩容
+================================
+
+题目1
+
+.. code-block:: text 
+
+    官方文档：https://kubernetes.io/zh-cn/docs/tasks/run-application/scale-stateful-set/
+    题目1：
+    将名为loadbalancer的deployment资源的Pod的副本数扩容为6个。
+
+.. code-block:: bash 
+
+    kubectl config use-context k8s
+    kubectl scale deployment loadbalancer --replicas=6 
+    kubect get pod -o wide -A |grep loadbalancer
+
+题目2： 
+
+.. code-block:: text 
+
+    官方文档：https://kubernetes.io/docs/reference/kubectl/quick-reference/#interacting-with-running-pods        https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#top题目2：
+    设置配置环境：
+    [candidate@node-1] $ kubectl config use-context k8s
+
+    Task
+    通过  pod label name=cpu-loader，找到运行时占用大量  CPU 的 pod，
+    并将占用 CPU 最高的 pod 名称写入文件 /opt/KUTR000401/KUTR00401.txt（已存在）。
+
+.. code-block:: bash 
+
+    kubectl top pod -l name=cpu-loader --sort-by=cpu 
+    echo xxxx > /opt/KUTR000401/KUTR00401.txt
+    cat /opt/KUTR000401/KUTR00401.txt
+
+
+调度pod到指定节点
+================================
+
+题目1
+
+.. code-block:: text 
+
+    官方文档：将pod分配给节点题目1：调度pod到指定节点
+    设置配置环境kubectl config use-context k8s
+
+    按如下要求创建并调度一个pod：
+    - 名称：nginx-kusc00401
+    - image: nginx
+    - Node selector: disk=ssd
+
+.. code-block:: bash 
+
+    kubectl get node -o wide 
+    kubectl label node node1 disk=ssd
+
+    kubectl create pod nginx-kusc00401 --image=nginx  --node-selector=disk=ssd --dry-run=client -o yaml > nginx-kusc00401.yaml
+    kubectl apply -f nginx-kusc00401.yaml
+    kubectl get pod -o wide 
+    kubectl describe pod nginx-kusc00401
+
+
+题目2
+
+.. code-block:: text 
+
+    题目：创建多容器的pod
+    设置配置环境kubectl config use-context k8s
+
+    创建一个名字为kucc4的pod，在pod里面分别为以下每个images单独运行一个app container
+    （可能会有1-4 个images）：nginx+redis+memcached+consul
+
+.. code-block:: bash 
+
+    kubectl config use-context k8s 
+    kubectl create pod kucc4  --image=nginx  --image=redis --image=memcached --image=consul --dry-run=client -o yaml > kucc4.yaml
+    kubectl apply -f kucc4.yaml
+    kubectl get pod -o wide 
+    kubectl describe pod kucc4 
+
+
+题目3 
+
+.. code-block:: text 
+
+    设置配置环境kubectl config use-context k8s
+
+    监控pod foo的日志并：
+    - 提取与错误unable-to-access-website 相对应的日志行
+    - 将这些日志行写入到/opt/KUTR00101/foo
+
+
+.. code-block:: bash 
+
+    kubectl logs foo -f |grep unable-to-access-website > /opt/KUTR00101/foo
+
+
+题目4 
+
+.. code-block:: text 
+
+    设置配置环境kubectl config use-context ek8s
+
+    名为wk8s-node-0的kubernetes worker node处于Not Ready状态。检查发生这种情况的原因，并采取相应措施将node 恢复为Ready 状态，确保所做的任何更改永久生效。
+    可使用以下命令通过ssh 连接到故障node：
+    ssh wk8s-node-0
+    可使用一下命令在该node上获取更高权限：
+    sudo -i
+
+.. code-block:: bash
+
+    kubectl get node -o wide
+    ssh wk8s-node-0
+    sudo -i 
+    # 查看节点状态
+    systemctl status kubelet 
+    systemctl start kubelet 
+
+    exit 
+    exit 
+    kubectl get node -o wide 
+    kubectl describe node wk8s-node-0
+
+
+
+统计Ready状态节点数量
+================================
+
+题目
+
+.. code-block:: text 
+
+    题目：统计Ready状态节点数量
+    设置配置环境kubectl config use-context k8s
+
+    检查有多少个worker nodes 已准备就绪（不包括被打上Taint: NoSchedule 的节点），并将数量写入/opt/KUSC00402/kusc00402.txt。
+
+
+.. code-block:: bash
+
+    # 切换环境
+    kubectl config use-context k8s 
+    # 查看节点状态
+    kubectl get nodes -o wide | grep Ready | grep -v NoSchedule | wc -l > /opt/KUSC00402/kusc00402.txt
+    cat /opt/KUSC00402/kusc00402.txt
+    # 
+
+
+
+按需创建pv和pvc
+================================
+
+题目
+
+.. code-block:: text 
+
+    官方文档：https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+
+    题目1：按要求创建PV
+    设置配置环境kubectl config use-context k8s
+    创建名为app-data的persistent volume，容量为1Gi，访问模式为ReadWriteMany。volume，类型为hostPath，位于/srv/app-data。
+
+
+.. code-block:: bash 
+
+    # 切换环境
+    kubectl config use-context k8s 
+    kubectl create pv app-data --capacity=1Gi --access-mode=ReadWriteMany --type=hostPath --path=srv/app-data --dry-run=client -o yaml > app-data.yaml
+    kubectl apply -f app-data.yaml
+    kubectl get pv app-data -o wide
+    kubectl describe pv app-data
+
+题目2
+
+.. code-block:: text 
+
+    设置配置环境kubectl config use-context k8s
+
+    创建一个新的PersistentVolumeClaim：
+    - 名称：pvvolume
+    - class：csi-hostpath-sc
+    - 容量：10Mi
+
+    创建一个新的pod，此pod 将作为volume挂载到PersistentVolumeClaim：
+    - 名称：web-server
+    - image: nginx
+    - 挂载路径: /usr/share/nginx/html
+    配置新的pod，以对volume具有ReadWriteOnce 权限。
+    最后，使用kubectl edit 或者kubectl patch 将PersistentVolumeClaim的容量扩展为70Mi，并记录此次更改。
+
+.. code-block:: bash 
+
+    kubectl create pvc pvvolume --storage-class=csi-hostpath-sc --capacity=10Mi --dry-run=client -o yaml > pvvolume.yaml
+    kubectl apply -f pvvolume.yaml
+    kubectl get pvc pvvolume -o wide
+    kubectl describe pvc pvvolume
+
+    kubectl create pod web-server --image=nginx  --volume=pvvolume --mount-path=/usr/share/nginx/html  --access-mode=ReadWriteOnce --dry-run=client -o yaml > web-server.yaml
+    kubectl apply -f web-server.yaml
+    kubectl get pod web-server -o wide
+    kubectl describe pod web-server
+
+    kubectl edit pvc pvvolume
+    kubectl get pvc pvvolume -o wide
+    kubectl describe pvc pvvolume
+
+    kubetl annotate pvc pvvolume  change-log ="edit to 70mi by xx " 
